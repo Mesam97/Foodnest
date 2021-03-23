@@ -1,0 +1,9 @@
+body{
+    background-color: aqua;
+    color:bisque;
+    text-align: center;
+
+}
+body > img{
+    width: 24%;
+}

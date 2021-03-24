@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="utf-8">
+        <link href="style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="header">
+            <header>
+                <h1>Foodnest</h1>
+            </header>
+        </div>
+        <div id="nav">
+            <nav>
+                <ul>
+                    <li><a href="">Flöde</a></li>
+                    <li><a href="profil.html">Se profil</a></li>
+                    <li><a href="">Inställningar</a></li>
+                    <li><a href="">Logga ut</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="section">
+            <section>
+                <h1>Mina inlägg</h1>
+                <ul id="section_nav">
+                    <li><a href="">Lägg till recept</a></li>
+                    <li><a href="">Se gillade inlägg</a></li>
+                    <li><a href="">Ta bort inlägg</a></li>
+                </ul>
+                <ul>
+                    % for picture in pictures:
+                    <li></li>
+                    %end
+                </ul>
+            </section>
+        </div>
+        <div id="footer">
+            <footer>
+                <h2>Copyright Foodnest AB 2021</h2>
+                <h2>Kontakta oss:</h2>
+                <p>Mail:</p>
+                <p>Telefonnr</p>
+            </footer>
+        </div>
+
+    </body>
+</html>

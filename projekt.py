@@ -14,8 +14,13 @@ def read_from_file():
         return []
 
 @route("/")
+def index():
+    """Visar förstasidan som består av ett formulär så man kan logga in"""
+    return template ("index")
+
+@route("/profil")
 def profil():
     """Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna"""
-    return template ("index")
+    return template ("profil")
 
 run(host='127.0.0.1', port=8080)

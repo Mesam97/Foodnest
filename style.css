@@ -11,10 +11,48 @@
     ;
 }
 
+header {
+    grid-area: header;
+    width: 80%;
+    height: 100px;
+    margin: 5px auto 5px auto;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#nav > nav {
+    grid-area: nav;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    margin: 20px;
+}
+
+main {
+    grid-area: main;
+    margin: 20px;
+}
+
 body{
     background-color: #FEFBFF;
     color: #FFB6CC;
     text-align: center;
     font-family: 'Raleway', sans-serif;
 
+}
+
+footer {
+    grid-area: footer;
+    clear: both;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0px;
 }

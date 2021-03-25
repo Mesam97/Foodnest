@@ -18,14 +18,18 @@ def index():
     """Visar förstasidan som består av ett formulär så man kan logga in"""
     return template ("index")
 
+@route("/flode")
+def flode():
+    return template("flode")
+
 @route("/profil")
 def profil():
     """Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna"""
     return template ("profil")
 
 @route("/skapa_recept")
-''' På denna länken kan användarna skapa recept'''
 def skaparecept():
+    ''' På denna länken kan användarna skapa recept'''
     return template("skapa_recept")
 
 run(host='127.0.0.1', port=8080)

@@ -18,6 +18,10 @@ def index():
     """Visar förstasidan som består av ett formulär så man kan logga in"""
     return template ("index")
 
+@route("/flode")
+def flode():
+    return template("flode")
+
 @route("/profil")
 def profil():
     """Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna"""

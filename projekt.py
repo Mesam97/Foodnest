@@ -2,12 +2,12 @@ from bottle import route, run, template, request
 
 def read_from_file():
     try: 
-        my_file= open("storage/","r")
+        my_file= open("storage/", "r")
         my_file.close()
 
         return products
     except:
-        my_file= open("storage/","w")
+        my_file= open("storage/", "w")
         my_file.write()
         my_file.close()
 

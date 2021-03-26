@@ -11,7 +11,7 @@
     ;
 }
 
-header {
+#header > header {
     grid-area: header;
     width: 80%;
     height: 100px;
@@ -35,20 +35,20 @@ a {
     margin: 20px;
 }
 
-main {
+#main > main {
     grid-area: main;
     margin: 20px;
 }
 
 body{
-    background-color: #FEFBFF;
-    color: #FFB6CC;
+    background-color: #FEAEFF2;
+    color: #54627B;
     text-align: center;
     font-family: 'Raleway', sans-serif;
 
 }
 
-footer {
+#footer > footer {
     grid-area: footer;
     clear: both;
     text-align: center;

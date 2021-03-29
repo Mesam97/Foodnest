@@ -3,7 +3,7 @@
     margin: auto;
     display: grid;
     grid-template-rows: auto auto auto auto;
-    grid-template-areas: 
+    grid-template-areas:
         "header"
         "nav"
         "main"
@@ -13,20 +13,28 @@
 
 #header > header {
     grid-area: header;
+    float: left;
     width: 80%;
     height: 100px;
     margin: 5px auto 5px auto;
-    border-radius: 10px;
-    border: 1px solid black;
+}
+
+#header > img {
+    height: 150px;
+    width: 250px;
+}
+
+
+#header_index > img {
+    height: 200px;
+    width: 300px;
 }
 
 #nav > nav {
     grid-area: nav;
     padding: 10px;
-    margin: 10px;
+    margin: 20px 50px;
     text-align: center;
-    border: 1px solid black;
-    border-radius: 10px;
 }
 
 a {
@@ -40,9 +48,15 @@ a {
     margin: 20px;
 }
 
+#main > img {
+    width: 20%;
+    padding: 10px;
+    height: 250px;
+}
+
 body{
-    background-color: #FEAEFF2;
-    color: #54627B;
+    background-color: #F2F2F2;
+    color: #4B5B73;
     text-align: center;
     font-family: 'Raleway', sans-serif;
 

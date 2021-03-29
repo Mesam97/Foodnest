@@ -1,17 +1,13 @@
 from bottle import route, run, template, request, static_file
+import pyodbc as db
 
-"""def read_from_file():
-    try: 
-        my_file= open("storage/", "r")
-        my_file.close()
-
-        return products
-    except:
-        my_file= open("storage/", "w")
-        my_file.write()
-        my_file.close()
-
-        return []"""
+server = '127.0.0.1'
+username = 'Iloveglass'
+password = '.'
+database = 'foodnest'
+connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' +
+                        database + ';UID=' + username + ';PWD=' + password)
+cursor = connection.cursor() #type: db.Cursor
 
 @route("/")
 def index():

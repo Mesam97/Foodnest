@@ -41,13 +41,8 @@ def skaparecept():
     instruktioner= getattr(request.forms,"instruktioner")
     ange_antal_portioner= getattr(request.forms,"portioner")
 
-<<<<<<< HEAD
-    cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner)
-    connection.commit()
-=======
     cursor.execute("insert into Recept(title, portion, rec_desc, ingredienses) values (?, ?, ?, ?)", titel, ange_antal_portioner, instruktioner, ingredienser)
     connection.commit()"""
->>>>>>> connect_sql
 
     return template("skapa_recept")
 

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="sv">
-
     <head>
         <meta charset="utf-8">
-        <title>Foodnest</title>
-        <link href="style.css" rel="stylesheet">
+        <link href="static/style.css" rel="stylesheet" type="text/css">
+        <title>Min profil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
@@ -25,19 +24,22 @@
                     <a href="profil.html">Min profil</a>
                     <a href="">Inställningar</a>
                     <a href="index.html">Logga ut</a>
-                </nav>    
-            </div>  
+                </nav>
+            </div>
 
             <div id="main">
                 <main>
-                    <img src="bilder/pesto-med-pasta.jpg" alt="Pasta pesto" width="260px" height="260px">
-                    <img src="bilder/amerikanskapannkakor.jpg" alt="Pannkakor" width="260px" height="260px">
-                    <img src="bilder/hostgryta.jpg" alt="Höst gryta" width="260px" height="260px">
-                    <img src="bilder/lyxig-korv-med-brod.jpg" alt="Korv med bröd" width="260px" height="260px">
-                    <img src="bilder/pasta-all-americana.jpg" alt="Pasta" width="260px" height="260px">
-                    <img src="bilder/pyttipanna.jpg" alt="Pyttipanna" width="260px" height="260px">
-                    <img src="bilder/scones.jpg" alt="Scones" width="260px" height="260px">
-                    <img src="bilder/svamprisotto_med_vitloksstekt_broccoli_.jpg" alt="Svamp risotto" width="260px" height="260px">
+                    <h1>Mina inlägg</h1>
+                    <ul id="section_nav">
+                        <li><a href="">Lägg till recept</a></li>
+                        <li><a href="">Se gillade inlägg</a></li>
+                        <li><a href="">Ta bort inlägg</a></li>
+                    </ul>
+                    <ul>
+                        % for picture in pictures:
+                        <li></li>
+                        %end
+                    </ul>
                 </main>
             </div>
 
@@ -48,7 +50,7 @@
                     <p> © Foodnest 2021</p>
                 </footer>
             </div>
-
+        
         </div>
     </body>
 </html>

@@ -1,4 +1,4 @@
-from bottle import route, run, template, request
+from bottle import route, run, template, request, static_file
 
 def read_from_file():
     try: 
@@ -25,16 +25,20 @@ def flode():
 @route("/profil")
 def profil():
     """Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna"""
-    return template ("profil")
+    return template("profil")
 
 @route("/flode", method = "POST")
 def flodet():
-    return template ("flode")
+    return template("flode")
 
 @route("/skapa_recept")
 def skaparecept():
     ''' På denna länken kan användarna skapa recept'''
     return template("skapa_recept")
 
-run(host='127.0.0.1', port=8080)
+@route("/static/<filename>")
+def static_files(filename):
+    return static_file(filename, root="static")
+
+run(host='127.0.0.1', port=8060)
 

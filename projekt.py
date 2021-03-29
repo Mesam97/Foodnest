@@ -16,7 +16,7 @@ def read_from_file():
 @route("/")
 def index():
     """Visar förstasidan som består av ett formulär så man kan logga in"""
-    return template ("index")
+    return template("index")
 
 @route("/flode")
 def flode():

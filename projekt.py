@@ -22,6 +22,10 @@ def flode():
 def flode():
     return template("skapakonto")
 
+@route("/about")
+def flode():
+    return template("about")
+
 @route("/profil")
 def profil():
     #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna

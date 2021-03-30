@@ -24,15 +24,9 @@ html {
     margin: 5px auto 5px auto;
 }
 
-#header > img {
+#header > a > img {
     height: 150px;
     width: 250px;
-}
-
-
-#header_index > img {
-    height: 200px;
-    width: 300px;
 }
 
 #nav > nav {

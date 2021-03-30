@@ -18,6 +18,10 @@ def index():
 def flode():
     return template("flode")
 
+@route("/skapakonto")
+def flode():
+    return template("skapakonto")
+
 @route("/profil")
 def profil():
     #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna

@@ -16,6 +16,13 @@ html {
     ;
 }
 
+body{
+    background-color: #F2F2F2;
+    color: #4B5B73;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
 #header > header {
     grid-area: header;
     float: left;
@@ -38,8 +45,12 @@ html {
 
 a {
     text-decoration: none;
-    color: black;
+    color: #4B5B73;
     margin: 20px;
+}
+
+a:hover {
+    color: #000000;
 }
 
 #main > main {
@@ -47,7 +58,7 @@ a {
     margin: 20px;
 }
 
-#main > img {
+#main > main > img {
     width: 20%;
     padding: 10px;
     height: 250px;
@@ -68,13 +79,6 @@ a {
 
 #log_in_form > form {
     margin: 20px;
-}
-
-body{
-    background-color: #F2F2F2;
-    color: #4B5B73;
-    text-align: center;
-    font-family: 'Raleway', sans-serif;
 }
 
 #footer > footer {

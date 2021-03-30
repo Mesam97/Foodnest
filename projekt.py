@@ -19,11 +19,11 @@ def flode():
     return template("flode")
 
 @route("/skapakonto")
-def flode():
+def skapakonto():
     return template("skapakonto")
 
 @route("/about")
-def flode():
+def about():
     return template("about")
 
 @route("/profil")

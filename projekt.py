@@ -24,6 +24,19 @@ def flode():
 def skapakontos():
     return template("skapakonto")
 
+@route("/new_member", method="POST")
+def new_member():
+    förnamn= getattr(request.forms, "fname")
+    efternamn= getattr(request.forms, "lname")
+    e-post= getattr(request.forms,"email")
+    födelsedag= getattr(request.forms,"bday")
+    lösenord= getattr(request.forms,"password")
+
+    cursor.execute("insert into Recept(email, f_name, l_name, b_day, password ) values (?, ?, ?, ?)", e-post, förnamn, efternamn, födelsedag,  lösenord)
+    connection.commit()
+
+    return template ("flode")
+
 @route("/about")
 def about():
     return template("about")

@@ -43,14 +43,14 @@ def flodet():
 
 @route("/skapa_recept")
 def skaparecept():
-    ''' På denna länken kan användarna skapa recept'''
-    """titel= getattr(request.forms, "skapainlagg")
+    #På denna länken kan användarna skapa recept
+    '''titel= getattr(request.forms, "skapainlagg")
     ingredienser= getattr(request.forms, "ingredienser")
     instruktioner= getattr(request.forms,"instruktioner")
     ange_antal_portioner= getattr(request.forms,"portioner")
 
     cursor.execute("insert into Recept(title, portion, rec_desc, ingredienses) values (?, ?, ?, ?)", titel, ange_antal_portioner, instruktioner, ingredienser)
-    connection.commit()"""
+    connection.commit()'''
 
     return template("skapa_recept")
 

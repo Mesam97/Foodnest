@@ -21,10 +21,8 @@ recept_id int NOT NULL,
 sentence nverchar (100) NOT NULL
 );
 
-"""create table content(
-contentid int primary key NOT NULL IDENTITY (1,1),
-recept_id int NOT NULL,
-ingrediens nvarchar (30) NOT NULL,
-amount nvarchar (20) NOT NULL
-);"""
+create table pictures(
+    pictureid int IDENTITY(1,1) PRIMARY KEY,
+    picture_name nvarchar(60)
+);
 

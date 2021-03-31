@@ -31,34 +31,35 @@
             <div id="main">
                 <main>
                     <h1>Skapa inlägg</h1>
-                    <form action="/" method="POST">
-                        <label for="skapainlagg">Titel</label>
-                        <input type="text" name="skapainlagg" id="skapainlagg" placeholder="Ange din titel..">
+                        <form action="/" method="POST">
+                            <label for="titel">Titel</label>
+                            <input type="text" name="titel" id="titel" placeholder="Ange din titel.."><br>
 
-                        <label for="ingredienser">Ingredienser</label>
-                        <textarea name="ingredienser" id="ingredienser" placeholder="Tex 5dl mjöl, 2st ägg etc..." cols="45" rows="5"></textarea> 
+                            <label for="ingredienser">Ingredienser</label>
+                            <textarea name="ingredienser" id="ingredienser" placeholder="Tex 5dl mjöl, 2st ägg etc..." cols="45" rows="5"></textarea><br>
 
-                        <label for="instruktioner">Instruktioner</label>
-                        <textarea name="instruktioner" id="instruktioner" placeholder="T.ex: 1. sätt ungen på 220 grader..." cols="45" rows="5"></textarea> 
+                            <label for="instruktioner">Instruktioner</label>
+                            <textarea name="instruktioner" id="instruktioner" placeholder="T.ex: 1. sätt ungen på 220 grader..." cols="45" rows="5"></textarea><br> 
 
-                        <label for="portioner">Ange antal portioner</label>
-                        <select name="portioner" id="portioner">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
+                            <label for="portioner">Ange antal portioner</label>
+                            <select name="portioner" id="portioner">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select><br>
 
-                        <input type="submit" value="Publicera" id="submit"/>
-                        </select>
-                    </form>
+                            <input type="file" id="myFile" name="filename"><br>
+                            <input type="submit" value="Publicera på Foodnest" id="submit"/>
+                        </form>
                 </main>
-            </div>
+            </div> <!---SLUT PÅ DIV MAIN-->
 
             <div id="footer">
                 <footer>
@@ -68,6 +69,6 @@
                 </footer>
             </div>
     
-        </div>
+        </div> <!---SLUT PÅ WRAPPER-->
     </body>
 </html> 

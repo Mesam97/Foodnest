@@ -1,5 +1,5 @@
 from bottle import route, run, template, request, static_file
-"""import pyodbc as db
+import pyodbc as db
 
 server = '127.0.0.1'
 username = 'Iloveglass'
@@ -7,7 +7,9 @@ password = '.'
 database = 'foodnest'
 connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' +
                         database + ';UID=' + username + ';PWD=' + password)
-cursor = connection.cursor() #type: db.Cursor"""
+cursor = connection.cursor() #type: db.Cursor
+
+
 
 @route("/")
 def index():
@@ -30,29 +32,34 @@ def about():
 def profil():
     #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
     #Måste fixa så att bilderna visas(ska fråga på onsdag)
-    """cursor.execute("select title from Recept")
+    cursor.execute("select title from Recept")
     res = cursor.fetchone()
     while res:
         print(res)
-        res = cursor.fetchone()"""
+        res = cursor.fetchone()
     return template("profil")
 
-@route("/flode", method = "POST")
+@route("/flode",method = "POST")
 def flodet():
     return template("flode")
 
 @route("/skapa_recept")
 def skaparecept():
-    #På denna länken kan användarna skapa recept
-    '''titel= getattr(request.forms, "skapainlagg")
+    #Visar en sida där användarna kan skapa ett recept
+    return template("skapa_recept")
+
+@route("/saves_recepe", method="POST")
+def save_to_db():
+#På denna länken kan användarna skapa recept
+    titel= getattr(request.forms, "titel")
     ingredienser= getattr(request.forms, "ingredienser")
     instruktioner= getattr(request.forms,"instruktioner")
     ange_antal_portioner= getattr(request.forms,"portioner")
 
-    cursor.execute("insert into Recept(title, portion, rec_desc, ingredienses) values (?, ?, ?, ?)", titel, ange_antal_portioner, instruktioner, ingredienser)
-    connection.commit()'''
+    cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner )
+    connection.commit()
 
-    return template("skapa_recept")
+    return template ("flode")
 
 @route("/static/<filename>")
 def static_files(filename):

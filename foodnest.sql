@@ -12,13 +12,13 @@ receptid int primary key NOT NULL IDENTITY(1,1),
 title nvarchar (50) NOT NULL,
 portion int NOT NULL,
 ingresienses nvarchar (200) NOT NULL,
-rec_desc nvarchar (400) NOT NULL;
+rec_desc nvarchar (400) NOT NULL,
 likes int NULL
 );
 create table Comment(
 commentid int primary key NOT NULL IDENTITY(1,1),
 recept_id int NOT NULL,
-sentence nverchar (100) NOT NULL
+sentence nvarchar (100) NOT NULL
 );
 
 create table pictures(

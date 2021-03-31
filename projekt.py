@@ -28,11 +28,11 @@ def skapakontos():
 def new_member():
     förnamn= getattr(request.forms, "fname")
     efternamn= getattr(request.forms, "lname")
-    e-post= getattr(request.forms,"email")
+    epost= getattr(request.forms,"email")
     födelsedag= getattr(request.forms,"bday")
     lösenord= getattr(request.forms,"password")
 
-    cursor.execute("insert into Recept(email, f_name, l_name, b_day, password ) values (?, ?, ?, ?)", e-post, förnamn, efternamn, födelsedag,  lösenord)
+    cursor.execute("insert into Recept(email, f_name, l_name, b_day, password ) values (?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag,  lösenord)
     connection.commit()
 
     return template ("flode")
@@ -68,7 +68,9 @@ def save_to_db():
     ingredienser= getattr(request.forms, "ingredienser")
     instruktioner= getattr(request.forms,"instruktioner")
     ange_antal_portioner= getattr(request.forms,"portioner")
-
+    bild_namn= getattr(request.forms,"picture")
+    
+    cursor.execute("insert into pictures(picture_name) values(?)",bild_namn)
     cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner )
     connection.commit()
 

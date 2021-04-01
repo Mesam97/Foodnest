@@ -44,13 +44,13 @@ def about():
 @route("/profil")
 def profil():
     #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
-    #Måste fixa så att bilderna visas(ska fråga på onsdag)
-    cursor.execute("select title from Recept")
+    #Måste fixa så att bilderna visas(funkar nästan helt)
+    cursor.execute("select picture_name from pictures")
     res = cursor.fetchone()
     while res:
-        print(res)
-        res = cursor.fetchone()
-    return template("profil")
+            print(res)
+            res = cursor.fetchone()
+    return template("profil", res=res)
 
 @route("/flode",method = "POST")
 def flodet():

@@ -48,9 +48,18 @@ def profil():
     cursor.execute("select picture_name from pictures")
     res = cursor.fetchone()
     while res:
-            print(res)
-            res = cursor.fetchone()
-    return template("profil", res=res)
+        print(res)
+        res = cursor.fetchone()
+
+    cursor.execute("select title from Recept")
+    tes=cursor.fetchone()
+    while tes:
+        print(tes)
+        tes = cursor.fetchone()
+        
+    return template("profil", res=res, tes=tes)
+
+   
 
 @route("/flode",method = "POST")
 def flodet():

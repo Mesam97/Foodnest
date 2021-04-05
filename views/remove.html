@@ -29,9 +29,11 @@
 
             <div id="main">
                 <main>
-                    <label for="remove">Vilken titel har inlägget du vill ta bort?</label>
-                    <input type="text" name="remove" id="remove" placeholder="Ange din titel.."><br>
-                    <input type="submit" value="Ta bort inlägget" id="submit"/>
+                    <form action="/delete" method="POST">
+                        <label for="remove">Vilken titel har inlägget du vill ta bort?</label>
+                        <input type="text" name="remove" id="remove" placeholder="Ange din titel.."><br>
+                        <input type="submit" value="Ta bort inlägget" id="submit"/>
+                     </form>
                 </main>
             </div>
 

@@ -80,21 +80,22 @@ def liked():
 @route("/remove")
 def remove_post():
     #visar en sida där användaren skriver in titeln på det inlägg som ska tas bort
-    return template("profil")
+    return template("remove")
     
-@route("/delete")
+@route("/delete", method="POST")
 def delete():
     #Funktionen som tar bort inlägget ifrån databasen
-    titel= getattr(request.forms, "remove")
-    cursor.execute("select * from Recept where title = ?", titel)
+    #Den tar bort allt i tabellen inte endast den man vill
+    take_away= getattr(request.forms, "remove")
+    cursor.execute("select * from Recept where title = ?", take_away)
     result = cursor.fetchall()
     if len(result) > 0:
-        cursor.execute("delete from Recept where title = ?", titel)
-        print("Inlägget är borttaget.")    
+        cursor.execute("delete from Recept where title = ?", take_away)
+        print("Inlägget är borttaget.")
+        return template("profil")
     else: 
         print("Det inlägget finns inte")
-        
-    return template("profil")
+        return template("profil")
 
 @route("/flode",method = "POST")
 def flodet():
@@ -124,5 +125,5 @@ def save_to_db():
 def static_files(filename):
     return static_file(filename, root="static")
 
-run(host='127.0.0.1', port=8030)
+run(host='127.0.0.1', port=8050)
 

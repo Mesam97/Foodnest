@@ -79,9 +79,9 @@ def update_member():
             cursor.execute(sql,val)
             cursor.commit()
             return template("profil")
-            else:
-                print("Du har angivit fel information")
-                return template("profil")
+    else:
+        print("Du har angivit fel information")
+        return template("profil")
 
 @route("/liked_recepes")
 def liked():

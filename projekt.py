@@ -59,7 +59,42 @@ def profil():
         
     return template("profil", res=res, tes=tes)
 
-   
+@route("/liked_recepes")
+def liked():
+    #Visar en sida med alla inlägg som man har gillat och möjlighet till att navigera sig till dem andra sidorna
+    #Måste fixa så att bilderna visas(funkar nästan helt)
+    cursor.execute("select picture_name from pictures")
+    res = cursor.fetchone()
+    while res:
+        print(res)
+        res = cursor.fetchone()
+
+    cursor.execute("select title from Recept")
+    tes=cursor.fetchone()
+    while tes:
+        print(tes)
+        tes = cursor.fetchone()
+        
+    return template("liked_recepes", res=res, tes=tes)
+
+@route("/remove")
+def remove_post():
+    #visar en sida där användaren skriver in titeln på det inlägg som ska tas bort
+    return template("profil")
+    
+@route("/delete")
+def delete():
+    #Funktionen som tar bort inlägget ifrån databasen
+    titel= getattr(request.forms, "remove")
+    cursor.execute("select * from Recept where title = ?", titel)
+    result = cursor.fetchall()
+    if len(result) > 0:
+        cursor.execute("delete from Recept where title = ?", titel)
+        print("Inlägget är borttaget.")    
+    else: 
+        print("Det inlägget finns inte")
+        
+    return template("profil")
 
 @route("/flode",method = "POST")
 def flodet():

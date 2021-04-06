@@ -59,29 +59,21 @@ def profil():
         
     return template("profil", res=res, tes=tes)
 
-@route ("/setting")
-def setting():
-    #Visar en sida där användaren kan ändra sina inställningar
-    return template ("setting")
+"""@route("/update_password",method="POST")
+def delete_recepe():
+    #funktionen som tar bort ett inlägg
+    delete = getattr(request.forms, "remove")
+    cursor.execute("select * from Recept where title = ?", delete)
+    result = cursor.fetchall()
+    if len(result) > 0:
+        cursor.execute("delete from Recept where title = ?", take_away)
+        print("Inlägget är borttaget.")
+        return template("profil")
+    else: 
+        print("Det inlägget finns inte")
+        return template("profil")
+    return template("profil")"""
 
-@route("/update_member")
-def update_member():
-    #Funktionen som uppdaterar informationen
-    #vet inte riktigt hur jag ska utforma den
-    alternativ= getattr(request.forms,"kategori")
-    the_old= getattr(request.forms,"old")
-    the_new= getattr(request.forms,"new")
-    cursor.execute("select * from Recept where =?",the_old)
-    result=cursor.fetchall()
-    if len(result)> 0:
-            sql=("update patient set f_name=? where medical_nr=?")
-            val=(the_new,medical)
-            cursor.execute(sql,val)
-            cursor.commit()
-            return template("profil")
-            else:
-                print("Du har angivit fel information")
-                return template("profil")
 
 @route("/liked_recepes")
 def liked():
@@ -101,7 +93,7 @@ def liked():
         
     return template("liked_recepes", res=res, tes=tes)
 
-@route("/remove")
+"""@route("/remove")
 def remove_post():
     #visar en sida där användaren skriver in titeln på det inlägg som ska tas bort
     return template("remove")
@@ -119,7 +111,7 @@ def delete():
         return template("profil")
     else: 
         print("Det inlägget finns inte")
-        return template("profil")
+        return template("profil")"""
 
 @route("/flode",method = "POST")
 def flodet():

@@ -14,11 +14,13 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
 <html lang="sv">
     <head>
         <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="static/style.css" rel="stylesheet" type="text/css">
         <title>Min profil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">        
+        <script src="script.js" defer></script>
     </head>
 
     <body>
@@ -34,7 +36,8 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
                 <nav>
                     <a href="/flode">Utforska</a>
                     <a href="/profil">Min profil</a>
-                    <a href="/setting">Inställningar</a>
+                    <!--<h3 id="changepassword">  Byta lösenord</h3>-->
+                    <button type="button" id="changepassword"> Byt lösenord </button>
                     <a href="/">Logga ut</a>
                 </nav>
             </div>
@@ -44,8 +47,10 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
                     <h1>Mina inlägg</h1>
                     <div id="section_nav">
                         <a href="/skapa_recept">Lägg till recept</a>
-                        <a href="/liked_recepes">Se gillade inlägg</a>
-                        <a href="/remove">Ta bort inlägg</a>
+                        <a href="liked_recepes.html">Se gillade recept</a>
+                        <!--<h3 id="delete"> Ta bort inlägg </h3>-->
+                        <button type="button" id="delete">Ta bort inlägg </button>
+                        
                     </div>
                     <ul>
                         % 

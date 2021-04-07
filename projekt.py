@@ -3,10 +3,8 @@ import pyodbc as db
 import configparser
 import config
 
-connection = config.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' +
-                        database + ';UID=' + username + ';PWD=' + password)
+connection = config.connect()
 cursor = connection.cursor() #type: db.Cursor
-
 
 
 @route("/")

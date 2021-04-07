@@ -20,11 +20,12 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">        
-        <script src="script.js" defer></script>
+        
     </head>
 
     <body>
         <div id="wrapper">
+            <h1>hej</h1>
 
             <div id="header">
                 <a href="/flode">
@@ -52,10 +53,12 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
                         <button type="button" id="delete">Ta bort inlägg </button>
                         
                     </div>
-                    <ul>
+                    <ul> 
+                        % for image in images:
+                        <li><img src="{{image}}"></li>
+                        %end
                         % 
-                        <li><img src="res"></li>
-                        <li><h3>"tes"</h3></li>
+                        <li><h3>tes</h3></li>
                         %end
                     </ul>
                 </main>
@@ -70,5 +73,6 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
             </div>
         
         </div>
+        <script src="/static/script.js"></script>
     </body>
 </html>

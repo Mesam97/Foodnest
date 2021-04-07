@@ -46,18 +46,19 @@ def profil():
     #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
     #Måste fixa så att bilderna visas(funkar nästan helt)
     cursor.execute("select picture_name from pictures")
-    res = cursor.fetchone()
-    while res:
-        print(res)
-        res = cursor.fetchone()
+    res = cursor.fetchall()
+    images=[]
+    for r in res:
+        images.append(r[0])
+    print(images)
 
-    cursor.execute("select title from Recept")
+    """cursor.execute("select title from Recept")
     tes=cursor.fetchone()
     while tes:
         print(tes)
-        tes = cursor.fetchone()
-        
-    return template("profil", res=res, tes=tes)
+        tes = cursor.fetchone()"""
+    tes=""  
+    return template("profil", images=images, tes=tes)
 
 """@route("/update_password",method="POST")
 def delete_recepe():
@@ -76,23 +77,24 @@ def delete_recepe():
 
 
 
-@route("/liked_recepes")
-def liked():
-    #Visar en sida med alla inlägg som man har gillat och möjlighet till att navigera sig till dem andra sidorna
+@route("/profil")
+def your_site():
+    #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
     #Måste fixa så att bilderna visas(funkar nästan helt)
     cursor.execute("select picture_name from pictures")
-    res = cursor.fetchone()
-    while res:
-        print(res)
-        res = cursor.fetchone()
+    res = cursor.fetchall()
+    images=[]
+    for r in res:
+        images.append(r[0])
+    print(images)
 
-    cursor.execute("select title from Recept")
+    """cursor.execute("select title from Recept")
     tes=cursor.fetchone()
     while tes:
         print(tes)
-        tes = cursor.fetchone()
-        
-    return template("liked_recepes", res=res, tes=tes)
+        tes = cursor.fetchone()"""
+    tes=""  
+    return template("profil", images=images, tes=tes)
 
 """@route("/remove")
 def remove_post():
@@ -132,7 +134,7 @@ def save_to_db():
     ange_antal_portioner= getattr(request.forms,"portioner")
     bild_namn= getattr(request.forms,"picture")
     
-    cursor.execute("insert into pictures(picture_name) values(?)",bild_namn)
+    cursor.execute("insert into pictures(picture_name) values(?)","/static/" + bild_namn)
     cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner )
     connection.commit()
 
@@ -143,4 +145,6 @@ def static_files(filename):
     return static_file(filename, root="static")
 
 run(host='127.0.0.1', port=8070)
+
+
 

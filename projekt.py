@@ -2,12 +2,19 @@ from bottle import route, run, template, request, static_file
 import pyodbc as db
 import configparser
 
+
 config = configparser.ConfigParser()
 config.read('config.ini')
 
 connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + config['DATABASE']['Server'] + ';DATABASE=' +
                         config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
 cursor = connection.cursor() #type: db.Cursor
+
+def save_pictures_to_file():
+    bild_namn= getattr(request.forms,"picture")
+    my_file=open("static/")
+    my_file.write("/static/" + bild_namn)
+    my_file.close()
 
 
 @route("/")
@@ -51,69 +58,15 @@ def profil():
         images.append(r[0])
     print(images)
 
-    """cursor.execute("select title from Recept")
-    tes=cursor.fetchone()
-    while tes:
-        print(tes)
-        tes = cursor.fetchone()"""
-    tes=""  
-    return template("profil", images=images, tes=tes)
-
-"""@route("/update_password",method="POST")
-def delete_recepe():
-    #funktionen som tar bort ett inlägg
-    delete = getattr(request.forms, "remove")
-    cursor.execute("select * from Recept where title = ?", delete)
-    result = cursor.fetchall()
-    if len(result) > 0:
-        cursor.execute("delete from Recept where title = ?", take_away)
-        print("Inlägget är borttaget.")
-        return template("profil")
-    else: 
-        print("Det inlägget finns inte")
-        return template("profil")
-    return template("profil")"""
-
-
-
-@route("/profil")
-def your_site():
-    #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
-    #Måste fixa så att bilderna visas(funkar nästan helt)
-    cursor.execute("select picture_name from pictures")
-    res = cursor.fetchall()
-    images=[]
-    for r in res:
-        images.append(r[0])
-    print(images)
-
-    """cursor.execute("select title from Recept")
-    tes=cursor.fetchone()
-    while tes:
-        print(tes)
-        tes = cursor.fetchone()"""
-    tes=""  
-    return template("profil", images=images, tes=tes)
-
-"""@route("/remove")
-def remove_post():
-    #visar en sida där användaren skriver in titeln på det inlägg som ska tas bort
-    return template("remove")
+    cursor.execute("select title from Recept")
+    tes=cursor.fetchall()
+    styles=[]
+    for t in tes:
+        styles.append(t[0])
+    print(styles)
     
-@route("/delete", method="POST")
-def delete():
-    #Funktionen som tar bort inlägget ifrån databasen
-    #Den tar bort allt i tabellen inte endast den man vill
-    take_away= getattr(request.forms, "remove")
-    cursor.execute("select * from Recept where title = ?", take_away)
-    result = cursor.fetchall()
-    if len(result) > 0:
-        cursor.execute("delete from Recept where title = ?", take_away)
-        print("Inlägget är borttaget.")
-        return template("profil")
-    else: 
-        print("Det inlägget finns inte")
-        return template("profil")"""
+    return template("profil", images=images, styles=styles)
+
 
 @route("/flode",method = "POST")
 def flodet():
@@ -137,7 +90,7 @@ def save_to_db():
     cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner )
     connection.commit()
 
-    return template ("flode")
+    return template ("flode", files= save_pictures_to_file())
 
 @route("/static/<filename>")
 def static_files(filename):

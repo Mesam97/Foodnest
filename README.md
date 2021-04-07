@@ -1,4 +1,14 @@
 # Foodnest
+
+Instruktioner:
+Har du redan installerat bottle via pip hoppa till steg 4
+1. Kontrollera att pip finns. För Mac skriv följande i terminalen: python3 -m pip --version     och för Windows: py -m pip --version
+2. Om det inte finns så ladda ner det. Mac: python3 -m ensurepip --default-pip       Windows: py -m ensurepip --default-pip
+3. Ladda ner bottle via terminalen, samma för mac och windows: pip install bottle
+4. Öppna projekt.py och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv det som står längst ner i projekt.py)
+
+
+
 Foodnest projekt grupp 16
 
 Beskrivning om och målgrupp för Foodnest:

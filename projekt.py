@@ -2,8 +2,8 @@ from bottle import route, run, template, request, static_file
 import pyodbc as db
 
 server = '127.0.0.1'
-username = 'Iloveglass'
-password = '.'
+username = ''
+password = ''
 database = 'foodnest'
 connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' +
                         database + ';UID=' + username + ';PWD=' + password)
@@ -142,5 +142,5 @@ def save_to_db():
 def static_files(filename):
     return static_file(filename, root="static")
 
-run(host='127.0.0.1', port=8050)
+run(host='127.0.0.1', port=8070)
 

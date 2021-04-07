@@ -1,11 +1,17 @@
 from bottle import route, run, template, request, static_file
 import pyodbc as db
+import configparser
+import config
 
+<<<<<<< HEAD
+connection = config.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' +
+=======
 server = '127.0.0.1'
 username = ''
 password = ''
 database = 'foodnest'
 connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' +
+>>>>>>> daccb8152a26b2424559f7b672bb5927c73de96e
                         database + ';UID=' + username + ';PWD=' + password)
 cursor = connection.cursor() #type: db.Cursor
 

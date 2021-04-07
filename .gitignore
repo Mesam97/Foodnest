@@ -286,6 +286,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-/config.py
+config.ini
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,visualstudiocode,windows,flask

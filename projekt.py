@@ -1,9 +1,12 @@
 from bottle import route, run, template, request, static_file
 import pyodbc as db
 import configparser
-import config
 
-connection = config.connect()
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + config['DATABASE']['Server'] + ';DATABASE=' +
+                        config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
 cursor = connection.cursor() #type: db.Cursor
 
 

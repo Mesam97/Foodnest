@@ -1,6 +1,6 @@
 # Foodnest
 
-Instruktioner:
+## Instruktioner:
 Har du redan installerat bottle via pip hoppa till steg 4
 1. Kontrollera att pip finns. För Mac skriv följande i terminalen: python3 -m pip --version     och för Windows: py -m pip --version
 2. Om det inte finns så ladda ner det. Mac: python3 -m ensurepip --default-pip       Windows: py -m ensurepip --default-pip
@@ -9,9 +9,7 @@ Har du redan installerat bottle via pip hoppa till steg 4
 
 
 
-Foodnest projekt grupp 16
-
-Beskrivning om och målgrupp för Foodnest:
+## Beskrivning om och målgrupp för Foodnest:
 
 Produkten vi som grupp ska utveckla är en matrelaterad webbsida med syftet att låta användare inspirera varandra genom att dela egna recept. Foodnest ska fungera som ett forum och inspirationskälla för matintresserade för att förenkla vardagen genom ett lättillgängligt sätt att upptäcka nya maträtter.
 

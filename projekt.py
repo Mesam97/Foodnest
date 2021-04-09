@@ -29,30 +29,41 @@ def flode():
 
 @route("/skapakonto")
 def skapakontos():
-    password = getattr(request.forms, "password")
+    return template("skapakonto")
+
+
+
+def checkpass(lösenord):
+    lösenord = getattr(request.forms,"password")
     flag = 0
     while True:  
-        if (len(password)>6):
+        if (len(lösenord)<6):
             flag = -1
             break
-        elif not re.search("[a-z]", password):
+        elif not re.search("[a-z]", lösenord):
             flag = -1
             break
-        elif not re.search("[A-Z]", password):
+        elif not re.search("[A-Z]", lösenord):
             flag = -1
             break
-        elif not re.search("[0-9]", password):
+        elif not re.search("[0-9]", lösenord):
+            flag = -1
+            break
+        elif re.search("\s", lösenord):
             flag = -1
             break
         else:
             flag = 0
-            print("Giltigt lösenord")
+            return True
             break
     
     if flag ==-1:
-        print("Du angav inte ett giltigt lösenord")
+        return False
+        skapakontos()
 
-        return template("skapakonto")
+
+
+
 
 @route("/new_member", method="POST")
 def new_member():
@@ -62,7 +73,9 @@ def new_member():
     födelsedag = getattr(request.forms,"bday")
     lösenord = getattr(request.forms,"password")
 
-    cursor.execute("insert into Recept(email, f_name, l_name, b_day, password ) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag,  lösenord)
+    checkpass(lösenord)
+
+    cursor.execute("insert into Account(email, f_name, l_name, b_day, password) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag, lösenord)
     connection.commit()
 
     return template ("flode")

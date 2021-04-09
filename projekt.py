@@ -1,4 +1,4 @@
-from bottle import route, run, template, request, static_file
+from bottle import route, run, template, request, static_file, redirect
 import pyodbc as db
 import configparser
 
@@ -67,6 +67,15 @@ def profil():
     
     return template("profil", images=images, styles=styles)
 
+@route("/change_password", method="POST")
+def change_password():
+    old=getattr(request.forms, "old")
+    new= getattr(request.forms, "new")
+    print("lösenord")
+    print(old)
+    print(new)
+    redirect("/profil")
+
 
 @route("/flode",method = "POST")
 def flodet():
@@ -96,7 +105,7 @@ def save_to_db():
 def static_files(filename):
     return static_file(filename, root="static")
 
-run(host='127.0.0.1', port=8070)
+run(host='127.0.0.1', port=8070, debug=True, reloader=True)
 
 
 

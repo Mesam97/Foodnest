@@ -14,13 +14,15 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
 <html lang="sv">
     <head>
         <meta charset="utf-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link href="static/style.css" rel="stylesheet" type="text/css">
+        
         <title>Min profil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">        
-        
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"> 
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">     
+         <link href="static/style.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -37,8 +39,45 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
                 <nav>
                     <a href="/flode">Utforska</a>
                     <a href="/profil">Min profil</a>
-                    <!--<h3 id="changepassword">  Byta lösenord</h3>-->
-                    <button type="button" id="changepassword"> Byt lösenord </button>
+                   
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Byt lösenord
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Byt lösenord</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/change_password" method="POST">
+                                    <div class="mb-3">
+                                      <label for="old" class="form-label">Ditt gamla lösenord</label>
+                                      <input type="password" name="old" class="form-control" id="old" aria-describedby="emailHelp">
+                                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="new" class="form-label">Ditt nya lösenord</label>
+                                      <input type="password" name="new" class="form-control" id="new">
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                  </form>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                     <a href="/">Logga ut</a>
                 </nav>
             </div>
@@ -50,12 +89,12 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
                         <a href="/skapa_recept">Lägg till recept</a>
                         <a href="liked_recepes.html">Se gillade recept</a>
                         <!--<h3 id="delete"> Ta bort inlägg </h3>-->
-                        <button type="button" id="delete">Ta bort inlägg </button>
+                        
                         
                     </div>
                     <ul> 
                         % for image in images:
-                        <li><img src="{{image}}"></li>
+                        <li><img src="{{image}}"><button type="button" class="btn btn-light" id="delete">Ta bort</button></li>
                         %end
                         % for style in styles:
                         <li><h3>{{style}}</h3></li>
@@ -73,6 +112,8 @@ FP6.0(M) Användaren ska kunna logga ut från sitt konto.
             </div>
         
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="/static/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -1,6 +1,7 @@
 from bottle import route, run, template, request, static_file, redirect
 import pyodbc as db
 import configparser
+import re
 
 
 config = configparser.ConfigParser()
@@ -28,17 +29,40 @@ def flode():
 
 @route("/skapakonto")
 def skapakontos():
-    return template("skapakonto")
+    password = getattr(request.forms, "password")
+    flag = 0
+    while True:  
+        if (len(password)>6):
+            flag = -1
+            break
+        elif not re.search("[a-z]", password):
+            flag = -1
+            break
+        elif not re.search("[A-Z]", password):
+            flag = -1
+            break
+        elif not re.search("[0-9]", password):
+            flag = -1
+            break
+        else:
+            flag = 0
+            print("Giltigt lösenord")
+            break
+    
+    if flag ==-1:
+        print("Du angav inte ett giltigt lösenord")
+
+        return template("skapakonto")
 
 @route("/new_member", method="POST")
 def new_member():
-    förnamn= getattr(request.forms, "fname")
-    efternamn= getattr(request.forms, "lname")
-    epost= getattr(request.forms,"email")
-    födelsedag= getattr(request.forms,"bday")
-    lösenord= getattr(request.forms,"password")
+    förnamn = getattr(request.forms, "fname")
+    efternamn = getattr(request.forms, "lname")
+    epost = getattr(request.forms,"email")
+    födelsedag = getattr(request.forms,"bday")
+    lösenord = getattr(request.forms,"password")
 
-    cursor.execute("insert into Recept(email, f_name, l_name, b_day, password ) values (?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag,  lösenord)
+    cursor.execute("insert into Recept(email, f_name, l_name, b_day, password ) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag,  lösenord)
     connection.commit()
 
     return template ("flode")

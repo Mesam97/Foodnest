@@ -72,13 +72,12 @@ def new_member():
     while True:
         if checkpass(lösenord):
             break
+            cursor.execute("insert into Account(email, f_name, l_name, b_day, password) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag, lösenord)
+            connection.commit()
         else:
-            return False
+            skapakontos()
             break
-            new_member()
 
-    cursor.execute("insert into Account(email, f_name, l_name, b_day, password) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag, lösenord)
-    connection.commit()
 
     return template ("flode")
 
@@ -144,7 +143,7 @@ def save_to_db():
 def static_files(filename):
     return static_file(filename, root="static")
 
-run(host='127.0.0.1', port=8070, debug=True, reloader=True)
+run(host='127.0.0.1', port=8080, debug=True, reloader=True)
 
 
 

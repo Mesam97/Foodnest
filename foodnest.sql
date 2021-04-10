@@ -7,6 +7,8 @@ l_name nvarchar (40) NOT NULL,
 b_day int,
 password nvarchar (30) NOT NULL
 );
+
+go
 create table Recept(
 receptid int primary key NOT NULL IDENTITY(1,1),
 title nvarchar (50) NOT NULL,
@@ -14,15 +16,20 @@ portion int NOT NULL,
 ingresienses nvarchar (200) NOT NULL,
 rec_desc nvarchar (400) NOT NULL,
 likes int NULL
+pictureid int
+FOREIGN KEY (pictureid) REFERENCES pictures (pictureid)
 );
+
+go
 create table Comment(
 commentid int primary key NOT NULL IDENTITY(1,1),
 recept_id int NOT NULL,
 sentence nvarchar (100) NOT NULL
 );
 
+go
 create table pictures(
-    pictureid int IDENTITY(1,1) PRIMARY KEY,
-    picture_name nvarchar(60)
+pictureid int IDENTITY(1,1) PRIMARY KEY,
+picture_name nvarchar(60)
 );
 

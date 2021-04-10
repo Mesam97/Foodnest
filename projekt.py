@@ -12,11 +12,10 @@ connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + confi
 cursor = connection.cursor() #type: db.Cursor
 
 def save_pictures_to_file():
-    bild_namn= getattr(request.forms,"picture")
-    my_file=open("/Foodnest/static/","w")
+    bild_namn = getattr(request.forms,"picture")
+    my_file = open("/Foodnest/static/","w")
     my_file.write("/static/" + bild_namn)
     my_file.close()
-
 
 @route("/")
 def index():

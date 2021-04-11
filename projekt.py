@@ -3,7 +3,6 @@ import pyodbc as db
 import configparser
 import re
 
-
 config = configparser.ConfigParser()
 config.read('config.ini')
 
@@ -19,7 +18,7 @@ def save_pictures_to_file():
 
 @route("/")
 def index():
-    """Visar förstasidan som består av ett formulär så man kan logga in"""
+    #Visar förstasidan som består av ett formulär så man kan logga in
     return template("index")
 
 @route("/flode")
@@ -30,10 +29,8 @@ def flode():
 def skapakontos():
     return template("skapakonto")
 
-
-
 def checkpass(lösenord):
-    lösenord = getattr(request.forms,"password")
+    lösenord = getattr(request.forms, "password")
     flag = 0
     while True:  
         if (len(lösenord)<6):
@@ -59,7 +56,6 @@ def checkpass(lösenord):
     if flag ==-1:
         return False
 
-
 @route("/new_member", method="POST")
 def new_member():
     förnamn = getattr(request.forms, "fname")
@@ -77,8 +73,7 @@ def new_member():
             skapakontos()
             break
 
-
-    return template ("flode")
+    return template("flode")
 
 @route("/about")
 def about():
@@ -113,7 +108,6 @@ def change_password():
     print(new)
     redirect("/profil")
 
-
 @route("/flode",method = "POST")
 def flodet():
     return template("flode")
@@ -125,7 +119,7 @@ def skaparecept():
 
 @route("/saves_recepe", method="POST")
 def save_to_db():
-#På denna länken kan användarna skapa recept
+    #På denna länken kan användarna skapa recept
     titel= getattr(request.forms, "titel")
     ingredienser= getattr(request.forms, "ingredienser")
     instruktioner= getattr(request.forms,"instruktioner")
@@ -136,7 +130,7 @@ def save_to_db():
     cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner )
     connection.commit()
 
-    return template ("flode", files= save_pictures_to_file())
+    return template("flode", files=save_pictures_to_file())
 
 @route("/static/<filename>")
 def static_files(filename):

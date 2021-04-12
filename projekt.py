@@ -121,6 +121,12 @@ def skaparecept():
     #Visar en sida där användarna kan skapa ett recept
     return template("skapa_recept")
 
+@route("/recept")
+def recept():
+    ''' Webbsidan för recept '''
+
+    return template("recept")
+
 @route("/saves_recepe", method="POST")
 def save_to_db():
     #På denna länken kan användarna skapa recept

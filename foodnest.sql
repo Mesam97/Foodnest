@@ -16,8 +16,7 @@ portion int NOT NULL,
 ingresienses nvarchar (200) NOT NULL,
 rec_desc nvarchar (400) NOT NULL,
 likes int NULL
-pictureid int
-FOREIGN KEY (pictureid) REFERENCES pictures (pictureid)
+picture_name nvarchar(80) NULL
 );
 
 go
@@ -28,8 +27,5 @@ sentence nvarchar (100) NOT NULL
 );
 
 go
-create table pictures(
-pictureid int IDENTITY(1,1) PRIMARY KEY,
-picture_name nvarchar(60)
-);
+
 

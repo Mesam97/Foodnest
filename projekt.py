@@ -82,8 +82,7 @@ def about():
 @route("/profil")
 def profil():
     #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
-    #Måste fixa så att bilderna visas(funkar nästan helt)
-    cursor.execute("select picture_name from pictures")
+    cursor.execute("select picture_name from Recept")
     res = cursor.fetchall()
     images=[]
     for r in res:
@@ -126,7 +125,7 @@ def save_to_db():
     ange_antal_portioner= getattr(request.forms,"portioner")
     bild_namn= getattr(request.forms,"picture")
     
-    cursor.execute("insert into pictures(picture_name) values(?)","/static/" + bild_namn)
+    cursor.execute("insert into Recept(picture_name) values(?)","/static/" + bild_namn)
     cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner )
     connection.commit()
 

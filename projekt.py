@@ -12,7 +12,7 @@ cursor = connection.cursor() #type: db.Cursor
 
 def save_pictures_to_file():
     bild_namn = getattr(request.forms,"picture")
-    my_file = open("/Foodnest/static/","w")
+    my_file = open("static","w")
     my_file.write("/static/" + bild_namn)
     my_file.close()
 
@@ -130,8 +130,7 @@ def save_to_db():
     ange_antal_portioner= getattr(request.forms,"portioner")
     bild_namn= getattr(request.forms,"picture")
     
-    cursor.execute("insert into Recept(picture_name) values(?)","/static/" + bild_namn)
-    cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc ) values (?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner )
+    cursor.execute("insert into Recept(title, portion, ingresienses, rec_desc, picture_name ) values (?, ?, ?, ?, ?)", titel, ange_antal_portioner, ingredienser, instruktioner,"/static/" + bild_namn )
     connection.commit()
 
     return template("flode", files=save_pictures_to_file())

@@ -16,7 +16,7 @@ portion int NOT NULL,
 ingresienses nvarchar (200) NOT NULL,
 rec_desc nvarchar (400) NOT NULL,
 likes int NULL
-picture_name nvarchar(80) NULL
+picture_name nvarchar(80) NOT NULL
 );
 
 go

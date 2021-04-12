@@ -4,7 +4,7 @@ create table Account(
 email nvarchar (60) primary key NOT NULL,
 f_name nvarchar (20) NOT NULL,
 l_name nvarchar (40) NOT NULL,
-b_day int,
+b_day char (6),
 password nvarchar (30) NOT NULL
 );
 

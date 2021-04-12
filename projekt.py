@@ -67,12 +67,13 @@ def new_member():
     while True:
         if checkpass(lösenord):
             break
-            cursor.execute("insert into Account(email, f_name, l_name, b_day, password) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag, lösenord)
-            connection.commit()
+            
         else:
-            skapakontos()
+            skapakontos()           
             break
 
+    cursor.execute("insert into Account(email, f_name, l_name, b_day, password) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag, lösenord)
+    connection.commit()
     return template("flode")
 
 @route("/about")
@@ -102,9 +103,13 @@ def profil():
 def change_password():
     old=getattr(request.forms, "old")
     new= getattr(request.forms, "new")
-    print("lösenord")
-    print(old)
-    print(new)
+    cursor.execute("select * from Account where password=?",old)
+    result=cursor.fetchall()
+    if len(result)> 0:
+        sql=("update Account set password=? where password=?")
+        val=(new,old)
+        cursor.execute(sql,val)
+        cursor.commit()
     redirect("/profil")
 
 @route("/flode",method = "POST")

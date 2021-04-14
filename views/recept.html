@@ -44,12 +44,14 @@
             <div id="main">
                 <main>
                     <article>
-                        <h1>Klassisk Lasagne</h1>
-                        <img src="#" alt="Bild på mat">
-                        <h3>Gör så här</h3>
-                        <p>
-
-                        </p>   
+                        <ul> 
+                            % for image in images:
+                            <li><img src="{{image}}"></li>
+                            %end
+                            % for style in styles:
+                            <li><h3>{{style}}</h3></li>
+                            %end
+                        </ul> 
                     
                     </article>
 

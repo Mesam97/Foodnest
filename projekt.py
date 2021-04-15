@@ -150,7 +150,6 @@ def skaparecept():
     #Visar en sida där användarna kan skapa ett recept
     return template("skapa_recept")
 
-<<<<<<< HEAD
 @route("/recipe") 
 def show_recipe():
     """ 
@@ -175,14 +174,7 @@ def show_recipe():
     for t in ins:
         instructions.append(t[0])
     return template("recipe", title = title, ingredients = ingredients, instructions = instructions)
-=======
-@route("/recept")
-def recept():
-    ''' Webbsidan för recept '''
 
-
-    return template("recept")
->>>>>>> remove
 
 @route("/saves_recepe", method="POST")
 def save_to_db():

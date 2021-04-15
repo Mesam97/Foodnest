@@ -2,7 +2,7 @@
 
 ## Instruktioner:
 För att köra programmet behövs en config.ini fil med dina personliga MSSQL inloggningsuppgifter.
-1. Öppna en ny fil i exempelvis VSCode  och klistra in:
+1. Öppna en ny fil i exempelvis VSCode och klistra in:
 [DATABASE]
 Server = 127.0.0.1 
 Username = 

@@ -184,10 +184,10 @@ def save_to_database():
     title = getattr(request.forms, 'title')
     ingredients = getattr(request.forms, 'ingredients')
     instructions = getattr(request.forms, 'instructions')
-    portions = getattr(request.forms, 'portions')
+    portions = getattr(request.forms, 'portion')
     picture = getattr(request.forms, 'picture')
     
-    cursor.execute('INSERT INTO recipes(title, portions, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
+    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
     connection.commit()
     return template('posts', files = save_picture())
 

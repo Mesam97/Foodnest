@@ -32,7 +32,7 @@ FSR1.6(C) Ett inlägg ska kunna läggas in i kategorier
                 <nav>
                     <a href="/flode">Utforska</a>
                     <a href="/profil">Min profil</a>
-                    <a href="">Inställningar</a>
+                    <a href="/settings">Inställningar</a>
                     <a href="/">Logga ut</a>
                 </nav>
             </div>
@@ -41,7 +41,7 @@ FSR1.6(C) Ett inlägg ska kunna läggas in i kategorier
                 <main>
                     <h1>Skapa inlägg</h1>
                         <form action="/saves_recepe" method="POST">
-                            <label for="titel">Titel</label>
+                            <label for="titel">Titel</label><br>
                             <input type="text" name="titel" id="titel" placeholder="Ange din titel.."><br>
 
                             <label for="ingredienser">Ingredienser</label><br>
@@ -64,7 +64,7 @@ FSR1.6(C) Ett inlägg ska kunna läggas in i kategorier
                                 <option>10</option>
                             </select><br>
 
-                            <label for="filename">Lägg till bild</label>
+                            <label for="filename"></label><br>
                             <input type="file" id="picture" name="picture"><br>
                             <input type="submit" value="Publicera på Foodnest" id="submit"/>
                         </form>

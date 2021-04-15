@@ -38,7 +38,7 @@ FSR1.6(C) Ett inlägg ska kunna läggas in i kategorier
             <div id="main">
                 <main>
                     <h1>Skapa inlägg</h1>
-                    <form action="/save_recipe" method="POST">
+                    <form action="/save_recipe" method="POST" enctype="multipart/form-data">
                         <label for="title">Titel</label><br/>
                         <input type="text" name="title" id="title" placeholder="Ange din titel.."/><br/>
 

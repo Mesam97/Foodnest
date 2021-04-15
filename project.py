@@ -111,13 +111,13 @@ def profile():
     """
     Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
     """
-    cursor.execute('SELECT picture FROM recipe')
+    cursor.execute('SELECT picture FROM recipes')
     res = cursor.fetchall()
     images = []
     for r in res:
         images.append(r[0])
 
-    cursor.execute('SELECT title FROM recipe')
+    cursor.execute('SELECT title FROM recipes')
     tes = cursor.fetchall()
     styles = []
     for t in tes:
@@ -140,7 +140,7 @@ def change_password():
 
     return redirect('/profile')
 
-@route('/posts', method = 'POST')
+@route('/posts')
 def posts():
     return template('posts')
 
@@ -155,21 +155,21 @@ def show_recipe():
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title FROM recipe')
+    cursor.execute('SELECT title FROM recipes')
     # TODO
     ti = cursor.fetchall()
     title = []
     for i in ti:
         title.append(i[0])
 
-    cursor.execute('SELECT ingredients FROM recipe')
+    cursor.execute('SELECT ingredients FROM recipes')
     # TODO
     ing = cursor.fetchall()
     ingredients = []
     for r in ing:
         ingredients.append(r[0])
 
-    cursor.execute('SELECT instructions FROM Recipe')
+    cursor.execute('SELECT instructions FROM recipes')
     # TODO
     ins = cursor.fetchall() 
     instructions = []
@@ -187,7 +187,7 @@ def save_to_database():
     portions = getattr(request.forms, 'portions')
     picture = getattr(request.forms, 'picture')
     
-    cursor.execute('INSERT INTO recipe(title, portions, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
+    cursor.execute('INSERT INTO recipes(title, portions, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
     connection.commit()
     return template('posts', files = save_picture())
 
@@ -195,7 +195,7 @@ def save_to_database():
 def static_files(filename):
     return static_file(filename, root = 'static')
 
-run(host='127.0.0.1', port=8080, debug=True, reloader=True)
+run(host='127.0.0.1', port=8070, debug=True, reloader=True)
 
 
 

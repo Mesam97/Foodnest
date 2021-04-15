@@ -1,18 +1,22 @@
+<!-- 
+Ska tas bort
+
+KRAV - Recept (Boorhan)
+
+FR1.0(M) Receptet innehåller all information som skaparen av receptet fyllde i #DONE
+    FR1.1(M) Receptet ska innehålla en titel  #DONE
+    FR1.2(M) Receptet ska innehålla en eller flera bilder 
+    FR1.3(M) Receptet ska innehålla instruktioner för hur man ska följa receptet 
+    FR1.4(M) Receptet ska innehålla en tabell med ingredienser
+        FR1.4.1(M) Det ska stå ingrediens mått
+FR2.0(C) Det ska finnas ett kommentarsfält med kommentarer andra användare har publicerat
+FR3.0(C) Det ska finnas en pop-up ruta om tips för alternativ av specialkost
+FR4.0(M) Man ska kunna gilla ett recept
+--> 
+
 <!DOCTYPE html>
 <html lang="sv"/>
-<!-- 
-    KRAV - Recept (Boorhan)
 
-    FR1.0(M) Receptet innehåller all information som skaparen av receptet fyllde i #DONE
-	    FR1.1(M) Receptet ska innehålla en titel  #DONE
-	    FR1.2(M) Receptet ska innehålla en eller flera bilder 
-        FR1.3(M) Receptet ska innehålla instruktioner för hur man ska följa receptet 
-        FR1.4(M) Receptet ska innehålla en tabell med ingredienser
-            FR1.4.1(M) Det ska stå ingrediens mått
-    FR2.0(C) Det ska finnas ett kommentarsfält med kommentarer andra användare har publicerat
-    FR3.0(C) Det ska finnas en pop-up ruta om tips för alternativ av specialkost
-    FR4.0(M) Man ska kunna gilla ett recept
---> 
     <head>
         <meta charset="utf-8"/>
         <title>Recept</title/>
@@ -25,16 +29,15 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <a href="/flode"/>
+                <a href="/posts"/>
                     <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
                 </a>
             </div>
 
             <div id="nav">
                 <nav>
-                    <a href="/flode">Utforska</a>
-                    <a href="/profil">Min profil</a>
-                    <a href="/settings">Inställningar</a>
+                    <a href="/posts">Utforska</a>
+                    <a href="/profile">Min profil</a>
                     <a href="/">Logga ut</a>                 
                 </nav>
             </div>
@@ -42,31 +45,19 @@
             <div id="main">
                 <main>
                     <article>
-<<<<<<< HEAD:views/recipe.html
                         % for name in title:
                             <h1>{{name}}</h1>
                         % end
-                            <img src="#" alt="Bild på mat"/>
+                        <img src="#" alt="Bild på mat"/>
 
-                            <h3>Gör så här</h3>
-                            <ul id="instructions">
-                                % for instruction in instructions:
-                                    <li>
-                                        {{instruction}}
-                                    </li>
-                                % end
-                            </ul>   
-=======
-                        <ul> 
-                            % for image in images:
-                            <li><img src="{{image}}"></li>
-                            %end
-                            % for style in styles:
-                            <li><h3>{{style}}</h3></li>
-                            %end
-                        </ul> 
-                    
->>>>>>> remove:views/recept.html
+                        <h3>Gör så här</h3>
+                        <ul id="instructions">
+                            % for instruction in instructions:
+                                <li>
+                                    {{instruction}}
+                                </li>
+                            % end
+                        </ul>   
                     </article>
 
                     <aside> <!-- Box för ingredienser -->
@@ -78,7 +69,6 @@
 						        </li>
 					        % end
                         </ul>   
-                    
                     </aside>
                 </main>
             </div>

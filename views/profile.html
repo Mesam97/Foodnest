@@ -6,69 +6,71 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
 
 <!DOCTYPE html>
 <html lang="sv">
+
     <head>
-        <meta charset="utf-8">
-        
+        <meta charset="utf-8"/>
         <title>Min profil</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/> 
 
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">     
-         <link href="static/style.css" rel="stylesheet" type="text/css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"/>     
+        <link href="static/style.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
         <div id="wrapper">
-
             <div id="header">
-                <a href="/flode">
-                    <img src="static/Logotyp_v1.png" alt="Foodnest logo">
+                <a href="/posts">
+                    <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
                 </a>
             </div>
 
             <div id="nav">
                 <nav>
-                    <a href="/flode">Utforska</a>
-                    <a href="/profil">Min profil</a>
+                    <a href="/posts">Utforska</a>
+                    <a href="/profile">Min profil</a>
                    
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Byt lösenord
-                    </button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Byt lösenord</button>
                     
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Byt lösenord</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Byt lösenord</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form action="/change_password" method="POST">
+                                        <div class="mb-3">
+                                            <label for="old" class="form-label">Ditt gamla lösenord</label>
+                                            <input type="password" name="old" class="form-control" id="old" aria-describedby="emailHelp"/>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="new" class="form-label">Ditt nya lösenord</label>
+                                            <input type="password" name="new" class="form-control" id="new"/>
+                                        </div>
+
+                                        <!--
+                                        <div class="mb-3 form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                        </div>
+                                        -->
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <form action="/change_password" method="POST">
-                                    <div class="mb-3">
-                                      <label for="old" class="form-label">Ditt gamla lösenord</label>
-                                      <input type="password" name="old" class="form-control" id="old" aria-describedby="emailHelp">
-                                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="new" class="form-label">Ditt nya lösenord</label>
-                                      <input type="password" name="new" class="form-control" id="new">
-                                    </div>
-                                    <div class="mb-3 form-check">
-                                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                  </form>
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            
-                            </div>
-                        </div>
                         </div>
                     </div>
                     <a href="/">Logga ut</a>
@@ -79,19 +81,21 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                 <main>
                     <h1>Mina inlägg</h1>
                     <div id="section_nav">
-                        <a href="/skapa_recept">Lägg till recept</a>
-                        <a href="liked_recepes.html">Se gillade recept</a>
+                        <a href="/create_recipe">Lägg till recept</a>
+                        <a href="/likes">Se gillade recept</a>
                         <!--<h3 id="delete"> Ta bort inlägg </h3>-->
-                        
-                        
                     </div>
                     <ul> 
                         % for image in images:
-                        <li><img src="{{image}}"><button type="button" class="btn btn-light" id="delete">Ta bort</button></li>
-                        %end
+                            <li>
+                                <img src="{{image}}"/><button type="button" class="btn btn-light" id="delete">Ta bort</button>
+                            </li>
+                        % end
                         % for style in styles:
-                        <li><h3>{{style}}</h3></li>
-                        %end
+                            <li>
+                                <h3>{{style}}</h3>
+                            </li>
+                        % end
                     </ul>
                 </main>
             </div>
@@ -103,7 +107,6 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                     <p> © Foodnest 2021</p>
                 </footer>
             </div>
-        
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="/static/script.js"></script>

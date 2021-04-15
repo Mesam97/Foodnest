@@ -169,7 +169,7 @@ def show_recipe():
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title FROM recipes')
+    cursor.execute('SELECT title FROM recipes WHERE picture = ?')
     # TODO
     ti = cursor.fetchall()
     title = []
@@ -210,6 +210,3 @@ def static_files(filename):
     return static_file(filename, root = 'static')
 
 run(host='127.0.0.1', port=8070, debug=True, reloader=True)
-
-
-

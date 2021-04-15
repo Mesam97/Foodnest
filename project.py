@@ -1,9 +1,9 @@
+import os
 from bottle import route, run, template, request, static_file, redirect
 import pyodbc as db
 import configparser
 import re
-import os
-import shutil
+
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -12,15 +12,22 @@ connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + confi
                         config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
 cursor = connection.cursor() #type: db.Cursor
 
-def save_picture():
-    picture = getattr(request.files, 'picture')
-    """ 
-    source = picture
-    destination =
-    dest = shutil.move(source, destination) 
-    """
-    # Ska print finnas?
-    print(picture)
+@route('/upload', method='POST')
+def upload_image():
+    upload = getattr(request.files,"picture")
+    name, ext = os.path.splitext(upload.filename)
+    if ext not in ('.png', '.jpg', '.jpeg'):
+        return "File extension not allowed."
+
+    save_path = "/tmp/{upload}".format(upload=upload)
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
+    file_path = "{path}/{file}".format(path=save_path, file=upload.filename)
+    upload.save(file_path)
+    
+
+    return static_file('profil', root='.')
 
 @route('/')
 def index(error = ''):
@@ -129,12 +136,12 @@ def profile():
 def change_password():
     old_password = getattr(request.forms, 'old-password')
     new_password = getattr(request.forms, 'new-password')
-    cursor.execute('SELECT * FROM account WHERE password = ?', old)
+    cursor.execute('SELECT * FROM account WHERE password = ?', old_password)
     
     result = cursor.fetchall()
     if len(result) > 0:
         sql = ('UPDATE account SET password = ?  WHERE password = ?')
-        val = (new-password, old-password)
+        val = (new_password, old_password)
         cursor.execute(sql, val)
         cursor.commit()
 
@@ -187,9 +194,9 @@ def save_to_database():
     portions = getattr(request.forms, 'portions')
     picture = getattr(request.forms, 'picture')
     
-    cursor.execute('INSERT INTO recipes(title, portions, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
+    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
     connection.commit()
-    return template('posts', files = save_picture())
+    return template('posts', files = upload_image())
 
 @route('/static/<filename>')
 def static_files(filename):

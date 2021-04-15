@@ -142,11 +142,12 @@ def change_password():
 
 @route('/posts')
 def posts():
+    """ Visar en sida för alla recept/inlägg """
     return template('posts')
 
 @route('/create_recipe')
 def create_recipe():
-    # Visar en sida där användarna kan skapa ett recept
+    """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
 @route('/recipe') 

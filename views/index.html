@@ -29,13 +29,19 @@ FIG2.1(M) Användaren kan ange användarnamn och lösenord för att logga in
             </div>
 
             <div id="log_in_form">
-                <form action="/flode" method="POST">
+                <form action="/log_in" method="POST">
                     <label for="email">E-postadress</label><br>
-                    <input type="text" id="email" name="email" placeholder="exempel@foodnest.com"><br>
+                    <input type="text" id="email" name="email" placeholder="exempel@foodnest.com" required><br>
                     <label for="password">Lösenord</label><br>
-                    <input type="password" id="password" name="password" placeholder="Ange ditt lösenord"><br>
+                    <input type="password" id="password" name="password" placeholder="Ange ditt lösenord" required><br>
                     <input type="submit" value="Logga in" id="submit"/>
                 </form>
+            </div>
+
+            <div id="error-box">
+                %if error!="":
+                    <p>{{error}}</p>
+                %end
             </div>
         
             <div>

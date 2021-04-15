@@ -21,44 +21,71 @@ def save_pictures_to_file():
 
 
 @route("/")
-def index():
+def index(error = ""):
     #Visar förstasidan som består av ett formulär så man kan logga in
-    return template("index")
+    if request.query:
+        error = getattr(request.query, "error")
+    return template("index", error=error)
+
+def check_log_in(epost, lösenord):
+    cursor.execute('SELECT email, password FROM Account WHERE email = ? AND password = ?', (epost, lösenord))
+
+@route('/log_in', method='POST')
+def log_in():
+    epost = getattr(request.forms, 'email')
+    lösenord = getattr(request.forms, 'password')
+
+    if check_log_in(epost, lösenord):
+        return template('flode')
+    else:
+        return redirect('/?error=Felaktigt lösenord eller e-postadress')
+
+@route('/settings')
+def settings():
+    return template('settings')
 
 @route("/flode")
 def flode():
     return template("flode")
 
 @route("/skapakonto")
-def skapakontos():
-    return template("skapakonto")
+def skapakontos(error = ""):
+    if request.query:
+        error = getattr(request.query, "error") # Tar query från skapakonto.html och visar felmeddelande på samma sida
+    return template("skapakonto", error=error)
+
+def checkemail(epost):
+    '''Funktion som berättar hur epostadress anges'''
+
+    if(len(epost)<8):
+        return False
+    elif not re.search('[a-z]', epost):
+        return False
+    elif not re.search('[@]', epost):
+        return False
+    elif not re.search('[.]', epost):
+        return False
+    elif re.search('\s', epost):
+        return False
+    else:
+        return True
+
 
 def checkpass(lösenord):
-    lösenord = getattr(request.forms, "password")
-    flag = 0
-    while True:  
-        if (len(lösenord)<6):
-            flag = -1
-            break
-        elif not re.search("[a-z]", lösenord):
-            flag = -1
-            break
-        elif not re.search("[A-Z]", lösenord):
-            flag = -1
-            break
-        elif not re.search("[0-9]", lösenord):
-            flag = -1
-            break
-        elif re.search("\s", lösenord):
-            flag = -1
-            break
-        else:
-            flag = 0
-            return True
-            break
-    
-    if flag ==-1:
+    '''Funktion som berättar hur lösenord får anges.'''
+ 
+    if (len(lösenord)<6):
         return False
+    elif not re.search("[a-z]", lösenord):
+        return False
+    elif not re.search("[A-Z]", lösenord):
+        return False
+    elif not re.search("[0-9]", lösenord):
+        return False
+    elif re.search("\s", lösenord):
+        return False
+    else:
+        return True
 
 @route("/new_member", method="POST")
 def new_member():
@@ -68,17 +95,15 @@ def new_member():
     födelsedag = getattr(request.forms,"bday")
     lösenord = getattr(request.forms,"password")
     
-    while True:
-        if checkpass(lösenord):
-            break
-            
-        else:
-            skapakontos()           
-            break
+    
+    if checkpass(lösenord) and checkemail(epost):
+        cursor.execute("insert into Account(email, f_name, l_name, b_day, password) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag, lösenord)
+        connection.commit()
+        return template("flode")
 
-    cursor.execute("insert into Account(email, f_name, l_name, b_day, password) values (?, ?, ?, ?, ?)", epost, förnamn, efternamn, födelsedag, lösenord)
-    connection.commit()
-    return template("flode")
+    # Skapar felmeddelande om lösenord är inkorrekt
+    else:
+        return redirect("/skapakonto?error=Felaktigt lösenord eller e-postadress")
 
 @route("/about")
 def about():

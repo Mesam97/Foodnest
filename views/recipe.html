@@ -42,6 +42,7 @@
             <div id="main">
                 <main>
                     <article>
+<<<<<<< HEAD:views/recipe.html
                         % for name in title:
                             <h1>{{name}}</h1>
                         % end
@@ -55,6 +56,17 @@
                                     </li>
                                 % end
                             </ul>   
+=======
+                        <ul> 
+                            % for image in images:
+                            <li><img src="{{image}}"></li>
+                            %end
+                            % for style in styles:
+                            <li><h3>{{style}}</h3></li>
+                            %end
+                        </ul> 
+                    
+>>>>>>> remove:views/recept.html
                     </article>
 
                     <aside> <!-- Box för ingredienser -->

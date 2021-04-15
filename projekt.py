@@ -2,6 +2,8 @@ from bottle import route, run, template, request, static_file, redirect
 import pyodbc as db
 import configparser
 import re
+import os
+import shutil
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -11,10 +13,12 @@ connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + confi
 cursor = connection.cursor() #type: db.Cursor
 
 def save_pictures_to_file():
-    bild_namn = getattr(request.forms,"picture")
-    my_file = open("static","w")
-    my_file.write("/static/" + bild_namn)
-    my_file.close()
+    bild = getattr(request.files,"picture")
+    """source= bild
+    destination=
+    dest = shutil.move(source, destination) """
+    print(bild)
+
 
 @route("/")
 def index():
@@ -121,6 +125,7 @@ def skaparecept():
     #Visar en sida där användarna kan skapa ett recept
     return template("skapa_recept")
 
+<<<<<<< HEAD
 @route("/recipe") 
 def show_recipe():
     """ 
@@ -145,6 +150,14 @@ def show_recipe():
     for t in ins:
         instructions.append(t[0])
     return template("recipe", title = title, ingredients = ingredients, instructions = instructions)
+=======
+@route("/recept")
+def recept():
+    ''' Webbsidan för recept '''
+
+
+    return template("recept")
+>>>>>>> remove
 
 @route("/saves_recepe", method="POST")
 def save_to_db():

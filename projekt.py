@@ -83,14 +83,14 @@ def about():
 @route("/profil")
 def profil():
     #Visar en profilsida med alla inlägg och möjlighet till att navigera sig till dem andra sidorna
-    cursor.execute("select picture_name from Recept")
+    cursor.execute("select picture from Recipe")
     res = cursor.fetchall()
     images=[]
     for r in res:
         images.append(r[0])
     print(images)
 
-    cursor.execute("select title from Recept")
+    cursor.execute("select title from Recipe")
     tes=cursor.fetchall()
     styles=[]
     for t in tes:
@@ -121,11 +121,30 @@ def skaparecept():
     #Visar en sida där användarna kan skapa ett recept
     return template("skapa_recept")
 
-@route("/recept")
-def recept():
-    ''' Webbsidan för recept '''
+@route("/recipe") 
+def show_recipe():
+    """ 
+    Webbsida för recept:
+    Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
+    """
+    cursor.execute("SELECT title from Recipe")
+    ti = cursor.fetchall() # TODO
+    title = []
+    for i in ti:
+        title.append(i[0])
 
-    return template("recept")
+    cursor.execute("SELECT ingredients from Recipe")
+    ing = cursor.fetchall() # TODO
+    ingredients = []
+    for r in ing:
+        ingredients.append(r[0])
+
+    cursor.execute("SELECT instructions from Recipe")
+    ins = cursor.fetchall() # TODO
+    instructions = []
+    for t in ins:
+        instructions.append(t[0])
+    return template("recipe", title = title, ingredients = ingredients, instructions = instructions)
 
 @route("/saves_recepe", method="POST")
 def save_to_db():

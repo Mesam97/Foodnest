@@ -142,7 +142,14 @@ def change_password():
 
 @route('/posts')
 def posts():
-    return template('posts')
+
+    cursor.execute('SELECT picture FROM recipes')
+    img = cursor.fetchall()
+    images = []
+    for i in img:
+        images.append(i[0])
+
+    return template('posts', images = images)
 
 @route('/create_recipe')
 def create_recipe():
@@ -189,7 +196,7 @@ def save_to_database():
     
     cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
     connection.commit()
-    return template('posts', files = save_picture())
+    return template('posts', images = images, files = save_picture())
 
 @route('/static/<filename>')
 def static_files(filename):

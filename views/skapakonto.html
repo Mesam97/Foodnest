@@ -33,6 +33,12 @@
                     <input type="password" id="password" name="password" placeholder="Ange önskat lösenord (Minst 6 karaktärer varav 1 siffra och en stor bokstav)" required><br>
                     <input type="submit" value="Skapa konto och logga in" id="submit"/>
                 </form>
+
+                <div id="error-box">
+                    %if error!="":
+                        <p>{{error}}</p>
+                    %end
+                </div>
             </div>
         
             <div id="footer">

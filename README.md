@@ -1,11 +1,15 @@
 # Foodnest
 
 ## Instruktioner:
-Har du redan installerat bottle via pip hoppa till steg 4
-1. Kontrollera att pip finns. För Mac skriv följande i terminalen: python3 -m pip --version     och för Windows: py -m pip --version
-2. Om det inte finns så ladda ner det. Mac: python3 -m ensurepip --default-pip       Windows: py -m ensurepip --default-pip
-3. Ladda ner bottle via terminalen, samma för mac och windows: pip install bottle
-4. Öppna projekt.py och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
+För att köra programmet behövs en config.ini fil med dina personliga MSSQL inloggningsuppgifter.
+1. Öppna en ny fil i exempelvis VSCode  och klistra in:
+[DATABASE]
+Server = 127.0.0.1 
+Username = 
+Password = 
+Database = foodnest
+2. Fyll i Username och Password med dina uppgifter och spara filen som config.ini i mappen foodnest
+3. Öppna projekt.py och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
 
 
 

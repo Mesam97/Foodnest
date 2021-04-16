@@ -200,7 +200,7 @@ def save_to_database():
     cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + upload.filename)
     connection.commit()
 
-    return template('posts')
+    return redirect('posts')
 
 
 @route('/static/<filename>')

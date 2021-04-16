@@ -24,6 +24,9 @@ def index(error = ''):
     return template('index', error = error)
 
 def check_log_in(email, password):
+    email = getattr(request.forms, 'email')
+    password = getattr(request.forms, 'password')
+
     cursor.execute('SELECT email, password FROM account WHERE email = ? AND password = ?', (email, password))
 
 @route('/log_in', method='POST')

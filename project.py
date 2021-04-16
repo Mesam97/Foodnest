@@ -12,22 +12,6 @@ connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + confi
                         config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
 cursor = connection.cursor() #type: db.Cursor
 
-@route('/upload', method='POST')
-def upload_image():
-    upload = getattr(request.files,"picture")
-    name, ext = os.path.splitext(upload.filename)
-    if ext not in ('.png', '.jpg', '.jpeg'):
-        return "File extension not allowed."
-
-    save_path = "/tmp/{upload}".format(upload=upload)
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-
-    file_path = "{path}/{file}".format(path=save_path, file=upload.filename)
-    upload.save(file_path)
-    
-
-    return static_file('profil', root='.')
 
 @route('/')
 def index(error = ''):
@@ -192,11 +176,23 @@ def save_to_database():
     ingredients = getattr(request.forms, 'ingredients')
     instructions = getattr(request.forms, 'instructions')
     portions = getattr(request.forms, 'portions')
-    picture = getattr(request.forms, 'picture')
     
-    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
+    upload = getattr(request.files,"picture")
+    name, ext = os.path.splitext(upload.filename)
+    if ext not in ('.png', '.jpg', '.jpeg'):
+        return "File extension not allowed."
+
+    save_path = f"static"
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
+
+    upload.save(save_path)
+
+    
+    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + upload.filename)
     connection.commit()
-    return template('posts', files = upload_image())
+    return template('posts')
 
 @route('/static/<filename>')
 def static_files(filename):

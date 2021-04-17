@@ -1,9 +1,9 @@
+import os
 from bottle import route, run, template, request, static_file, redirect
 import pyodbc as db
 import configparser
 import re
-import os
-import shutil
+
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -12,15 +12,6 @@ connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + confi
                         config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
 cursor = connection.cursor() #type: db.Cursor
 
-def save_picture():
-    picture = getattr(request.files, 'picture')
-    """ 
-    source = picture
-    destination =
-    dest = shutil.move(source, destination) 
-    """
-    # Ska print finnas?
-    print(picture)
 
 @route('/')
 def index(error = ''):
@@ -33,6 +24,9 @@ def index(error = ''):
     return template('index', error = error)
 
 def check_log_in(email, password):
+    email = getattr(request.forms, 'email')
+    password = getattr(request.forms, 'password')
+
     cursor.execute('SELECT email, password FROM account WHERE email = ? AND password = ?', (email, password))
 
 @route('/log_in', method='POST')
@@ -129,12 +123,12 @@ def profile():
 def change_password():
     old_password = getattr(request.forms, 'old-password')
     new_password = getattr(request.forms, 'new-password')
-    cursor.execute('SELECT * FROM account WHERE password = ?', old)
+    cursor.execute('SELECT * FROM account WHERE password = ?', old_password)
     
     result = cursor.fetchall()
     if len(result) > 0:
         sql = ('UPDATE account SET password = ?  WHERE password = ?')
-        val = (new-password, old-password)
+        val = (new_password, old_password)
         cursor.execute(sql, val)
         cursor.commit()
 
@@ -142,8 +136,14 @@ def change_password():
 
 @route('/posts')
 def posts():
-    """ Visar en sida för alla recept/inlägg """
-    return template('posts')
+
+    cursor.execute('SELECT picture FROM recipes')
+    img = cursor.fetchall()
+    images = []
+    for i in img:
+        images.append(i[0])
+
+    return template('posts', images = images)
 
 @route('/create_recipe')
 def create_recipe():
@@ -156,7 +156,7 @@ def show_recipe():
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title FROM recipes')
+    cursor.execute('SELECT title FROM recipes WHERE picture = ?')
     # TODO
     ti = cursor.fetchall()
     title = []
@@ -177,7 +177,7 @@ def show_recipe():
     for t in ins:
         instructions.append(t[0])
     return template('recipe', title = title, ingredients = ingredients, instructions = instructions)
-
+    
 @route('/save_recipe', method = 'POST')
 def save_to_database():
     """ På denna länken kan användarna skapa recept """
@@ -186,17 +186,28 @@ def save_to_database():
     ingredients = getattr(request.forms, 'ingredients')
     instructions = getattr(request.forms, 'instructions')
     portions = getattr(request.forms, 'portions')
-    picture = getattr(request.forms, 'picture')
     
-    cursor.execute('INSERT INTO recipes(title, portions, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + picture)
+    upload = getattr(request.files,"picture")
+    name, ext = os.path.splitext(upload.filename)
+    if ext not in ('.png', '.jpg', '.jpeg'):
+        return "File extension not allowed."
+
+    save_path = f"static"
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
+
+    upload.save(save_path)
+
+    
+    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + upload.filename)
     connection.commit()
-    return template('posts', files = save_picture())
+
+    return redirect('posts')
+
 
 @route('/static/<filename>')
 def static_files(filename):
     return static_file(filename, root = 'static')
 
 run(host='127.0.0.1', port=8070, debug=True, reloader=True)
-
-
-

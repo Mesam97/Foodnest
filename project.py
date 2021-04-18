@@ -27,7 +27,7 @@ def check_log_in(email, password):
 
     cursor.execute('SELECT email, password FROM account WHERE email = ? AND password = ?', (email, password))
 
-@route('/log_in', method='POST')
+@route('/log_in', method = 'POST')
 def log_in():
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')

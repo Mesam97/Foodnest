@@ -90,7 +90,8 @@ def new_member():
         connection.commit()
         return template('posts')
 
-    # Skapar felmeddelande om lösenord är inkorrekt
+    # Skapar felmeddelande om lösenordet eller
+    # epost är inte följer kraven
     else:
         return redirect('/create_account?error = Felaktigt lösenord eller e-postadress')
 

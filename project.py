@@ -4,14 +4,12 @@ import pyodbc as db
 import configparser
 import re
 
-
 config = configparser.ConfigParser()
 config.read('config.ini')
 
 connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + config['DATABASE']['Server'] + ';DATABASE=' +
                         config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
 cursor = connection.cursor() #type: db.Cursor
-
 
 @route('/')
 def index(error = ''):
@@ -136,7 +134,6 @@ def change_password():
 
 @route('/posts')
 def posts():
-
     cursor.execute('SELECT picture FROM recipes')
     img = cursor.fetchall()
     images = []
@@ -176,35 +173,32 @@ def show_recipe():
     instructions = []
     for t in ins:
         instructions.append(t[0])
+        
     return template('recipe', title = title, ingredients = ingredients, instructions = instructions)
     
 @route('/save_recipe', method = 'POST')
 def save_to_database():
     """ På denna länken kan användarna skapa recept """
-
     title = getattr(request.forms, 'title')
     ingredients = getattr(request.forms, 'ingredients')
     instructions = getattr(request.forms, 'instructions')
     portions = getattr(request.forms, 'portions')
-    
     upload = getattr(request.files,"picture")
+    
     name, ext = os.path.splitext(upload.filename)
     if ext not in ('.png', '.jpg', '.jpeg'):
-        return "File extension not allowed."
+        return 'File extension not allowed.'
 
     save_path = f"static"
     if not os.path.exists(save_path):
         os.makedirs(save_path)
 
-
     upload.save(save_path)
-
     
     cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + upload.filename)
     connection.commit()
 
     return redirect('posts')
-
 
 @route('/static/<filename>')
 def static_files(filename):

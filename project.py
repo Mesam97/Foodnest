@@ -149,7 +149,7 @@ def show_recipe():
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title FROM recipes WHERE picture = ?')
+    cursor.execute('SELECT title FROM recipes')
     # TODO
     ti = cursor.fetchall()
     title = []

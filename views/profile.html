@@ -85,18 +85,16 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                         <a href="/likes">Se gillade recept</a>
                         <!--<h3 id="delete"> Ta bort inlägg </h3>-->
                     </div>
-                    <ul id="posts"> 
+                    <div id="posts"> 
+
                         % for image in images:
-                            <li>
-                                <img id="post-image" src="{{image}}"/><button type="button" class="btn btn-light" id="delete">Ta bort</button>
-                            </li>
+                        <img id="post-image" src="{{image}}"/><button type="button" class="btn btn-light" id="delete">Ta bort</button>
+                               
+                            % for style in styles:
+                            <h3>{{style}}</h3>
+                            % end
                         % end
-                        % for style in styles:
-                            <li>
-                                <h3>{{style}}</h3>
-                            </li>
-                        % end
-                    </ul>
+                    </div>
                 </main>
             </div>
 

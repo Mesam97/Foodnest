@@ -24,14 +24,15 @@ def log_in():
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
     user_account = (email) + (password)
-
-    if check_log_in(email, password) == user_account:
-        print(user_account)
-        return True
+    
+    cursor.execute("select * FROM account WHERE email = ? AND password = ?", (email, password))
+    result = cursor.fetchall()
+    if len(result) > 0:
+        print(user_account)   
     else:
         return redirect('/?error=Felaktigt lösenord eller e-postadress')
-
-    return template('posts', email = email, password = password)
+    
+    return redirect ('posts')
     
 
 def check_log_in(email, password):

@@ -16,24 +16,27 @@ def index(error = ''):
     """ Visar förstasidan som består av ett logga in-formulär """
     if request.query:
         error = getattr(request.query, 'error')
-    
     return template('index', error = error)
 
-def check_log_in(email, password):
-    email = getattr(request.forms, 'email')
-    password = getattr(request.forms, 'password')
-
-    cursor.execute('SELECT email, password FROM account WHERE email =? AND password =?', (email, password))
 
 @route('/log_in', method = 'POST')
 def log_in():
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
+    user_account = (email) + (password)
 
-    if check_log_in(email, password):
-        return template('posts')
+    if check_log_in(email, password) == user_account:
+        print(user_account)
+        return True
     else:
         return redirect('/?error=Felaktigt lösenord eller e-postadress')
+
+    return template('posts', email = email, password = password)
+    
+
+def check_log_in(email, password):
+    cursor.execute('SELECT * FROM account WHERE email =? AND password = ?', (email, password))
+    account = cursor.fetchall()
 
 @route('/create_account')
 def create_account(error = ''):
@@ -82,13 +85,12 @@ def new_member():
     birthday = getattr(request.forms, 'birthday')
     password = getattr(request.forms, 'password')
     
+    # Skapar felmeddelande om lösenordet eller
+    # epost är inte följer kraven
     if check_pass(password) and check_email(email):
         cursor.execute('INSERT INTO account(email, first_name, last_name, birthday, password) VALUES (?, ?, ?, ?, ?)', email, first_name, last_name, birthday, password)
         connection.commit()
         return template('posts')
-
-    # Skapar felmeddelande om lösenordet eller
-    # epost är inte följer kraven
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
 
@@ -136,7 +138,13 @@ def posts():
     for i in img:
         images.append(i[0])
 
-    return template('posts', images = images)
+    cursor.execute('SELECT title FROM recipes')
+    tes = cursor.fetchall()
+    styles = []
+    for t in tes:
+        styles.append(t[0])
+
+    return template('posts', images = images, styles = styles)
 
 @route('/create_recipe')
 def create_recipe():

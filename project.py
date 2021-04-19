@@ -152,6 +152,7 @@ def create_recipe():
     """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
+# id?
 @route('/recipe') 
 def show_recipe():
     """ 

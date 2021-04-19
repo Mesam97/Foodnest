@@ -22,7 +22,7 @@ def index(error = ''):
 def check_log_in(email, password):
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
-
+    
     cursor.execute('SELECT email, password FROM account WHERE email =? AND password =?', (email, password))
 
 @route('/log_in', method = 'POST')
@@ -88,7 +88,7 @@ def new_member():
         return template('posts')
 
     # Skapar felmeddelande om lösenordet eller
-    # epost är inte följer kraven
+    # epost inte följer kraven
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
 

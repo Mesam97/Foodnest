@@ -1,5 +1,5 @@
 import os
-from bottle import route, run, template, request, static_file, redirect
+from bottle import route, run, template, request, static_file, redirect, error
 import pyodbc as db
 import configparser
 import re
@@ -96,6 +96,7 @@ def new_member():
 
 @route('/about')
 def about():
+    """ Visar en sida om oss """
     return template('about')
 
 @route('/profile')
@@ -157,22 +158,19 @@ def show_recipe():
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title FROM recipes WHERE picture = ?')
-    # TODO
+    cursor.execute('SELECT title FROM recipes')
     ti = cursor.fetchall()
     title = []
     for i in ti:
         title.append(i[0])
 
     cursor.execute('SELECT ingredients FROM recipes')
-    # TODO
     ing = cursor.fetchall()
     ingredients = []
     for r in ing:
         ingredients.append(r[0])
 
     cursor.execute('SELECT instructions FROM recipes')
-    # TODO
     ins = cursor.fetchall() 
     instructions = []
     for t in ins:

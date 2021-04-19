@@ -24,7 +24,7 @@ Database = foodnest
 3. Öppna projekt.py och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
 
 ## Länk till Github:
-[Github] https://github.com/Mesam97/Foodnest.git
+[Github](https://github.com/Mesam97/Foodnest.git)
 
 ### Gruppmedlemmar
 
@@ -33,3 +33,5 @@ Database = foodnest
 - Tuva Wieder 
 - Josefina Tranucharat Falk
 - Fanny Sivhed 
+
+#### Copyright Foodnest

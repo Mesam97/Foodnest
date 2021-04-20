@@ -24,14 +24,15 @@ def log_in():
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
     user_account = (email) + (password)
-
-    if check_log_in(email, password) == user_account:
-        print(user_account)
-        return True
+    
+    cursor.execute("select * FROM account WHERE email = ? AND password = ?", (email, password))
+    result = cursor.fetchall()
+    if len(result) > 0:
+        print(user_account)   
     else:
         return redirect('/?error=Felaktigt lösenord eller e-postadress')
-
-    return template('posts', email = email, password = password)
+    
+    return redirect ('posts')
     
 
 def check_log_in(email, password):
@@ -152,19 +153,21 @@ def create_recipe():
     """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
-# id?
-@route('/recipe') 
-def show_recipe():
+# BOORHAN TESTAR 
+@route('/recipe/<id>') 
+def show_recipe(id):
     """ 
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title FROM recipes')
+    cursor.execute('SELECT * FROM recipes WHERE id = ' + id)
     ti = cursor.fetchall()
     title = []
     for i in ti:
         title.append(i[0])
-
+        print(title)
+        print(ti)
+    '''
     cursor.execute('SELECT ingredients FROM recipes')
     ing = cursor.fetchall()
     ingredients = []
@@ -176,7 +179,7 @@ def show_recipe():
     instructions = []
     for t in ins:
         instructions.append(t[0])
-        
+    '''   
     return template('recipe', title = title, ingredients = ingredients, instructions = instructions)
     
 @route('/save_recipe', method = 'POST')

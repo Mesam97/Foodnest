@@ -32,10 +32,12 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                     <a href="/posts">Utforska</a>
                     <a href="/profile">Min profil</a>
                    
-                    <!-- Button trigger modal -->
+                    <!-- knapp som gör att funktionen nedan inträffar, 
+                        en knapp som gör att man kan ändra sitt lösenord -->
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Byt lösenord</button>
                     
-                    <!-- Modal -->
+                    <!--Denna delen är hämtad ifrån ett ramverk och visar en pop-up ruta
+                    där användaren kan skriva in sitt gamla och nya lösenord -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -55,13 +57,6 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                                             <label for="new" class="form-label">Ditt nya lösenord</label>
                                             <input type="password" name="new" class="form-control" id="new"/>
                                         </div>
-
-                                        <!--
-                                        <div class="mb-3 form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                        </div>
-                                        -->
 
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
@@ -88,8 +83,29 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                     <div id="posts"> 
 
                         % for image in images:
-                        <img id="post-image" src="{{image}}"/><button type="button" class="btn btn-light" id="delete">Ta bort</button>
-                               
+                        <img id="post-image" src="{{image}}"/><button type="button" class="btn btn-light" id="delete" data-bs-toggle="modal" data-bs-target="#exampleModal1">Ta bort</button>
+                    </div>   
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ta bort inlägget</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="/remove" method="POST">
+                                <div class="modal-body">   
+                                    <label for="remove"> Är du säker att du vill ta bort inlägget</label><br>
+                                    <input type="checkbox" id="remove" name="remove" value="remove"><label for="remove">JA</label>                                
+                                </div>
+                            
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Spara</button>
+                                </div>
+                            </form>                          
+                        </div>
+                         
+                    </div>
                             % for style in styles:
                             <h3>{{style}}</h3>
                             % end

@@ -132,6 +132,16 @@ def change_password():
 
     return redirect('/profile')
 
+@route('/remove', method = 'POST')
+def remove():
+    checkbox = getattr(request.forms, 'remove')
+    cursor.execute('SELECT * FROM recipes WHERE recipeid = 1')
+    if checkbox == True:
+        cursor.execute('DELETE * FROM recipes WHERE recipeid = 1')
+        cursor.commit()
+    
+    return redirect('profile')
+
 @route('/posts')
 def posts():
     cursor.execute('SELECT picture FROM recipes')

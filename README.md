@@ -34,4 +34,4 @@ Database = foodnest
 - Josefina Tranucharat Falk
 - Fanny Sivhed 
 
-#### Copyright Foodnest
+#### © Copyright Foodnest

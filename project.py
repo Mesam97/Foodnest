@@ -153,19 +153,21 @@ def create_recipe():
     """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
-# id?
-@route('/recipe') 
-def show_recipe():
+# BOORHAN TESTAR 
+@route('/recipe/<id>') 
+def show_recipe(id):
     """ 
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title FROM recipes')
+    cursor.execute('SELECT * FROM recipes WHERE id = ' + id)
     ti = cursor.fetchall()
     title = []
     for i in ti:
         title.append(i[0])
-
+        print(title)
+        print(ti)
+    '''
     cursor.execute('SELECT ingredients FROM recipes')
     ing = cursor.fetchall()
     ingredients = []
@@ -177,7 +179,7 @@ def show_recipe():
     instructions = []
     for t in ins:
         instructions.append(t[0])
-        
+    '''   
     return template('recipe', title = title, ingredients = ingredients, instructions = instructions)
     
 @route('/save_recipe', method = 'POST')

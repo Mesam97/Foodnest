@@ -210,4 +210,4 @@ def save_to_database():
 def static_files(filename):
     return static_file(filename, root = 'static')
 
-run(host='127.0.0.1', port=8070, debug=True, reloader=True)
+run(host='127.0.0.1', port=8090, debug=True, reloader=True)

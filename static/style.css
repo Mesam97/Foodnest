@@ -100,7 +100,6 @@ form {
   background-color: #e4e4e4;
 }
 
-
 .image {
   display: block;
   width: 250px;
@@ -109,7 +108,7 @@ form {
 
 .container {
   position: relative;
-  width: 50%;
+  width: 20%;
 }
 
 .overlay {
@@ -120,9 +119,9 @@ form {
   right: 0;
   height: auto;
   width: 250px;
-  opacity: 0.2;
+  opacity: 0;
   transition: .5s ease;
-  background-color: #ECF5F7;
+  background-color: #F2F2F2;
 }
 
 .container:hover .overlay {

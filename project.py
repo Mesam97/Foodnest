@@ -24,7 +24,8 @@ def log_in():
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
     user_account = (email) + (password)
-    
+    print(email, password)
+
     cursor.execute("select * FROM account WHERE email = ? AND password = ?", (email, password))
     result = cursor.fetchall()
     if len(result) > 0:
@@ -221,4 +222,4 @@ def save_to_database():
 def static_files(filename):
     return static_file(filename, root = 'static')
 
-run(host='127.0.0.1', port=8090, debug=True, reloader=True)
+run(host='127.0.0.1', port=8040, debug=True, reloader=True)

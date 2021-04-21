@@ -54,15 +54,10 @@ FFL4.1.5(C) Man ska kunna välja om man endast vill se specialkost (ex. allergi 
                 <main>
                     <div class="container">
                          
-                        % for image in images:
-                            <img class="image" src="{{image}}"/>                                                
-                            % for title in styles:
-                                <div class="overlay">  
-                                    <div class="text">
-                                        <a href="/recipe">{{title}}</a>
-                                    </div>
-                                </div>
-                            % end
+                        % for r in recipes:
+                        <a href="/recipe/{{r['id']}}">
+                            <img class="image" src="{{r['img']}}"/>   
+                        </a>
                         % end
                     </div>
                     <!--

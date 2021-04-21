@@ -136,9 +136,9 @@ def change_password():
 @route('/remove', method = 'POST')
 def remove():
     if document.getElementById("myCheck").checked == True:
-    """checkbox = getattr(request.forms, 'remove')
-    cursor.execute('SELECT * FROM recipes WHERE recipeid = 1')
-    if checkbox == :"""
+        """checkbox = getattr(request.forms, 'remove')
+        cursor.execute('SELECT * FROM recipes WHERE recipeid = 1')
+        if checkbox == :"""
         cursor.execute('DELETE * FROM recipes WHERE recipeid = 1')
         cursor.commit()
     
@@ -150,8 +150,8 @@ def posts():
     recipes = cursor.fetchall()
     recipe_list = []
     for r in recipes:
-        recipe_list.append(r[0])
-        print(0)
+        recipe_dict = {'id': r[1], 'img': r[0]}
+        recipe_list.append(recipe_dict)
 
     return template('posts', recipes = recipe_list)
 
@@ -160,33 +160,18 @@ def create_recipe():
     """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
-@route('/recipe/<pagename>') 
-def show_recipe(pagename):
+@route('/recipe/<id>') 
+def show_recipe(id):
     """ 
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT * FROM recipes WHERE id = ' + id)
-    ti = cursor.fetchall()
-    title = []
-    for i in ti:
-        title.append(i[0])
-        print(title)
-        print(ti)
-    '''
-    cursor.execute('SELECT ingredients FROM recipes')
-    ing = cursor.fetchall()
-    ingredients = []
-    for r in ing:
-        ingredients.append(r[0])
-
-    cursor.execute('SELECT instructions FROM recipes')
-    ins = cursor.fetchall() 
-    instructions = []
-    for t in ins:
-        instructions.append(t[0])
-    '''   
-    return template('recipe', title = title, ingredients = ingredients, instructions = instructions)
+    cursor.execute('SELECT title, ingredients, instructions FROM recipes WHERE recipeid = ' + id)
+    recipes = cursor.fetchall()
+    for r in recipes:
+        recipe_dict = {'title': r[0], 'ingredients': r[1], 'instructions': r[2]}
+ 
+    return template('recipe', recipes = recipe_dict)
     
 @route('/save_recipe', method = 'POST')
 def save_to_database():
@@ -216,4 +201,8 @@ def save_to_database():
 def static_files(filename):
     return static_file(filename, root = 'static')
 
-run(host='127.0.0.1', port=8040, debug=True, reloader=True)
+@route('/recipe/static/<filename>')
+def static_recipe(filename):
+    return static_file(filename, root = 'static')
+
+run(host='127.0.0.1', port=8020, debug=True, reloader=True)

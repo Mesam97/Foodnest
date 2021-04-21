@@ -16,11 +16,11 @@ html {
 }
 
 body {
-  background-color: #F2F2F2;
-  color: #4B5B73;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  font-weight: bold;
+  background-color: #F2F2F2 !important;
+  color: #4B5B73 !important;
+  text-align: center !important;
+  font-family: "Raleway", sans-serif !important;
+  font-weight: bold !important;
 }
 
 #header > header {
@@ -85,7 +85,7 @@ form {
   padding: 20px;
 }
 
-#footer > footer {
+footer {
   grid-area: footer;
   clear: both;
   position: relative;

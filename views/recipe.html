@@ -15,13 +15,13 @@ FR4.0(M) Man ska kunna gilla ett recept
 --> 
 
 <!DOCTYPE html>
-<html lang="sv"/>
+<html lang="sv">
 
     <head>
         <meta charset="utf-8"/>
-        <title>Recept</title/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Foodnest</title>
         <link href="static/style.css" rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/>
     </head>
@@ -29,7 +29,7 @@ FR4.0(M) Man ska kunna gilla ett recept
     <body>
         <div id="wrapper">
             <div id="header">
-                <a href="/posts"/>
+                <a href="/posts">
                     <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
                 </a>
             </div>
@@ -45,44 +45,19 @@ FR4.0(M) Man ska kunna gilla ett recept
             <div id="main">
                 <main>
                     <article>
-                        % for name in title:
-                            <h1>{{name}}</h1>
-                        % end
-                        
-                        <!--
-                        <img src="#" alt="Bild på mat"/>
-                        -->
 
-                        <h3>Gör så här</h3>
-                        <ul id="instructions">
-                            % for instruction in instructions:
-                                <li>
-                                    {{instruction}}
-                                </li>
-                            % end
-                        </ul>   
-                    </article>
-
-                    <aside> <!-- Box för ingredienser -->
-                        <h4>Ingredienser</h4>
-                        <ul id="ingredients">
-                            % for ingredient in ingredients:
-						        <li>
-							        {{ingredient}}
-						        </li>
-					        % end
+                         <h3>{{recipes['title']}}</h3>
+         
                         </ul>   
                     </aside>
                 </main>
             </div>
 
-            <div id="footer">
                 <footer>
                     <a href="/about">Om oss</a>
                     <p>Kontakt: foodnest@hotmail.com</p>
                     <p>© Foodnest 2021</p>
                 </footer>
-            </div>
         </div> <!-- SLUT AV WRAPPER -->     
     </body>
 </html>

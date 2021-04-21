@@ -24,7 +24,8 @@ def log_in():
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
     user_account = (email) + (password)
-    
+    print(email, password)
+
     cursor.execute("select * FROM account WHERE email = ? AND password = ?", (email, password))
     result = cursor.fetchall()
     if len(result) > 0:

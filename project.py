@@ -134,9 +134,10 @@ def change_password():
 
 @route('/remove', method = 'POST')
 def remove():
-    checkbox = getattr(request.forms, 'remove')
+    if document.getElementById("myCheck").checked == True:
+    """checkbox = getattr(request.forms, 'remove')
     cursor.execute('SELECT * FROM recipes WHERE recipeid = 1')
-    if checkbox == True:
+    if checkbox == :"""
         cursor.execute('DELETE * FROM recipes WHERE recipeid = 1')
         cursor.commit()
     

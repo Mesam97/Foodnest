@@ -145,28 +145,22 @@ def remove():
 
 @route('/posts')
 def posts():
-    cursor.execute('SELECT picture FROM recipes')
-    img = cursor.fetchall()
-    images = []
-    for i in img:
-        images.append(i[0])
+    cursor.execute('SELECT picture, recipeid FROM recipes')
+    recipes = cursor.fetchall()
+    recipe_list = []
+    for r in recipes:
+        recipe_list.append(r[0])
+        print(0)
 
-    cursor.execute('SELECT title FROM recipes')
-    tes = cursor.fetchall()
-    styles = []
-    for t in tes:
-        styles.append(t[0])
-
-    return template('posts', images = images, styles = styles)
+    return template('posts', recipes = recipe_list)
 
 @route('/create_recipe')
 def create_recipe():
     """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
-# BOORHAN TESTAR 
-@route('/recipe/<id>') 
-def show_recipe(id):
+@route('/recipe/<pagename>') 
+def show_recipe(pagename):
     """ 
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen

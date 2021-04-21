@@ -130,21 +130,22 @@ def change_password():
 
 @route('/posts')
 def posts():
-    cursor.execute('SELECT picture FROM recipes')
-    img = cursor.fetchall()
-    images = []
-    for i in img:
-        images.append(i[0])
+    cursor.execute('SELECT picture, recipeid FROM recipes')
+    recipes = cursor.fetchall()
+    recipe_list = []
+    for r in recipes:
+        recipe_list.append(r[0])
+        print(0)
 
-    return template('posts', images = images)
+    return template('posts', recipes = recipe_list)
 
 @route('/create_recipe')
 def create_recipe():
     """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
-@route('/recipe') 
-def show_recipe():
+@route('/recipe/<pagename>') 
+def show_recipe(pagename):
     """ 
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen

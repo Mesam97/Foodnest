@@ -166,10 +166,10 @@ def show_recipe(id):
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-    cursor.execute('SELECT title, ingredients, instructions FROM recipes WHERE recipeid = ' + id)
+    cursor.execute('SELECT picture, title, ingredients, instructions FROM recipes WHERE recipeid = ' + id)
     recipes = cursor.fetchall()
     for r in recipes:
-        recipe_dict = {'title': r[0], 'ingredients': r[1], 'instructions': r[2]}
+        recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3]}
  
     return template('recipe', recipes = recipe_dict)
     

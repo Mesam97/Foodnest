@@ -22,6 +22,16 @@ FFL4.1.5(C) Man ska kunna välja om man endast vill se specialkost (ex. allergi 
     - lägga in recept i db
     - kolumn (bild) i db 
 -->
+<!--
+<img src="static/pesto-med-pasta.jpg" alt="Pasta pesto">
+<img src="static/amerikanskapannkakor.jpg" alt="Pannkakor">
+<img src="static/hostgryta.jpg" alt="Höst gryta">
+<img src="static/lyxig-korv-med-brod.jpg" alt="Korv med bröd">
+<img src="static/pasta-all-americana.jpg" alt="Pasta">
+<img src="static/pyttipanna.jpg" alt="Pyttipanna">
+<img src="static/scones.jpg" alt="Scones">
+<img src="static/svamprisotto_med_vitloksstekt_broccoli_.jpg" alt="Svamp risotto">
+-->
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -52,26 +62,16 @@ FFL4.1.5(C) Man ska kunna välja om man endast vill se specialkost (ex. allergi 
 
             <div id="main">
                 <main>
-                    <div class="container">  
-                        % for r in recipes:
-                        <img class="image" src="{{r['img']}}"/> 
-                            <a href="/recipe/{{r['id']}}">
-                            <div class="overlay">  
-                                <div class="text">{{r['title']}}</div>
-                            </div>
-                            </a>
-                        % end
+                    % for r in recipes:    
+                    <div class="container">
+                        <a href="/recipe/{{r['id']}}"></a>
+                        <img class="image" src="{{r['img']}}"/>
+                        <div class="overlay">
+                            <div class="text">{{r['title']}}</div>
+                        </div>
+                        </a>
                     </div>
-                    <!--
-                    <img src="static/pesto-med-pasta.jpg" alt="Pasta pesto">
-                    <img src="static/amerikanskapannkakor.jpg" alt="Pannkakor">
-                    <img src="static/hostgryta.jpg" alt="Höst gryta">
-                    <img src="static/lyxig-korv-med-brod.jpg" alt="Korv med bröd">
-                    <img src="static/pasta-all-americana.jpg" alt="Pasta">
-                    <img src="static/pyttipanna.jpg" alt="Pyttipanna">
-                    <img src="static/scones.jpg" alt="Scones">
-                    <img src="static/svamprisotto_med_vitloksstekt_broccoli_.jpg" alt="Svamp risotto">
-                    -->
+                    % end
                 </main>
             </div>
 

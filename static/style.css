@@ -100,24 +100,32 @@ footer {
 }
 
 .image {
-  display: block;
-  width: 250px;
-  height: auto;
-}
-
-.container {
-  position: relative;
-  width: 20%;
-}
-
-.overlay {
-  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   height: auto;
   width: 250px;
+}
+
+.container {
+  position: relative;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
   opacity: 0;
   transition: .5s ease;
   background-color: #F2F2F2;
@@ -130,7 +138,7 @@ footer {
 .text {
   color: #4B5B73;
   font-size: 20px;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

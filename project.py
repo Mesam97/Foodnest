@@ -24,16 +24,15 @@ def log_in():
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
     user_account = (email) + (password)
-    print(email, password)
 
-    cursor.execute("select * FROM account WHERE email = ? AND password = ?", (email, password))
+    cursor.execute("SELECT * FROM account WHERE email = ? AND password = ?", (email, password))
     result = cursor.fetchall()
     if len(result) > 0:
-        print(user_account)   
+        pass  
     else:
         return redirect('/?error=Felaktigt lösenord eller e-postadress')
     
-    return redirect ('posts')
+    return redirect('posts')
     
 
 def check_log_in(email, password):
@@ -79,20 +78,22 @@ def check_pass(password):
     else:
         return True
 
-@route('/new_member', method = 'POST')
+@route('/posts', method = 'POST')
 def new_member():
     first_name = getattr(request.forms, 'first-name')
     last_name = getattr(request.forms, 'last-name')
     email = getattr(request.forms, 'email')
     birthday = getattr(request.forms, 'birthday')
     password = getattr(request.forms, 'password')
+
+    recipe_list = []
     
     # Skapar felmeddelande om lösenordet eller
     # epost är inte följer kraven
     if check_pass(password) and check_email(email):
         cursor.execute('INSERT INTO account(email, first_name, last_name, birthday, password) VALUES (?, ?, ?, ?, ?)', email, first_name, last_name, birthday, password)
         connection.commit()
-        return template('posts')
+        return template('posts', recipes = recipe_list)
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
 
@@ -105,18 +106,18 @@ def about():
 def profile():
     """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """
     cursor.execute('SELECT picture FROM recipes')
-    res = cursor.fetchall()
-    images = []
-    for r in res:
-        images.append(r[0])
+    image = cursor.fetchall()
+    image_list = []
+    for i in image:
+        image_list.append(i[0])
 
     cursor.execute('SELECT title FROM recipes')
-    tes = cursor.fetchall()
-    styles = []
-    for t in tes:
-        styles.append(t[0])
+    title = cursor.fetchall()
+    title_list = []
+    for t in title:
+        title_list.append(t[0])
     
-    return template('profile', images = images, styles = styles)
+    return template('profile', image = image_list, title = title_list)
 
 @route('/change_password', method = 'POST')
 def change_password():
@@ -146,11 +147,11 @@ def remove():
 
 @route('/posts')
 def posts():
-    cursor.execute('SELECT picture, recipeid FROM recipes')
+    cursor.execute('SELECT picture, recipeid, title FROM recipes')
     recipes = cursor.fetchall()
     recipe_list = []
     for r in recipes:
-        recipe_dict = {'id': r[1], 'img': r[0]}
+        recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
         recipe_list.append(recipe_dict)
 
     return template('posts', recipes = recipe_list)

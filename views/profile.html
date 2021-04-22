@@ -82,33 +82,32 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                     </div>
                     <div id="posts"> 
 
-                        % for image in images:
-                        <img id="post-image" src="{{image}}"/><button type="button" class="btn btn-light" id="delete" data-bs-toggle="modal" data-bs-target="#exampleModal1">Ta bort</button>
+                        % for i in image:
+                            <img id="post-image" src="{{image}}"/><button type="button" class="btn btn-light" id="delete" data-bs-toggle="modal" data-bs-target="#exampleModal1">Ta bort</button>
+                        % for t in title:
+                            <h3>{{t}}</h3>
+                        % end
                     </div>   
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ta bort inlägget</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Ta bort inlägget</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="/remove" method="POST">
+                                    <div class="modal-body">   
+                                        <label for="remove"> Är du säker att du vill ta bort inlägget</label><br>
+                                        <input type="checkbox" id="remove" name="remove" value="remove"><label for="remove">JA</label>                                
+                                    </div>
+                                
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Spara</button>
+                                    </div>
+                                </form>                          
                             </div>
-                            <form action="/remove" method="POST">
-                                <div class="modal-body">   
-                                    <label for="remove"> Är du säker att du vill ta bort inlägget</label><br>
-                                    <input type="checkbox" id="remove" name="remove" value="remove"><label for="remove">JA</label>                                
-                                </div>
-                            
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Spara</button>
-                                </div>
-                            </form>                          
                         </div>
-                         
-                    </div>
-                            % for style in styles:
-                            <h3>{{style}}</h3>
-                            % end
                         % end
                     </div>
                 </main>

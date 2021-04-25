@@ -20,39 +20,39 @@ FIG2.1(M) Användaren kan ange användarnamn och lösenord för att logga in
 
     <body>
         <div id="wrapper">
-            <div id="header">
+            <header>
                 <a href="/">
                     <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
                 </a>
-            </div>
+            </header>
 
-            <div id="log-in">
-                <form action="/log_in" method="POST">
-                    <label for="email">E-postadress</label><br/>
-                    <input type="text" id="email" name="email" placeholder="exempel@foodnest.com" required/><br/>
-                    <label for="password">Lösenord</label><br/>
-                    <input type="password" id="password" name="password" placeholder="Ange ditt lösenord" required/><br/>
-                    <input type="submit" value="Logga in" id="submit"/>
-                </form>
-            </div>
+            <main>
+                <div id="log-in">
+                    <form action="/log_in" method="POST">
+                        <label for="email">E-postadress</label><br/>
+                        <input type="text" id="email" name="email" placeholder="exempel@foodnest.com" required/><br/>
+                        <label for="password">Lösenord</label><br/>
+                        <input type="password" id="password" name="password" placeholder="Ange ditt lösenord" required/><br/>
+                        <input type="submit" value="Logga in" id="submit"/>
+                    </form>
+                </div>
 
-            <div id="error-box">
-                % if error != '':
-                    <p>{{error}}</p>
-                % end
-            </div>
+                <div id="error-box">
+                    % if error != '':
+                        <p>{{error}}</p>
+                    % end
+                </div>
+            
+                <div>
+                    <p>Inte registrerad?<a href="/create_account">Skapa konto</a></p>
+                </div>
+            </main>
         
-            <div>
-                <p>Inte registrerad?<a href="/create_account">Skapa konto</a></p>
-            </div>
-        
-            <div id="footer">
-                <footer>
-                    <a href="/about">Om oss</a>
-                    <p>Kontakt: foodnest@hotmail.com</p>
-                    <p> © Foodnest 2021</p>
-                </footer>
-            </div>
-        </div>
+            <footer>
+                <a href="/about">Om oss</a>
+                <p>Kontakt: foodnest@hotmail.com</p>
+                <p> © Foodnest 2021</p>
+            </footer>
+        </div> <!--SLUT PÅ WRAPPER-->
     </body>
 </html>

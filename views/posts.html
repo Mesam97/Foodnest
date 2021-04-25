@@ -46,42 +46,36 @@ FFL4.1.5(C) Man ska kunna välja om man endast vill se specialkost (ex. allergi 
 
     <body>
         <div id="wrapper">
-            <div id="header">
+            <header>
                 <a href="/posts">
                     <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
                 </a>
-            </div>
+            </header>
 
-            <div id="nav">
                 <nav>
                     <a href="/posts">Utforska</a>
                     <a href="/profile">Min profil</a>
                     <a href="/">Logga ut</a>
                 </nav>    
-            </div>  
 
-            <div id="main">
                 <main>
                     % for r in recipes:    
                     <div class="container">
-                        <a href="/recipe/{{r['id']}}"></a>
                         <img class="image" src="{{r['img']}}"/>
                         <div class="overlay">
+                            <a href="/recipe/{{r['id']}}">
                             <div class="text">{{r['title']}}</div>
+                            </a>
                         </div>
-                        </a>
                     </div>
                     % end
                 </main>
-            </div>
 
-            <div id="footer">
                 <footer>
                     <a href="/about">Om oss</a>
                     <p>Kontakt: foodnest@hotmail.com</p>
                     <p> © Foodnest 2021</p>
                 </footer>
-            </div>
         </div>
     </body>
 </html>

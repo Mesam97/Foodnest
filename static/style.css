@@ -119,6 +119,7 @@ footer {
   right: 0;
   height: 250px;
   margin: 15px;
+  float: left;
 }
 
 .overlay {
@@ -147,4 +148,9 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+.row::after {
+  clear: both;
+  display: table;
 }

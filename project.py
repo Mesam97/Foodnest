@@ -136,14 +136,16 @@ def change_password():
 
 @route('/remove', method = 'POST')
 def remove():
-    if document.getElementById("myCheck").checked == True:
+    if request.method == 'POST':
+        if request.form['remove'] == 'remove':
+            cursor.execute('DELETE * FROM recipes WHERE recipeid = 1')
         """checkbox = getattr(request.forms, 'remove')
         cursor.execute('SELECT * FROM recipes WHERE recipeid = 1')
-        if checkbox == :"""
-        cursor.execute('DELETE * FROM recipes WHERE recipeid = 1')
-        cursor.commit()
+        if checkbox == selected:
+            
+        cursor.commit()"""
     
-    return redirect('profile')
+        return template('profile', form=form)
 
 @route('/posts')
 def posts():

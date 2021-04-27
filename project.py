@@ -147,6 +147,7 @@ def remove():
 
 @route('/posts')
 def posts():
+    """ Visar flöde-sidan som består av bilder på recepten """
     cursor.execute('SELECT picture, recipeid, title FROM recipes')
     recipes = cursor.fetchall()
     recipe_list = []
@@ -204,6 +205,7 @@ def static_files(filename):
 
 @route('/recipe/static/<filename>')
 def static_recipe(filename):
+    """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
 
 run(host='127.0.0.1', port=8030, debug=True, reloader=True)

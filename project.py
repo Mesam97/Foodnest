@@ -173,7 +173,7 @@ def show_recipe(id):
     cursor.execute('SELECT picture, title, ingredients, instructions FROM recipes WHERE recipeid = ' + id)
     recipes = cursor.fetchall()
     for r in recipes:
-        recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3]}
+        recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3],'id': id}
  
     return template('recipe', recipes = recipe_dict)
     

@@ -154,3 +154,7 @@ footer {
   clear: both;
   display: table;
 }
+
+.bi {
+  cursor: pointer;
+}

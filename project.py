@@ -104,20 +104,15 @@ def about():
 
 @route('/profile')
 def profile():
-    """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """
-    cursor.execute('SELECT picture FROM recipes')
-    image = cursor.fetchall()
-    image_list = []
-    for i in image:
-        image_list.append(i[0])
+    """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """ 
+    cursor.execute('SELECT picture, recipeid, title FROM recipes')
+    recipes = cursor.fetchall()
+    recipe_list = []
+    for r in recipes:
+        recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
+        recipe_list.append(recipe_dict)
 
-    cursor.execute('SELECT title FROM recipes')
-    title = cursor.fetchall()
-    title_list = []
-    for t in title:
-        title_list.append(t[0])
-    
-    return template('profile', image = image_list, title = title_list)
+    return template('profile', recipes = recipe_list)
 
 @route('/change_password', method = 'POST')
 def change_password():
@@ -134,18 +129,18 @@ def change_password():
 
     return redirect('/profile')
 
-@route('/remove', method = 'POST')
+@route('/remove')#kolla på den routen som redan finns recipe/id
 def remove():
     if request.method == 'POST':
         if request.form['remove'] == 'remove':
-            cursor.execute('DELETE * FROM recipes WHERE recipeid = 1')
+            print('remove')
+            cursor.execute('DELETE * FROM recipes WHERE recipeid = id')
         """checkbox = getattr(request.forms, 'remove')
         cursor.execute('SELECT * FROM recipes WHERE recipeid = 1')
         if checkbox == selected:
             
         cursor.commit()"""
-    
-        return template('profile', form=form)
+    return redirect('/profile')
 
 @route('/posts')
 def posts():
@@ -207,6 +202,11 @@ def static_files(filename):
 
 @route('/recipe/static/<filename>')
 def static_recipe(filename):
+    """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
+    return static_file(filename, root = 'static')
+
+@route('/profile/static/<filename>')
+def static_profile(filename):
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
 

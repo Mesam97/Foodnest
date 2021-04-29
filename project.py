@@ -129,17 +129,11 @@ def change_password():
 
     return redirect('/profile')
 
-@route('/remove')#kolla på den routen som redan finns recipe/id
-def remove():
-    if request.method == 'POST':
-        if request.form['remove'] == 'remove':
-            print('remove')
-            cursor.execute('DELETE * FROM recipes WHERE recipeid = id')
-        """checkbox = getattr(request.forms, 'remove')
-        cursor.execute('SELECT * FROM recipes WHERE recipeid = 1')
-        if checkbox == selected:
-            
-        cursor.commit()"""
+@route('/remove/<id>')#kolla på den routen som redan finns recipe/id
+def remove(id):
+    cursor.execute('DELETE FROM recipes WHERE recipeid =?', id)
+    cursor.commit()
+
     return redirect('/profile')
 
 @route('/posts')
@@ -182,7 +176,7 @@ def save_to_database():
     upload = getattr(request.files,"picture")
     
     name, ext = os.path.splitext(upload.filename)
-    if ext not in ('.png', '.jpg', '.jpeg'):
+    if ext not in ('.png', '.jpg', '.jpeg','.jfif'):
         return 'File extension not allowed.'
 
     save_path = f"static"

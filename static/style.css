@@ -158,3 +158,8 @@ footer {
 .bi {
   cursor: pointer;
 }
+
+#recipe > p {
+  margin: auto;
+  width: 50%;
+}

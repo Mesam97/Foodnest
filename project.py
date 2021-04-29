@@ -129,6 +129,7 @@ def change_password():
 
     return redirect('/profile')
 
+
 @route('/remove/<id>')
 def remove(id):
     cursor.execute('DELETE FROM recipes WHERE recipeid =?', id)
@@ -176,7 +177,7 @@ def save_to_database():
     upload = getattr(request.files,"picture")
     
     name, ext = os.path.splitext(upload.filename)
-    if ext not in ('.png', '.jpg', '.jpeg','.jfif'):
+    if ext not in ('.png', '.jpg', '.jpeg'):
         return 'File extension not allowed.'
 
     save_path = f"static"

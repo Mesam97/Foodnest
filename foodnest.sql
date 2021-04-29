@@ -11,8 +11,8 @@ create table recipes(
 recipeid int primary key NOT NULL IDENTITY(1,1),
 title nvarchar (50) NOT NULL,
 portion int NOT NULL,
-ingredients nvarchar (200) NOT NULL,
-instructions nvarchar (400) NOT NULL,
+ingredients text NOT NULL,
+instructions text NOT NULL,
 likes int NULL,
 picture nvarchar(80) NOT NULL
 );

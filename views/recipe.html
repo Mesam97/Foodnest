@@ -43,10 +43,17 @@ FR4.0(M) Man ska kunna gilla ett recept
             <main>
                 <article>
                     <img src="{{recipes['picture']}}" alt="Mat" width="20%">
-                    <h3>{{recipes['title']}}</h3>
-                    <p>{{recipes['ingredients']}}</p>
-                    <p>{{recipes['instructions']}}</p>
-                </aside>
+                    <i class="bi bi-hand-thumbs-up" id="{{recipes['id']}}"></i>
+                    <h1>{{recipes['title']}}</h1>
+                    <div id="recipe">
+                        <h4>Ingredienser:</h4>
+                        <p>{{recipes['ingredients']}}</p><br/>
+                        <h4>Instruktioner:</h4>
+                        <p>{{recipes['instructions']}}</p><br/>
+                        <h4>Antal Portioner:</h4>
+                        <p>{{recipes['portion']}}</p><br/>
+                    </div>
+                </article>
             </main>
 
             <footer>

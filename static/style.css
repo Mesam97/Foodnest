@@ -148,3 +148,17 @@ footer {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
+
+.row::after {
+  clear: both;
+  display: table;
+}
+
+.bi {
+  cursor: pointer;
+}
+
+#recipe > p {
+  margin: auto;
+  width: 50%;
+}

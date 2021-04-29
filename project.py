@@ -129,7 +129,7 @@ def change_password():
 
     return redirect('/profile')
 
-@route('/remove/<id>')#kolla på den routen som redan finns recipe/id
+@route('/remove/<id>')
 def remove(id):
     cursor.execute('DELETE FROM recipes WHERE recipeid =?', id)
     cursor.commit()

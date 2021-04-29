@@ -163,3 +163,7 @@ footer {
   margin: auto;
   width: 50%;
 }
+
+textarea {
+  resize: none;
+}

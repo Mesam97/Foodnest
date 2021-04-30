@@ -37,16 +37,16 @@ FSR1.6(C) Ett inlägg ska kunna läggas in i kategorier
                 <h1>Skapa inlägg</h1>
                 <form action="/save_recipe" method="POST" enctype="multipart/form-data">
                     <label for="title">Titel</label><br/>
-                    <input type="text" name="title" id="title" placeholder="Ange din titel.."/><br/>
+                    <input type="text" name="title" id="title" placeholder="Ange din titel.." required/><br/>
 
                     <label for="ingredients">Ingredienser</label><br/>
-                    <textarea name="ingredients" id="ingredients" placeholder="T.ex. 5dl mjöl, 2st ägg etc..." cols="45" rows="5"></textarea><br/>
+                    <textarea name="ingredients" id="ingredients" placeholder="T.ex. 5dl mjöl, 2st ägg etc..." cols="45" rows="5" required></textarea><br/>
 
                     <label for="instructions">Instruktioner</label><br/>
-                    <textarea name="instructions" id="instructions" placeholder="T.ex. 1. Sätt ungen på 220 grader..." cols="45" rows="5"></textarea><br/> 
+                    <textarea name="instructions" id="instructions" placeholder="T.ex. 1. Sätt ungen på 220 grader..." cols="45" rows="5" required></textarea><br/> 
 
                     <label for="portions">Ange antal portioner</label><br/>
-                    <select name="portions" id="portions"><br/>
+                    <select name="portions" id="portions" required><br/>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -60,7 +60,7 @@ FSR1.6(C) Ett inlägg ska kunna läggas in i kategorier
                     </select><br/>
 
                     <label for="filename"></label><br/>
-                    <input type="file" id="picture" name="picture"/><br/>
+                    <input type="file" id="picture" name="picture" required/><br/>
                     <input type="submit" value="Publicera" id="submit"/>
                 </form>
             </main>

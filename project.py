@@ -122,12 +122,21 @@ def change_password():
     
     result = cursor.fetchall()
     if len(result) > 0:
-        sql = ('UPDATE account SET password = ?  WHERE password = ?')
-        val = (new_password, old_password)
-        cursor.execute(sql, val)
-        cursor.commit()
+        if check_pass(new_password):
+            sql = ('UPDATE account SET password = ?  WHERE password = ?')
+            val = (new_password, old_password)
+            cursor.execute(sql, val)
+            cursor.commit()
+            return redirect('/profile') 
+        else:
+            return redirect('/change_passwords?error=Felaktigt lösenord')
 
-    return redirect('/profile')
+@route('/change_passwords')
+def change_passwords(error = ''):
+    # Tar query från skapakonto.html och visar felmeddelande på samma sida
+    if request.query:
+        error = getattr(request.query, 'error')
+    return template('change_passwords', error = error)
 
 
 @route('/remove/<id>')

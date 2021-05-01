@@ -1,3 +1,9 @@
+<!-- 
+FP1.0(M) Användare skall kunna se sina gillade recept
+FP1.1(C) På inläggen ska användaren kunna se antalet gillningar
+FP4.0(M) Användare ska kunna ta bort sina inlägg
+-->
+<!--Kommentar för kodgranskning-->
 
 <!DOCTYPE html>
 <html lang="sv">
@@ -44,12 +50,12 @@
                                     <form action="/change_password" method="POST">
                                         <div class="mb-3">
                                             <label for="old" class="form-label">Ditt gamla lösenord</label>
-                                            <input type="password" name="old-password" class="form-control" id="old" aria-describedby="emailHelp"/>
+                                            <input type="password" name="old" class="form-control" id="old" aria-describedby="emailHelp"/>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="new" class="form-label">Ditt nya lösenord</label>
-                                            <input type="password" name="new-password" class="form-control" id="new"/>
+                                            <input type="password" name="new" class="form-control" id="new"/>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -70,15 +76,38 @@
                     <div id="section_nav">
                         <a href="/create_recipe">Lägg till recept</a>
                         <a href="/likes">Se gillade recept</a>
+                        <!--<h3 id="delete"> Ta bort inlägg </h3>-->
                     </div>
                     <div id="posts"> 
 
                         % for r in recipes:
-                            <h3>{{r['title']}}</h3>
                             <img src="{{r['img']}}"/><button type="button" id="{{r['id']}}" class="btn btn-light delete" >Ta bort</button>
+                            <h3>{{r['title']}}</h3>
                         % end
 
                     </div>   
+                    <!-- Modal 
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Ta bort inlägget</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="/remove" method="POST">
+                                    <div class="modal-body">   
+                                        <label for="remove"> Är du säker att du vill ta bort inlägget</label><br>                               
+                                    </div>
+                                
+                                    <div class="modal-footer">
+                                        
+                                        <button type="submit" class="btn btn-primary">ok</button>
+                                    </div>
+                                </form> <button class="btn btn-light">avbryt</button>                         
+                            </div>
+                        </div>
+                        % end
+                    </div>-->
                 </main>
 
                 <footer>
@@ -89,6 +118,7 @@
         </div>  <!--SLUT PÅ WRAPPER-->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/static/script.js"></script>
         <script>    $(".delete").on("click", function() {
             // Frågar användaren efter vilket inlägg som ska bort
             console.log(this.id)

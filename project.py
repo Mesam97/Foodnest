@@ -192,7 +192,7 @@ def save_to_database(session):
     upload = getattr(request.files,"picture")
     
     name, ext = os.path.splitext(upload.filename)
-    if ext not in ('.png', '.jpg', '.jpeg'):
+    if ext not in ('.png', '.jpg', '.jpeg','.jfif'):
         return 'File extension not allowed.'
 
     save_path = f"static"

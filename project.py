@@ -1,11 +1,16 @@
 import os
-from bottle import route, run, template, request, static_file, redirect, error
+from bottle import route, run, template, request, static_file, redirect, error, app
 import pyodbc as db
 import configparser
 import re
+import bottle_session
 
 config = configparser.ConfigParser()
 config.read('config.ini')
+
+app = app()
+plugin = bottle_session.SessionPlugin(cookie_lifetime=600)
+app.install(plugin)
 
 connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + config['DATABASE']['Server'] + ';DATABASE=' +
                         config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
@@ -20,7 +25,7 @@ def index(error = ''):
 
 
 @route('/log_in', method = 'POST')
-def log_in():
+def log_in(session):
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
     user_account = (email) + (password)
@@ -28,7 +33,7 @@ def log_in():
     cursor.execute("SELECT * FROM account WHERE email = ? AND password = ?", (email, password))
     result = cursor.fetchall()
     if len(result) > 0:
-        pass  
+        session['user_account'] = email  
     else:
         return redirect('/?error=Felaktigt lösenord eller e-postadress')
     
@@ -103,8 +108,9 @@ def about():
     return template('about')
 
 @route('/profile')
-def profile():
+def profile(session):
     """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """ 
+    print(session)
     cursor.execute('SELECT picture, recipeid, title FROM recipes')
     recipes = cursor.fetchall()
     recipe_list = []
@@ -115,7 +121,7 @@ def profile():
     return template('profile', recipes = recipe_list)
 
 @route('/change_password', method = 'POST')
-def change_password():
+def change_password(session):
     old_password = getattr(request.forms, 'old-password')
     new_password = getattr(request.forms, 'new-password')
     cursor.execute('SELECT * FROM account WHERE password = ?', old_password)
@@ -140,7 +146,7 @@ def change_passwords(error = ''):
 
 
 @route('/remove/<id>')
-def remove(id):
+def remove(session, id):
     cursor.execute('DELETE FROM recipes WHERE recipeid =?', id)
     cursor.commit()
 
@@ -159,7 +165,7 @@ def posts():
     return template('posts', recipes = recipe_list)
 
 @route('/create_recipe')
-def create_recipe():
+def create_recipe(session):
     """ Visar en sida där användare kan skapa ett recept """
     return template('create_recipe')
 
@@ -177,7 +183,7 @@ def show_recipe(id):
     return template('recipe', recipes = recipe_dict)
     
 @route('/save_recipe', method = 'POST')
-def save_to_database():
+def save_to_database(session):
     """ På denna länken kan användarna skapa recept """
     title = getattr(request.forms, 'title')
     ingredients = getattr(request.forms, 'ingredients')

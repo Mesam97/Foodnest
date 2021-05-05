@@ -1,15 +1,16 @@
 import os
 from bottle import route, run, template, request, static_file, redirect, error
-import pyodbc as db
-import configparser
 import re
+import mysql.connector
 
-config = configparser.ConfigParser()
-config.read('config.ini')
 
-connection = db.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + config['DATABASE']['Server'] + ';DATABASE=' +
-                        config['DATABASE']['Database'] + ';UID=' + config['DATABASE']['Username'] + ';PWD=' + config['DATABASE']['Password'])
-cursor = connection.cursor() #type: db.Cursor
+foodnestdb = mysql.connector.connect (user = 'sql11410402',
+                                      password = 'I9KMqfKSu7',
+                                      host = 'sql11.freemysqlhosting.net',
+                                      database = 'sql11410402')
+
+
+mycursor = foodnestdb.cursor()
 
 @route('/')
 def index(error = ''):
@@ -91,8 +92,10 @@ def new_member():
     # Skapar felmeddelande om lösenordet eller
     # epost är inte följer kraven
     if check_pass(password) and check_email(email):
-        cursor.execute('INSERT INTO account(email, first_name, last_name, birthday, password) VALUES (?, ?, ?, ?, ?)', email, first_name, last_name, birthday, password)
-        connection.commit()
+        sql = 'INSERT INTO account(email, first_name, last_name, birthday, password) VALUES (%s, %s, %s, %s, %s)'
+        val = (email, first_name, last_name, birthday, password)
+        mycursor.execute(sql, val)
+        foodnestdb.commit()
         return template('posts', recipes = recipe_list)
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
@@ -210,4 +213,5 @@ def static_profile(filename):
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
 
-run(host='127.0.0.1', port=8030, debug=True, reloader=True)
+
+run(host='127.0.0.1', port=8000)

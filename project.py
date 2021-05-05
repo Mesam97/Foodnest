@@ -4,7 +4,9 @@ import bottle_session
 import re
 import mysql.connector
 
-
+app = app()
+plugin = bottle_session.SessionPlugin(cookie_lifetime=600)
+app.install(plugin)
 
 foodnestdb = mysql.connector.connect (user = 'sql11410402',
                                       password = 'I9KMqfKSu7',
@@ -12,7 +14,7 @@ foodnestdb = mysql.connector.connect (user = 'sql11410402',
                                       database = 'sql11410402')
 
 
-mycursor = foodnestdb.cursor()
+cursor = foodnestdb.cursor()
 
 
 @route('/')
@@ -28,7 +30,7 @@ def log_in(session):
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
 
-    cursor.execute("SELECT * FROM account WHERE email = ? AND password = ?", (email, password))
+    cursor.execute('SELECT * FROM account WHERE email = %s AND password = %s', (email, password))
     result = cursor.fetchall()
     if result:
         session['username'] = email  
@@ -39,7 +41,7 @@ def log_in(session):
     
 
 def check_log_in(email, password):
-    cursor.execute('SELECT * FROM account WHERE email =? AND password = ?', (email, password))
+    cursor.execute('SELECT * FROM account WHERE email = %s AND password = %s', (email, password))
     account = cursor.fetchall()
 
 @route('/create_account')
@@ -96,7 +98,7 @@ def new_member():
     if check_pass(password) and check_email(email):
         sql = 'INSERT INTO account(email, first_name, last_name, birthday, password) VALUES (%s, %s, %s, %s, %s)'
         val = (email, first_name, last_name, birthday, password)
-        mycursor.execute(sql, val)
+        cursor.execute(sql, val)
         foodnestdb.commit()
         return template('posts', recipes = recipe_list)
     else:
@@ -124,12 +126,12 @@ def profile(session):
 def change_password(session):
     old_password = getattr(request.forms, 'old-password')
     new_password = getattr(request.forms, 'new-password')
-    cursor.execute('SELECT * FROM account WHERE password = ?', old_password)
+    cursor.execute('SELECT * FROM account WHERE password = %s', old_password)
     
     result = cursor.fetchall()
     if len(result) > 0:
         if check_pass(new_password):
-            sql = ('UPDATE account SET password = ?  WHERE password = ?')
+            sql = ('UPDATE account SET password = %s  WHERE password = %s')
             val = (new_password, old_password)
             cursor.execute(sql, val)
             cursor.commit()
@@ -147,7 +149,7 @@ def change_passwords(error = ''):
 
 @route('/remove/<id>')
 def remove(session, id):
-    cursor.execute('DELETE FROM recipes WHERE recipeid =?', id)
+    cursor.execute('DELETE FROM recipes WHERE recipeid =%s', id)
     cursor.commit()
 
     return redirect('/profile')
@@ -200,9 +202,11 @@ def save_to_database(session):
         os.makedirs(save_path)
 
     upload.save(save_path)
-    
-    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture, email) VALUES (?, ?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + upload.filename, session['username'])
-    connection.commit()
+
+    sql = 'INSERT INTO recipes(title, portion, ingredients, instructions, picture, email) VALUES (%s, %s, %s, %s, %s, %s)'
+    val = (title, portions, ingredients, instructions, '/static/' + upload.filename, session['username'])
+    cursor.execute(sql, val)
+    foodnestdb.commit()
 
     return redirect('posts')
 

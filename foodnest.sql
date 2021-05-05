@@ -1,14 +1,15 @@
 create table account(
-email nvarchar (60) primary key NOT NULL,
+email nvarchar (60) NOT NULL,
 first_name nvarchar (20) NOT NULL,
 last_name nvarchar (40) NOT NULL,
 birthday char (6),
-password nvarchar (30) NOT NULL
+password nvarchar (30) NOT NULL,
+PRIMARY KEY (email)
 );
 
-GO
+
 create table recipes(
-recipeid int primary key NOT NULL IDENTITY(1,1),
+recipeid int NOT NULL AUTO_INCREMENT,
 title nvarchar (50) NOT NULL,
 portion int NOT NULL,
 ingredients text NOT NULL,
@@ -16,13 +17,16 @@ instructions text NOT NULL,
 likes int NULL,
 picture nvarchar(80) NOT NULL,
 email nvarchar(60) NOT NULL,
+PRIMARY KEY (recipeid),
 FOREIGN KEY (email) REFERENCES account (email)
 );
 
-GO
+
 create table comments(
-commentid int primary key NOT NULL IDENTITY(1,1),
-receptid int NOT NULL,
-sentence nvarchar (100) NOT NULL
+commentid int NOT NULL AUTO_INCREMENT,
+recipeid int NOT NULL,
+sentence nvarchar (100) NOT NULL,
+PRIMARY KEY (commentid),
 FOREIGN KEY (recipeid) REFERENCES recipes (recipeid)
 );
+

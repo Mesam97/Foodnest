@@ -28,12 +28,11 @@ def index(error = ''):
 def log_in(session):
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
-    user_account = (email) + (password)
 
     cursor.execute("SELECT * FROM account WHERE email = ? AND password = ?", (email, password))
     result = cursor.fetchall()
-    if len(result) > 0:
-        session['user_account'] = email  
+    if result:
+        session['username'] = email  
     else:
         return redirect('/?error=Felaktigt lösenord eller e-postadress')
     
@@ -111,7 +110,7 @@ def about():
 def profile(session):
     """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """ 
     print(session)
-    cursor.execute('SELECT picture, recipeid, title FROM recipes')
+    cursor.execute(f"SELECT picture, recipeid, title FROM recipes WHERE email = '{session['username']}'")
     recipes = cursor.fetchall()
     recipe_list = []
     for r in recipes:
@@ -201,10 +200,16 @@ def save_to_database(session):
 
     upload.save(save_path)
     
-    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture) VALUES (?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + upload.filename)
+    cursor.execute('INSERT INTO recipes(title, portion, ingredients, instructions, picture, email) VALUES (?, ?, ?, ?, ?, ?)', title, portions, ingredients, instructions, '/static/' + upload.filename, session['username'])
     connection.commit()
 
     return redirect('posts')
+
+@route('/log_out')
+def logout(session):
+    session['usename'] = ''
+
+    return redirect('/')
 
 @route('/static/<filename>')
 def static_files(filename):

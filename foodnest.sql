@@ -14,7 +14,9 @@ portion int NOT NULL,
 ingredients text NOT NULL,
 instructions text NOT NULL,
 likes int NULL,
-picture nvarchar(80) NOT NULL
+picture nvarchar(80) NOT NULL,
+email nvarchar(60) NOT NULL,
+FOREIGN KEY (email) REFERENCES account (email)
 );
 
 GO
@@ -22,5 +24,5 @@ create table comments(
 commentid int primary key NOT NULL IDENTITY(1,1),
 receptid int NOT NULL,
 sentence nvarchar (100) NOT NULL
-FOREIGN KEY (receptid) REFERENCES recipes (recipeid)
+FOREIGN KEY (recipeid) REFERENCES recipes (recipeid)
 );

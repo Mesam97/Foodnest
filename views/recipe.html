@@ -17,69 +17,72 @@ FR4.0(M) Man ska kunna gilla ett recept
 <!DOCTYPE html>
 <html lang="sv">
 
-    <head>
-        <meta charset="utf-8"/>
-        <title>Foodnest</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/>
-        <!--BOOTSTRAP-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-        <link href="static/style.css" rel="stylesheet" type="text/css"/>  
-    </head>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Foodnest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/>
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+    crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>  
+  </head>
 
-    <body>
-        <div id="wrapper">
-            <header>
-                <a href="/posts">
-                    <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
-                </a>
-            </header>
+  <body>
+    <!--WRAPPER BÖRJAR-->
+    <div id="wrapper">
+      <header>
+        <a href="/posts">
+          <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
+        </a>
+      </header>
 
-            <nav>
-                <a href="/posts">Utforska</a>
-                <a href="/profile">Min profil</a>
-                <a href="/">Logga ut</a>                 
-            </nav>
+      <nav>
+        <a href="/posts">Utforska</a>
+        <a href="/profile">Min profil</a>
+        <a href="/">Logga ut</a>                 
+      </nav>
 
-            <main>
-                <article>
-                    <img src="{{recipes['picture']}}" alt="Mat" width="20%">
-                    <i class="bi bi-hand-thumbs-up" id="{{recipes['id']}}"></i>
-                    <h1>{{recipes['title']}}</h1>
-                    <div id="recipe">
-                        <h4>Ingredienser:</h4>
-                        <p>{{recipes['ingredients']}}</p><br/>
-                        <h4>Instruktioner:</h4>
-                        <p>{{recipes['instructions']}}</p><br/>
-                        <h4>Antal Portioner:</h4>
-                        <p>{{recipes['portion']}}</p><br/>
-                    </div>
-                </article>
-            </main>
+      <main>
+        <article>
+          <img src="{{recipes['picture']}}" alt="Mat" width="20%"/>
+          <i class="bi bi-hand-thumbs-up" id="{{recipes['id']}}"></i>
+          <h1>{{recipes['title']}}</h1>
+          <div id="recipe">
+            <h4>Ingredienser:</h4>
+            <p>{{recipes['ingredients']}}</p><br/>
+            <h4>Instruktioner:</h4>
+            <p>{{recipes['instructions']}}</p><br/>
+            <h4>Antal Portioner:</h4>
+            <p>{{recipes['portion']}}</p><br/>
+          </div>
+        </article>
+      </main>
 
-            <footer>
-                <a href="/about">Om oss</a>
-                <p>Kontakt: foodnest@hotmail.com</p>
-                <p>© Foodnest 2021</p>
-            </footer>
+      <footer>
+        <a href="/about">Om oss</a>
+        <p>Kontakt: foodnest@hotmail.com</p>
+        <p>© Foodnest 2021</p>
+      </footer>
+    <!--WRAPPER SLUTAR-->
+    </div>  
 
-        </div> <!-- SLUT AV WRAPPER -->     
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="/static/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-        <!-- LIKE-funktion -->
-        <script>
-            $('.bi').click(function(){
-                if ($('.bi').hasClass('bi-hand-thumbs-up')){
-                    $('.bi').removeClass('bi-hand-thumbs-up').addClass('bi-hand-thumbs-up-fill')
-                }                 
-                else {
-                    $('.bi').removeClass('bi-hand-thumbs-up-fill').addClass('bi-hand-thumbs-up')
-                }
-            })
-        </script>
-    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!-- LIKE-funktion -->
+    <script>
+      $('.bi').click(function(){
+        if ($('.bi').hasClass('bi-hand-thumbs-up')){
+          $('.bi').removeClass('bi-hand-thumbs-up').addClass('bi-hand-thumbs-up-fill')
+        }                 
+        else {
+          $('.bi').removeClass('bi-hand-thumbs-up-fill').addClass('bi-hand-thumbs-up')
+          }
+        })
+    </script>
+  </body>
 </html>

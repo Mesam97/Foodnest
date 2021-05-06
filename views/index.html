@@ -10,50 +10,51 @@ Kommentar för kodgranskning
 <!DOCTYPE html>
 <html lang="sv">
 
-    <head>
-        <meta charset="utf-8"/>
-        <title>Logga in</title>
-        <link href="static/style.css" rel="stylesheet" type="text/css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/>
-    </head>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Logga in</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/>
+  </head>
 
-    <body>
-        <div id="wrapper">
-            <header>
-                <a href="/">
-                    <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
-                </a>
-            </header>
+  <body>
+    <div id="wrapper">
+      <header>
+      <a href="/">
+        <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
+      </a>
+      </header>
 
-            <main>
-                <div id="log-in">
-                    <form action="/log_in" method="POST">
-                        <label for="email">E-postadress</label><br/>
-                        <input type="text" id="email" name="email" placeholder="exempel@foodnest.com" required/><br/>
-                        <label for="password">Lösenord</label><br/>
-                        <input type="password" id="password" name="password" placeholder="Ange ditt lösenord" required/><br/>
-                        <input type="submit" value="Logga in" id="submit"/>
-                    </form>
-                </div>
+      <main>
+      <div id="log-in">
+        <form action="/log_in" method="POST">
+          <label for="email">E-postadress</label><br/>
+          <input type="text" id="email" name="email" placeholder="exempel@foodnest.com" required/><br/>
+          <label for="password">Lösenord</label><br/>
+          <input type="password" id="password" name="password" placeholder="Ange ditt lösenord" required/><br/>
+          <input type="submit" value="Logga in" id="submit"/>
+        </form>
+      </div>
 
-                <div id="error-box">
-                    % if error != '':
-                        <p>{{error}}</p>
-                    % end
-                </div>
+      <div id="error-box">
+        % if error != '':
+          <p>{{error}}</p>
+        % end
+      </div>
             
-                <div>
-                    <p>Inte registrerad?<a href="/create_account">Skapa konto</a></p>
-                </div>
-            </main>
+      <div>
+        <p>Inte registrerad?<a href="/create_account">Skapa konto</a></p>
+      </div>
+      </main>
         
-            <footer>
-                <a href="/about">Om oss</a>
-                <p>Kontakt: foodnest@hotmail.com</p>
-                <p> © Foodnest 2021</p>
-            </footer>
-        </div> <!--SLUT PÅ WRAPPER-->
-    </body>
+      <footer>
+        <a href="/about">Om oss</a>
+        <p>Kontakt: foodnest@hotmail.com</p>
+        <p>© Foodnest 2021</p>
+      </footer>
+    <!--WRAPPER SLUTAR-->
+    </div>
+  </body>
 </html>

@@ -1,32 +1,34 @@
-create table account(
-email nvarchar (60) NOT NULL,
-first_name nvarchar (20) NOT NULL,
-last_name nvarchar (40) NOT NULL,
-birthday char (6),
-password nvarchar (30) NOT NULL,
-PRIMARY KEY (email)
+CREATE DATABASE Foodnest;
+
+CREATE TABLE Account(
+Email NVARCHAR(60) NOT NULL,
+First_name NVARCHAR(20) NOT NULL,
+Last_name NVARCHAR(40) NOT NULL,
+Birthday CHAR(6),
+Password NVARCHAR(30) NOT NULL,
+PRIMARY KEY (Email)
 );
 
 
-create table recipes(
-recipeid int NOT NULL AUTO_INCREMENT,
-title nvarchar (50) NOT NULL,
-portion int NOT NULL,
-ingredients text NOT NULL,
-instructions text NOT NULL,
-likes int NULL,
-picture nvarchar(80) NOT NULL,
-email nvarchar(60) NOT NULL,
+CREATE TABLE Recipes(
+Recipeid INT NOT NULL AUTO_INCREMENT,
+Title NVARCHAR(50) NOT NULL,
+Portion INT NOT NULL,
+Ingredients TEXT NOT NULL,
+Instructions TEXT NOT NULL,
+Likes INT NULL,
+Picture NVARCHAR(80) NOT NULL,
+Email NVARCHAR(60) NOT NULL,
 PRIMARY KEY (recipeid),
-FOREIGN KEY (email) REFERENCES account (email)
+FOREIGN KEY (Email) REFERENCES Account (Email)
 );
 
 
-create table comments(
-commentid int NOT NULL AUTO_INCREMENT,
-recipeid int NOT NULL,
-sentence nvarchar (100) NOT NULL,
-PRIMARY KEY (commentid),
-FOREIGN KEY (recipeid) REFERENCES recipes (recipeid)
+CREATE TABLE Comments(
+Commentid INT NOT NULL AUTO_INCREMENT,
+Recipeid INT NOT NULL,
+Sentence NVARCHAR(100) NOT NULL,
+PRIMARY KEY (Commentid),
+FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
 );
 

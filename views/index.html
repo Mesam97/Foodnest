@@ -29,16 +29,23 @@ Kommentar för kodgranskning
 
             <main>
                 <div id="log-in">
-                    <form action="/log_in" method="POST">
+                    <div id="link-box">
+                        <div id="link"></div>
+                        <a href="/" class="toggle-link">Logga in</a>
+                        <a href="/create_account" class="toggle-link">Registrera dig</a>
+                    </div>
+                    <form class="input" action="/log_in" method="POST">
                         <input type="text" id="email" name="email" placeholder="exempel@foodnest.com" required/><br/>
                         <input type="password" id="password" name="password" placeholder="Ange ditt lösenord" required/><br/>
                         <input type="submit" value="Logga in" id="submit"/>
                     </form>
                 </div>
 
+                <!--
                 <div id="register">
                     <a href="/create_account" class="reg">Registrera dig</a>
                 </div>
+                --> 
 
                 <div id="error-box">
                     % if error != '':

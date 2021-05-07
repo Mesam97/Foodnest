@@ -91,9 +91,46 @@ main > img {
   height: 250px;
 }
 
+#link-box {
+  width: 400px;
+  margin: 35px auto;
+  position: relative;
+  padding: 10px;
+  box-shadow: 0 0 10px 1px #AFEEEE;
+  border-radius: 30px;
+}
+
+.toggle-link {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+  margin: 20px;
+  padding: 20px;
+}
+
+#link {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #B0E0E6, #008CBA);
+  border-radius: 30px;
+  transition: .5s;
+}
+
 #log-in {
-  width: 30%;
+  width: 50%;
   margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 1px #F2F2F2;
 }
 
 #log-in > form > input {
@@ -130,16 +167,20 @@ form {
 }
 
 #log-in > form > #submit {
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: linear-gradient(to right, #B0E0E6, #008CBA);
   border: none;
+  outline: none;
+  border-radius: 30px;
   color: #4B5B73;
-  padding: 16px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   transition-duration: 0.4s;
-  cursor: pointer;
 }
 
 #log-in > form > #submit:hover {

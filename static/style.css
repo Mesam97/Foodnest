@@ -40,7 +40,30 @@ nav {
   grid-area: nav;
   padding: 10px;
   margin: 2px 50px;
+  text-align: left; 
+  margin: 0;
+  overflow: hidden;
+  background-color: #e4e4e4;
+}
+
+nav a {
+  color: #4B5B73;
   text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+nav a.active {
+  color: white;
+  background-color: #4CAF50;
+}
+
+nav > .log-out {
+  text-align: right;
 }
 
 a {
@@ -55,7 +78,6 @@ a:hover {
 
 main {
   grid-area: main;
-  margin: 20px;
   padding-bottom: 125px;
 }
 
@@ -63,6 +85,16 @@ main > img {
   width: 20%;
   padding: 10px;
   height: 250px;
+}
+
+#log-in > form > input {
+  border: none;
+  border-bottom: 2px solid #008CBA;
+  width: 50%;
+  padding: 10px 25px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
 }
 
 form > input {
@@ -84,6 +116,30 @@ form > textarea {
 form {
   margin: 20px;
   padding: 20px;
+}
+
+#log-in > form > #submit {
+  border: none;
+  border-bottom: 2px solid #008CBA;
+  color: #4B5B73;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#log-in > form > #submit:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+::placeholder {
+  color: #000000;
+  opacity: 1;
 }
 
 footer {
@@ -168,14 +224,22 @@ textarea {
   resize: none;
 }
 
-main > #register > .reg {
-  font: bold 11px Arial;
+.reg {
+  border: none;
+  color: #4B5B73;
+  padding: 16px 32px;
+  text-align: center;
   text-decoration: none;
-  background-color: #EEEEEE;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  border: 2px solid #008CBA;
+}
+
+.reg:hover {
+  background-color: #008CBA;
+  color: white;
 }

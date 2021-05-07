@@ -14,10 +14,12 @@ Den målgrupp vi riktar oss mot är amatörkockar/hemmakockar som letar efter en
 
 ## Instruktioner:
 För att köra programmet behövs vissa moduler. Enklast är att installera via pip, öppna din terminal och skriv in:
-1. pip install mysql-connector-python
+```
+pip install mysql-connector-python
 pip install bottle-session
 pip install bottle-redis
-2. Öppna projekt.py och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
+```
+Öppna sedan ```projekt.py``` och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
 
 ## Länk till Github:
 [Github](https://github.com/Mesam97/Foodnest.git)

@@ -13,15 +13,11 @@ I mån av tid och kunskaper vill vi lägga till ytterligare funktioner men dessa
 Den målgrupp vi riktar oss mot är amatörkockar/hemmakockar som letar efter en plattform att dela sina egna kreativa recept. Vi vill nå ut till de som är mycket matintresserade men inte tillräckligt för att själv driva egen restaurang eller på annat sätt arbeta med mat. Målet med Foodnest är alltså en plattform för de som tycker att det är kul att skapa och laga egna recept i sin vardag som ett intresse. Då vi riktar oss åt alla amatörkockar innebär detta alltså att åldern och personligheter kan vara väldigt varierande vilket i sin tur leder till att de tekniska kunskaperna hos användare då också kan variera. Därför vill vi se till att skapa en användbar och enkel sida med ett gränssnitt som är tydligt, estetiskt och simpelt. Detta för att ge målgruppen möjligheten att fokusera på de recept på sidan utan misstag eller andra missförstånd.
 
 ## Instruktioner:
-För att köra programmet behövs en config.ini fil med dina personliga MSSQL inloggningsuppgifter.
-1. Öppna en ny fil i exempelvis VSCode och klistra in:
-[DATABASE]
-Server = 127.0.0.1 
-Username = 
-Password = 
-Database = foodnest
-2. Fyll i Username och Password med dina uppgifter och spara filen som config.ini i mappen foodnest
-3. Öppna projekt.py och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
+För att köra programmet behövs vissa moduler. Enklast är att installera via pip, öppna din terminal och skriv in:
+1. pip install mysql-connector-python
+pip install bottle-session
+pip install bottle-redis
+2. Öppna projekt.py och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
 
 ## Länk till Github:
 [Github](https://github.com/Mesam97/Foodnest.git)

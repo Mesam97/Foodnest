@@ -10,39 +10,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/>
   </head>
 
-    <body>
-        <div id="wrapper">
-            <header>
-                <a href="/">
-                    <img src="static/Logotyp_v1_ny.png" alt="Foodnest logo"/>
-                </a>
-            </header>
+  <body>
+    <div id="wrapper">
+      <header>
+        <a href="/">
+          <img src="static/Logotyp_v1_ny.png" alt="Foodnest logo"/>
+        </a>
+      </header>
 
-            <main>
-                <div id="acc">
-                    <div id="link-box">
-                        <div id="link-right"></div>
-                        <a href="/" class="toggle-link">Logga in</a>
-                        <a href="/create_account" class="toggle-link">Registrera dig</a>
-                    </div>
-                    <form class="input" name="form" action="/posts" method="POST">
-                        <input type="text" id="first-name" name="first-name" placeholder="Ange ditt förnamn" required/><br/>
-                        <input type="text" id="last-name" name="last-name" placeholder="Ange ditt efternamn" required/><br/>
-                        <input type="text" id="birthday" name="birthday" placeholder="ÅÅMMDD" required/><br/>
-                        <input type="text" id="email" name="email" placeholder="Ange din e-postadress" required/><br/>
-                        <input type="password" id="password" name="password" placeholder="Ange önskat lösenord (Minst 6 karaktärer varav 1 siffra och en stor bokstav)" required/><br/>
-                        <input type="submit" value="Skapa konto" id="submit"/>
-                    </form>
-                </div>
-            </main>
-            
-        % if error != '':
-          <p>{{error}}</p>
-        % end
-
-            <footer>
-                <p><a href="/about">Om oss</a> © Foodnest 2021</p>
-            </footer>
+      <main>
+        <div id="acc">
+          <div id="link-box">
+            <div id="link-right"></div>
+            <a href="/" class="toggle-link">Logga in</a>
+            <a href="/create_account" class="toggle-link">Registrera dig</a>
+          </div>
+          <form class="input" name="form" action="/posts" method="POST">
+            <input type="text" id="first-name" name="first-name" placeholder="Ange ditt förnamn" required/><br/>
+            <input type="text" id="last-name" name="last-name" placeholder="Ange ditt efternamn" required/><br/>
+            <input type="text" id="birthday" name="birthday" placeholder="ÅÅMMDD" required/><br/>
+            <input type="text" id="email" name="email" placeholder="Ange din e-postadress" required/><br/>
+            <input type="password" id="password" name="password" placeholder="Ange önskat lösenord (Minst 6 karaktärer varav 1 siffra och en stor bokstav)" required/><br/>
+            <input type="submit" value="Skapa konto" id="submit"/>
+          </form>
         </div>
-    </body>
+      </main>
+            
+      % if error != '':
+        <p>{{error}}</p>
+      % end
+
+      <footer>
+        <p><a href="/about">Om oss</a> © Foodnest 2021</p>
+      </footer>
+        </div>
+  </body>
 </html>

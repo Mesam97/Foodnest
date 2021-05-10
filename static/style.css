@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: #F2F2F2;
+  background-color: #FFF;
   color: #4B5B73;
   text-align: center;
   font-family: "Raleway", sans-serif;
@@ -34,13 +34,40 @@ header {
 header > a > img {
   height: 95%;
   width: 33%;
+  margin: auto;
 }
 
 nav {
   grid-area: nav;
   padding: 10px;
+  left: 0;
+  right: 0;
   margin: 2px 50px;
+  text-align: left; 
+  margin: 0;
+  overflow: hidden;
+}
+
+nav a {
+  color: #4B5B73;
   text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+nav a.active {
+  color: #FFF;
+  background-color: #008CBA;
+}
+
+nav > .log-out {
+  float: right;
+  margin: 0 15px 0 0;
+  padding: 10px 16px;
 }
 
 a {
@@ -55,7 +82,6 @@ a:hover {
 
 main {
   grid-area: main;
-  margin: 20px;
   padding-bottom: 125px;
 }
 
@@ -63,6 +89,70 @@ main > img {
   width: 20%;
   padding: 10px;
   height: 250px;
+}
+
+#link-box {
+  width: 350px;
+  margin: 35px auto;
+  position: relative;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.toggle-link {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+  margin: 20px;
+  padding: 20px;
+}
+
+#link-left {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #B0E0E6, #008CBA);
+  border-radius: 30px;
+  transition: .5s;
+}
+
+#link-right {
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #B0E0E6, #008CBA);
+  border-radius: 30px;
+  transition: .5s;
+}
+
+#acc {
+  width: 50%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px #B0E0E6
+}
+
+#acc > form > input {
+  border: none;
+  border-bottom: 2px solid #008CBA;
+  width: 75%;
+  padding: 10px 25px;
+  margin: 20px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  outline: none;
+  background: transparent;
 }
 
 form > input {
@@ -86,6 +176,55 @@ form {
   padding: 20px;
 }
 
+#acc > form > #submit {
+  width: 50%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: linear-gradient(to right, #B0E0E6, #008CBA);
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  color: #4B5B73;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+}
+
+#acc > form > #submit:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+#submit {
+  width: 50%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: linear-gradient(to right, #B0E0E6, #008CBA);
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  color: #4B5B73;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+}
+
+#submit:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+::placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
 footer {
   grid-area: footer;
   clear: both;
@@ -95,9 +234,8 @@ footer {
   right: 0;
   width: 100%;
   text-align: center;
-  padding: 20px;
   margin: auto;
-  background-color: #e4e4e4;
+  background-color: #D3E2E7;
 }
 
 .image {
@@ -166,4 +304,29 @@ footer {
 
 textarea {
   resize: none;
+}
+
+.reg {
+  border: none;
+  color: #4B5B73;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.reg:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.my-image {
+  
+  height: 250px;
+  width: 250px;
+  margin: 15px;
 }

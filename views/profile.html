@@ -22,18 +22,18 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
     <link href="static/style.css" rel="stylesheet" type="text/css"/>
   </head>
 
-  <body>
-    <!--WRAPPER BÖRJAR-->
-    <div id="wrapper">
-      <header>
-        <a href="/posts">
-          <img src="static/Logotyp_v1.png" alt="Foodnest logo"/>
-        </a>
-      </header>
+    <body>
+        <div id="wrapper">
+            <header>
+                <a href="/posts">
+                    <img src="static/Logotyp_v1_ny.png" alt="Foodnest logo"/>
+                </a>
+            </header>
 
-      <nav>
-        <a href="/posts">Utforska</a>
-        <a href="/profile">Min profil</a>
+                <nav>
+                    <a href="/posts">Utforska</a>
+                    <a href="/create_recipe">Skapa recept</a>
+                    <a class="active" href="/profile">Min profil</a>
                    
         <!-- knapp som gör att funktionen nedan inträffar, 
         en knapp som gör att man kan ändra sitt lösenord -->
@@ -61,31 +61,34 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                     <input type="password" name="new" class="form-control" id="new"/>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
+                <button type="submit" class="btn btn-primary">Spara</button>
+                     </form>
+                        ¨</div>
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="/log_out">Logga ut</a>
-      </nav>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stäng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="log-out" href="/log_out">Logga ut</a>
+                </nav>
 
-      <main>
-        <h1>Mina inlägg</h1>
-        <div id="section_nav">
-          <a href="/create_recipe">Lägg till recept</a>
-          <a href="/likes">Se gillade recept</a>
-        </div>
-        <div id="posts"> 
+                <main>
+                    <h1>Mina inlägg</h1>
+                    <div id="section_nav">
+                        <a href="/likes">Se gillade recept</a>
+                        <!--<h3 id="delete"> Ta bort inlägg </h3>-->
+                    </div>
+                    <div id="posts"> 
 
-          % for r in recipes:
-            <img src="{{r['img']}}"/><button type="button" id="{{r['id']}}" class="btn btn-light delete" >Ta bort</button>
-            <h3>{{r['title']}}</h3>
-          % end
+                        % for r in recipes:
+                            <a href="/recipe/{{r['id']}}">
+                                <div class="text">{{r['title']}}</div>
+                                <img class="my-image" src="{{r['img']}}"/>
+                            </a>
+                            <button type="button" id="{{r['id']}}" class="btn btn-light delete">Ta bort</button>
+                        % end
 
         </div>   
         <!-- Modal 
@@ -112,13 +115,10 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
         </div>-->
       </main>
 
-      <footer>
-        <a href="/about">Om oss</a>
-        <p>Kontakt: foodnest@hotmail.com</p>
-        <p>© Foodnest 2021</p>
-      </footer>
-    <!--WRAPPER SLUTAR-->
-    </div>
+                <footer>
+                    <p><a href="/about">Om oss</a> © Foodnest 2021</p>
+                </footer>
+        </div>  <!--SLUT PÅ WRAPPER-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/static/script.js"></script>

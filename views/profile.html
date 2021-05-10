@@ -81,8 +81,11 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                     <div id="posts"> 
 
                         % for r in recipes:
-                            <img src="{{r['img']}}"/><button type="button" id="{{r['id']}}" class="btn btn-light delete" >Ta bort</button>
-                            <h3>{{r['title']}}</h3>
+                            <a href="/recipe/{{r['id']}}">
+                                <div class="text">{{r['title']}}</div>
+                                <img class="my-image" src="{{r['img']}}"/>
+                            </a>
+                            <button type="button" id="{{r['id']}}" class="btn btn-light delete">Ta bort</button>
                         % end
 
                     </div>   

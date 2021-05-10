@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: #F2F2F2;
+  background-color: #F9F9F9;
   color: #4B5B73;
   text-align: center;
   font-family: "Raleway", sans-serif;
@@ -39,11 +39,12 @@ header > a > img {
 nav {
   grid-area: nav;
   padding: 10px;
+  left: 0;
+  right: 0;
   margin: 2px 50px;
   text-align: left; 
   margin: 0;
   overflow: hidden;
-  background-color: #e4e4e4;
 }
 
 nav a {
@@ -59,7 +60,7 @@ nav a:hover:not(.active) {
 
 nav a.active {
   color: white;
-  background-color: #4CAF50;
+  background-color: #008CBA;
 }
 
 nav > .log-out {
@@ -92,12 +93,11 @@ main > img {
 }
 
 #link-box {
-  width: 400px;
+  width: 350px;
   margin: 35px auto;
   position: relative;
   padding: 10px;
-  box-shadow: 0 0 10px 1px #AFEEEE;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 .toggle-link {
@@ -111,7 +111,7 @@ main > img {
   padding: 20px;
 }
 
-#link {
+#link-left {
   top: 0;
   left: 0;
   position: absolute;
@@ -122,18 +122,28 @@ main > img {
   transition: .5s;
 }
 
-#log-in {
+#link-right {
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #B0E0E6, #008CBA);
+  border-radius: 30px;
+  transition: .5s;
+}
+
+#acc {
   width: 50%;
   margin: auto;
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 5px;
   background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 0 10px 1px #F2F2F2;
+  border-radius: 10px;
 }
 
-#log-in > form > input {
+#acc > form > input {
   border: none;
   border-bottom: 2px solid #008CBA;
   width: 75%;
@@ -166,7 +176,7 @@ form {
   padding: 20px;
 }
 
-#log-in > form > #submit {
+#acc > form > #submit {
   width: 85%;
   padding: 10px 30px;
   cursor: pointer;
@@ -183,7 +193,7 @@ form {
   transition-duration: 0.4s;
 }
 
-#log-in > form > #submit:hover {
+#acc > form > #submit:hover {
   background-color: #008CBA;
   color: white;
 }
@@ -202,9 +212,8 @@ footer {
   right: 0;
   width: 100%;
   text-align: center;
-  padding: 20px;
   margin: auto;
-  background-color: #e4e4e4;
+  background-color: #D3E2E7;
 }
 
 .image {

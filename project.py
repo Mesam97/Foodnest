@@ -156,8 +156,8 @@ def change_passwords(error = ''):
 
 @route('/remove/<id>')
 def remove(session, id):
-    cursor.execute('DELETE FROM recipes WHERE recipeid = %s', id)
-    cursor.commit()
+    cursor.execute('DELETE FROM recipes WHERE recipeid = ' + id)
+    foodnestdb.commit()
 
     return redirect('/profile')
 

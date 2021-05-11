@@ -140,7 +140,7 @@ def change_password(session):
             sql = ('UPDATE account SET password = %s  WHERE password = %s')
             val = (new_password, old_password)
             cursor.execute(sql, val)
-            cursor.commit()
+            foodnestdb.commit()
             return redirect('/profile') 
         else:
             return redirect('/change_passwords?error=Felaktigt lösenord')

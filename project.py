@@ -8,10 +8,10 @@ app = app()
 plugin = bottle_session.SessionPlugin(cookie_lifetime=600)
 app.install(plugin)
 
-foodnestdb = mysql.connector.connect (user = 'sql11410402',
-                                      password = 'I9KMqfKSu7',
-                                      host = 'sql11.freemysqlhosting.net',
-                                      database = 'sql11410402')
+foodnestdb = mysql.connector.connect (user = 'foodnest',
+                                      password = 'foodnest123',
+                                      host = 'db4free.net',
+                                      database = 'foodnestdb')
 cursor = foodnestdb.cursor()
 
 
@@ -29,7 +29,7 @@ def log_in(session):
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
 
-    cursor.execute('SELECT * FROM account WHERE email = %s AND password = %s', (email, password))
+    cursor.execute('SELECT * FROM Account WHERE email = %s AND password = %s', (email, password))
     result = cursor.fetchall()
     if result:
         session['username'] = email  
@@ -40,7 +40,7 @@ def log_in(session):
     
 
 def check_log_in(email, password):
-    cursor.execute('SELECT * FROM account WHERE email = %s AND password = %s', (email, password))
+    cursor.execute('SELECT * FROM Account WHERE email = %s AND password = %s', (email, password))
     account = cursor.fetchall()
 
 
@@ -96,7 +96,7 @@ def new_member():
     
     # Skapar felmeddelande om lösenordet eller epost är inte följer kraven
     if check_pass(password) and check_email(email):
-        sql = 'INSERT INTO account(email, first_name, last_name, birthday, password) VALUES (%s, %s, %s, %s, %s)'
+        sql = 'INSERT INTO Account(email, first_name, last_name, birthday, password) VALUES (%s, %s, %s, %s, %s)'
         val = (email, first_name, last_name, birthday, password)
         cursor.execute(sql, val)
         foodnestdb.commit()
@@ -116,7 +116,7 @@ def profile(session):
     """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """ 
 
     print(session)
-    cursor.execute(f"SELECT picture, recipeid, title FROM recipes WHERE email = '{session['username']}'")
+    cursor.execute(f"SELECT Picture, Recipeid, Title FROM Recipes WHERE Email = '{session['username']}'")
     recipes = cursor.fetchall()
     recipe_list = []
 
@@ -132,12 +132,12 @@ def profile(session):
 def change_password(session):
     old_password = getattr(request.forms, 'old-password')
     new_password = getattr(request.forms, 'new-password')
-    cursor.execute('SELECT * FROM account WHERE password = %s', old_password)
+    cursor.execute('SELECT * FROM Account WHERE Password = %s', old_password)
     
     result = cursor.fetchall()
     if len(result) > 0:
         if check_pass(new_password):
-            sql = ('UPDATE account SET password = %s  WHERE password = %s')
+            sql = ('UPDATE Account SET Password = %s  WHERE Password = %s')
             val = (new_password, old_password)
             cursor.execute(sql, val)
             foodnestdb.commit()
@@ -156,7 +156,7 @@ def change_passwords(error = ''):
 
 @route('/remove/<id>')
 def remove(session, id):
-    cursor.execute('DELETE FROM recipes WHERE recipeid = ' + id)
+    cursor.execute('DELETE FROM Recipes WHERE Recipeid = ' + id)
     foodnestdb.commit()
 
     return redirect('/profile')
@@ -165,7 +165,7 @@ def remove(session, id):
 @route('/posts')
 def posts():
     """ Visar flöde-sidan som består av bilder på recepten """
-    cursor.execute('SELECT picture, recipeid, title FROM recipes')
+    cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
     recipes = cursor.fetchall()
 
     recipe_list = []
@@ -191,7 +191,7 @@ def show_recipe(id):
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
 
-    cursor.execute('SELECT picture, title, ingredients, instructions, portion FROM recipes WHERE recipeid = ' + id)
+    cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
 
     #Lexikon
@@ -221,7 +221,7 @@ def save_to_database(session):
 
     picture.save(save_path)
 
-    sql = 'INSERT INTO recipes(title, portion, ingredients, instructions, picture, email) VALUES (%s, %s, %s, %s, %s, %s)'
+    sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email) VALUES (%s, %s, %s, %s, %s, %s)'
     val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
     cursor.execute(sql, val)
     foodnestdb.commit()

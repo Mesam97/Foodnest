@@ -3,16 +3,26 @@ from bottle import route, run, template, request, static_file, redirect, error, 
 import bottle_session
 import re
 import mysql.connector
+import configparser
 
 app = app()
 plugin = bottle_session.SessionPlugin(cookie_lifetime=600)
 app.install(plugin)
 
-foodnestdb = mysql.connector.connect (user = 'foodnest',
-                                      password = 'foodnest123',
-                                      host = 'db4free.net',
-                                      database = 'foodnestdb')
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+db_user = config['DATABASE']['User']
+db_name = config['DATABASE']['Database']
+db_passwrd = config['DATABASE']['Password']
+db_server = config['DATABASE']['Server']
+
+foodnestdb = mysql.connector.connect(host=db_server,user=db_user,password=db_passwrd,database=db_name)
+
+
 cursor = foodnestdb.cursor()
+
 
 
 @route('/')
@@ -29,7 +39,7 @@ def log_in(session):
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
 
-    cursor.execute('SELECT * FROM Account WHERE email = %s AND password = %s', (email, password))
+    cursor.execute('SELECT * FROM Account WHERE Email = %s AND password = %s', (email, password))
     result = cursor.fetchall()
     if result:
         session['username'] = email  

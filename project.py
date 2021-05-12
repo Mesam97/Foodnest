@@ -9,7 +9,6 @@ app = app()
 plugin = bottle_session.SessionPlugin(cookie_lifetime=600)
 app.install(plugin)
 
-
 config = configparser.ConfigParser()
 config.read('config.ini')
 
@@ -20,10 +19,7 @@ db_server = config['DATABASE']['Server']
 
 foodnestdb = mysql.connector.connect(host=db_server,user=db_user,password=db_passwrd,database=db_name)
 
-
 cursor = foodnestdb.cursor()
-
-
 
 @route('/')
 def index(error = ''):

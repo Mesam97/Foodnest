@@ -8,10 +8,10 @@ app = app()
 plugin = bottle_session.SessionPlugin(cookie_lifetime=600)
 app.install(plugin)
 
-foodnestdb = mysql.connector.connect (user = 'sql11410402',
-                                      password = 'I9KMqfKSu7',
-                                      host = 'sql11.freemysqlhosting.net',
-                                      database = 'sql11410402')
+foodnestdb = mysql.connector.connect (user = 'foodnest',
+                                      password = 'foodnest123',
+                                      host = 'db4free.net',
+                                      database = 'foodnestdb')
 cursor = foodnestdb.cursor()
 
 
@@ -148,7 +148,7 @@ def change_password(session):
 
 @route('/change_passwords')
 def change_passwords(error = ''):
-    # Tar query från skapakonto.html och visar felmeddelande på samma sida
+    # Tar query från create_account.html och visar felmeddelande på samma sida
     if request.query:
         error = getattr(request.query, 'error')
     return template('change_passwords', error = error)

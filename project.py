@@ -46,7 +46,7 @@ def log_in(session):
     
 
 def check_log_in(email, password):
-    cursor.execute('SELECT * FROM Account WHERE email = %s AND password = %s', (email, password))
+    cursor.execute('SELECT * FROM Account WHERE Email = %s AND password = %s', (email, password))
     account = cursor.fetchall()
 
 

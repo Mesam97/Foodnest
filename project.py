@@ -241,6 +241,10 @@ def logout(session):
 
     return redirect('/')
 
+def like():
+    likes = 10
+    pass
+
 
 @route('/static/<filename>')
 def static_files(filename):

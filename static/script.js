@@ -14,4 +14,27 @@ console.log("hej")
 })
 });
 
+// LIKE-function 
+$('.bi').click(function(){
+    if ($('.bi').hasClass('bi bi-suit-heart')){
+      $('.bi').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill')
+    }                 
+
+    else {
+      $('.bi').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart')
+      }
+    });
+
+// test
+$('.far').click(function(){
+    if ($('.far').hasClass('far fa-heart')){
+      $('.far').removeClass('far fa-heart').addClass('<i class="fas fa-heart"></i>')
+    }                 
+
+    else {
+      $('.bi').removeClass('fas fa-heart').addClass('far fa-heart')
+      }
+    });
+
+
 //Kommentar för kodgranskning

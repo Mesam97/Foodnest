@@ -50,15 +50,15 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
               </div>
 
               <div class="modal-body">
-                <form action="/change_password" method="POST">
+                <form class="input" name="form" action="/change_password" method="POST">
                   <div class="mb-3">
                     <label for="old" class="form-label">Ditt gamla lösenord</label>
-                    <input type="password" name="old-password" class="form-control" id="old" aria-describedby="emailHelp"/>
+                    <input type="password" name="old-password" class="form-control" id="old-password" aria-describedby="emailHelp"/>
                   </div>
 
                   <div class="mb-3">
                     <label for="new" class="form-label">Ditt nya lösenord</label>
-                    <input type="password" name="new-password" class="form-control" id="new"/>
+                    <input type="password" name="new-password" class="form-control" id="new-password"/>
                   </div>
 
                   <button type="submit" class="btn btn-primary">Spara</button>

@@ -134,30 +134,27 @@ def profile(session):
     return template('profile', recipes = recipe_list)
 
 
-@route('/change_password', method = 'POST')
-def change_password(session):
-    old_password = getattr(request.forms, 'old-password')
-    new_password = getattr(request.forms, 'new-password')
-    cursor.execute('SELECT * FROM Account WHERE Password = %s', old_password)
-    
-    result = cursor.fetchall()
-    if len(result) > 0:
-        if check_pass(new_password):
-            sql = ('UPDATE Account SET Password = %s  WHERE Password = %s')
-            val = (new_password, old_password)
-            cursor.execute(sql, val)
-            foodnestdb.commit()
-            return redirect('/profile') 
-        else:
-            return redirect('/change_passwords?error=Felaktigt lösenord')
-
-
-@route('/change_passwords')
-def change_passwords(error = ''):
+@route('/password_error')
+def password_error(error = ''):
     # Tar query från create_account.html och visar felmeddelande på samma sida
     if request.query:
         error = getattr(request.query, 'error')
-    return template('change_passwords', error = error)
+    return template('password_error', error = error)
+
+
+@route('/change_password', method = 'POST')
+def change_password(session):
+    old_password = getattr(request.forms, 'old-password')
+    password = getattr(request.forms, 'new-password')
+ 
+    if check_pass(password):
+        sql = (f"UPDATE Account SET Password = %s WHERE Email = '{session['username']}'")
+        val = (password, old_password)
+        cursor.execute(sql, val)
+        foodnestdb.commit()
+        return redirect('profile') 
+    else:
+        return redirect('/password_error?error=Felaktigt lösenord')
 
 
 @route('/remove/<id>')

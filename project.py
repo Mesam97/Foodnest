@@ -133,13 +133,13 @@ def profile(session):
 
     return template('profile', recipes = recipe_list)
 
-
+#Funkar ej
 @route('/password_error')
 def password_error(error = ''):
     # Tar query från create_account.html och visar felmeddelande på samma sida
     if request.query:
         error = getattr(request.query, 'error')
-    return template('password_error', error = error)
+    return template('index', error = error)
 
 
 @route('/change_password', method = 'POST')

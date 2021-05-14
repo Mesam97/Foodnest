@@ -32,3 +32,19 @@ PRIMARY KEY (Commentid),
 FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
 );
 
+CREATE TABLE Post_likes(
+Likeid INT AUTO_INCREMENT,
+Recipeid INT,
+Userid NVARCHAR(60), -- Email	
+Liked BOOLEAN NOT NULL,
+PRIMARY KEY(Likeid),
+FOREIGN KEY(Userid) REFERENCES Account(Email),
+FOREIGN KEY(Recipeid) REFERENCES Recipes(Recipeid)
+);
+
+CREATE TABLE Post_like_sum(
+Recipeid INT,
+Likes INT,
+PRIMARY KEY(Recipeid),
+FOREIGN KEY(Recipeid) REFERENCES Recipes(Recipeid)
+);

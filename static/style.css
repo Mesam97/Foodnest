@@ -338,7 +338,7 @@ textarea {
   padding: 30px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 50px;
-  background-color: #fafafa;
+  background-color: #f0f0f5;
 }
 
 .like-button i {
@@ -348,10 +348,5 @@ textarea {
 
 .like-button:hover i{
   color: #DC143C;
-
 }
-
-.fas {
-  color: #f50057;
-  transition: 0.4s;
-}
+/* END LIKE-button */ 

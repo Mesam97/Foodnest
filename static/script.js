@@ -25,16 +25,4 @@ $('.bi').click(function(){
       }
     });
 
-// test
-$('.far').click(function(){
-    if ($('.far').hasClass('far fa-heart')){
-      $('.far').removeClass('far fa-heart').addClass('<i class="fas fa-heart"></i>')
-    }                 
-
-    else {
-      $('.bi').removeClass('fas fa-heart').addClass('far fa-heart')
-      }
-    });
-
-
 //Kommentar för kodgranskning

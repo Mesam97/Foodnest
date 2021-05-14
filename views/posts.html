@@ -58,6 +58,19 @@ FFL4.1.5(C) Man ska kunna välja om man endast vill se specialkost (ex. allergi 
       </nav>   
   
       <main>
+        <form action="/posts_category" method="POST">
+        <label for="category">Sortera enligt kategori</label><br/>
+        <select name="category" id="category" ><br/>
+          <option>Dryck/alkoholfritt</option>
+          <option>Drinkar</option>
+          <option>Fisk</option>
+          <option>Pasta</option>
+          <option>Vegetariskt</option>
+          <option>Veganskt</option>
+          <option>Dessert</option>
+          <option>Soppor</option>
+        </form>
+        </select><br/>
         % for r in recipes:
         <div class="row">
           <div class="container">

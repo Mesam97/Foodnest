@@ -19,6 +19,7 @@ Instructions TEXT NOT NULL,
 Likes INT NULL,
 Picture NVARCHAR(80) NOT NULL,
 Email NVARCHAR(60) NOT NULL,
+Categories NVARCHAR(100) NULL,
 PRIMARY KEY (recipeid),
 FOREIGN KEY (Email) REFERENCES Account (Email)
 );

@@ -180,6 +180,19 @@ def posts():
 
     return template('posts', recipes = recipe_list)
 
+@route('/posts', method='POST') #annars lägg till som def och skapa en html
+def posts_category():
+    category = getattr(request.forms, 'category')
+    cursor.execute("SELECT * FROM Recipes WHERE Categories = '%s'" + category)
+    recipes = cursor.fetchall()
+
+    recipe_list = []
+
+    for r in recipes:
+        recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
+        recipe_list.append(recipe_dict)
+
+    return template('posts', recipes = recipe_list)
 
 @route('/create_recipe')
 def create_recipe(session):

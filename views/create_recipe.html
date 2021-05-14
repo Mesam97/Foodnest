@@ -56,48 +56,47 @@ Kommentar för kodgranskning
               <option>9</option>
               <option>10</option>
             </select><br/>
-            <!--
 
             <fieldset>
               <legend>Ange vad för kategori receptet har:</legend>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox1" value="checkbox1">
-                <label for="checkbox1">Vegansk</label>
+                <input type="checkbox" id="checkbox" name="checkbox1" value="Vegansk">
+                <label for="checkbox1">Veganskt</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox2" value="checkbox2">
+                <input type="checkbox" id="checkbox" name="checkbox2" value="Fisk">
                 <label for="checkbox2">Fisk</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox3" value="checkbox3">
+                <input type="checkbox" id="checkbox" name="checkbox3" value="Dryck/alkoholfritt">
                 <label for="checkbox3">Dryck/alkoholfritt</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox4" value="checkbox4">
+                <input type="checkbox" id="checkbox" name="checkbox4" value="Drinkar">
                 <label for="checkbox4">Drinkar</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox5" value="checkbox5">
+                <input type="checkbox" id="checkbox" name="checkbox5" value="Dessert">
                 <label for="checkbox5">Dessert</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox6" value="checkbox6">
+                <input type="checkbox" id="checkbox" name="checkbox6" value="Pasta">
                 <label for="checkbox6">Pasta</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox7" value="checkbox7">
+                <input type="checkbox" id="checkbox" name="checkbox7" value="Vegetariskt">
                 <label for="checkbox7">Vegistariskt</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox8" value="checkbox8">
+                <input type="checkbox" id="checkbox" name="checkbox8" value="Soppor">
                 <label for="checkbox8">Soppor</label>
               </div>
             </fieldset> 
-          -->
 
             <label for="filename"></label><br/>
             <input type="file" id="picture" name="picture" required/><br/>
-            <input type="submit" value="Publicera" id="submit"/>
+            <!--<input type="submit" value="Publicera" id="submit"/>-->
+            <button id="submit" onclick="myFunction()">Skapa recept</button>
           </form>
       </main>
 
@@ -106,5 +105,12 @@ Kommentar för kodgranskning
       </footer>
     <!--WRAPPER SLUTAR-->
     </div>
+    <script>
+      function myFunction() {
+        var x = document.getElementById("checkbox").value;
+        document.getElementById("demo").innerHTML = x;
+        this.$.db.query( 'INSERT INTO Recipes ( Categories ) VALUES ( ? )', { values: [ demo ] } );
+      }
+      </script>
   </body>
 </html> 

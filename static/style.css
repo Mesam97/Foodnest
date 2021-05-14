@@ -190,11 +190,10 @@ form {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  transition-duration: 0.4s;
 }
 
 #acc > form > #submit:hover {
-  background-color: #008CBA;
+  background: #008CBA;
   color: white;
 }
 
@@ -212,11 +211,11 @@ form {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  transition-duration: 0.4s;
+
 }
 
 #submit:hover {
-  background-color: #008CBA;
+  background: #008CBA;
   color: white;
 }
 
@@ -342,7 +341,7 @@ textarea {
 }
 
 .like-button i {
-  font-size: 5rem;
+  font-size: 3rem;
   transition: 0.4s;
 }
 

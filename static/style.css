@@ -198,7 +198,7 @@ form {
 }
 
 #submit {
-  width: 50%;
+  width: 40%;
   padding: 10px 30px;
   cursor: pointer;
   display: block;
@@ -348,4 +348,8 @@ textarea {
 .like-button:hover i{
   color: #DC143C;
 }
-/* END LIKE-button */ 
+
+.bi-suit-heart-fill {
+  color: #DC143C;
+}
+/* Slut LIKE-button */ 

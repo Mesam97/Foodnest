@@ -241,8 +241,7 @@ def logout(session):
 
     return redirect('/')
 
-def like():
-    #TODO
+def like(): #TODO
     pass
 
 

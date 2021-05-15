@@ -3,12 +3,6 @@ Ska tas bort
 
 KRAV - Recept (Boorhan)
 
-FR1.0(M) Receptet innehåller all information som skaparen av receptet fyllde i
-    FR1.1(M) Receptet ska innehålla en titel
-    FR1.2(M) Receptet ska innehålla en eller flera bilder 
-    FR1.3(M) Receptet ska innehålla instruktioner för hur man ska följa receptet 
-    FR1.4(M) Receptet ska innehålla en tabell med ingredienser
-        FR1.4.1(M) Det ska stå ingrediens mått
 FR2.0(C) Det ska finnas ett kommentarsfält med kommentarer andra användare har publicerat
 FR3.0(C) Det ska finnas en pop-up ruta om tips för alternativ av specialkost
 FR4.0(M) Man ska kunna gilla ett recept
@@ -51,9 +45,10 @@ FR4.0(M) Man ska kunna gilla ett recept
       <main>
         <article>
           <img src="{{recipes['picture']}}" alt="Mat" width="20%"/>
-          <div class="like-button">
+          <!-- Kopplat till när en användare gillar -->
+          <span class="like-button">
             <i class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
-          </div>      
+          </span>      
           
           <h1>{{recipes['title']}}</h1>
           <div id="recipe">

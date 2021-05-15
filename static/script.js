@@ -23,6 +23,13 @@ $('.bi').click(function(){
     else {
       $('.bi').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart')
       }
-    });
+  });
+
+    var likes = 0;
+
+    function onClick() {
+      likes += 1;
+      document.getElementByClass("bi-suit-heart").innerHTML = likes;
+};
 
 //Kommentar för kodgranskning

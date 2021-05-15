@@ -242,7 +242,7 @@ def logout(session):
     return redirect('/')
 
 def like():
-    likes = 10
+    #TODO
     pass
 
 

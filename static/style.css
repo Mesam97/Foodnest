@@ -190,11 +190,10 @@ form {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  transition-duration: 0.4s;
 }
 
 #acc > form > #submit:hover {
-  background-color: #008CBA;
+  background: #008CBA;
   color: white;
 }
 
@@ -212,11 +211,11 @@ form {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  transition-duration: 0.4s;
+
 }
 
 #submit:hover {
-  background-color: #008CBA;
+  background: #008CBA;
   color: white;
 }
 
@@ -338,20 +337,15 @@ textarea {
   padding: 30px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 50px;
-  background-color: #fafafa;
+  background-color: #f0f0f5;
 }
 
 .like-button i {
-  font-size: 5rem;
+  font-size: 3rem;
   transition: 0.4s;
 }
 
 .like-button:hover i{
   color: #DC143C;
-
 }
-
-.fas {
-  color: #f50057;
-  transition: 0.4s;
-}
+/* END LIKE-button */ 

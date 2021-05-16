@@ -35,10 +35,10 @@ FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
 CREATE TABLE Post_likes(
 Likeid INT AUTO_INCREMENT,
 Recipeid INT,
-Userid NVARCHAR(60), -- Email	
-Liked BOOLEAN NOT NULL,
+Email NVARCHAR(60), -- Email[FK]	
+Liked BOOLEAN,
 PRIMARY KEY(Likeid),
-FOREIGN KEY(Userid) REFERENCES Account(Email),
+FOREIGN KEY(Email) REFERENCES Account(Email),
 FOREIGN KEY(Recipeid) REFERENCES Recipes(Recipeid)
 );
 

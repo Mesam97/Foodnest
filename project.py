@@ -241,7 +241,13 @@ def logout(session):
 
     return redirect('/')
 
-def like(): #TODO
+@route('/like_recipe/<recipeid>', method = 'POST') 
+def like_recipe(session):
+    """
+    Tabell som har koll på användare och recept, alltså en n-m-tabell. 
+    När användaren gillar ett recept läggs en post i tabellen.
+    En ändpunkt som tar en parameter: recept. Användaren via session
+    """
     pass
 
 

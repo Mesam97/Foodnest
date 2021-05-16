@@ -1,8 +1,6 @@
 <!-- 
 Ska tas bort
 
-KRAV - Recept (Boorhan)
-
 FR2.0(C) Det ska finnas ett kommentarsfält med kommentarer andra användare har publicerat
 FR3.0(C) Det ska finnas en pop-up ruta om tips för alternativ av specialkost
 FR4.0(M) Man ska kunna gilla ett recept
@@ -45,10 +43,13 @@ FR4.0(M) Man ska kunna gilla ett recept
       <main>
         <article>
           <img src="{{recipes['picture']}}" alt="Mat" width="20%"/>
-          <!-- Kopplat till när en användare gillar -->
-          <span class="like-button">
-            <i class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
-          </span>      
+          <!-- LIKE-knapp -->
+          <form action="/like_recipe" method="POST">
+              <button type="submit" name="like-button" class="like-button">
+                <i class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
+              </button>
+          </form>
+          <!-- Slut LIKE-knapp -->      
           
           <h1>{{recipes['title']}}</h1>
           <div id="recipe">

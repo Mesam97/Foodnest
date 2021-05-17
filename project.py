@@ -183,22 +183,21 @@ def posts():
 @route('/posts', method='POST') #annars lägg till som def och skapa en html
 def posts_category():
     category = getattr(request.forms, 'category')
-    if category == "Kategori":
-            cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
-            recipes = cursor.fetchall()
-
-            recipe_list = []
-
-            #Lexikon
-            for r in recipes:
-                recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
-                recipe_list.append(recipe_dict)
-    else: 
-        sql = "SELECT * FROM Recipes WHERE Categories = %s"
-        adr = (category, )
-        cursor.execute(sql,adr)
+    if category == "Alla kategorier":
+        cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
         recipes = cursor.fetchall()
 
+        recipe_list = []
+
+        #Lexikon
+        for r in recipes:
+            recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
+            recipe_list.append(recipe_dict)
+    else: 
+        sql = "SELECT Picture, Recipeid, Title FROM Recipes WHERE Categories = %s"
+        val = (category, )
+        cursor.execute(sql,val)
+        recipes = cursor.fetchall()
 
         recipe_list = []
 
@@ -240,6 +239,7 @@ def save_to_database(session):
     instructions = getattr(request.forms, 'instructions')
     portions = getattr(request.forms, 'portions')
     picture = getattr(request.files,'picture')
+    category = getattr(request.forms, 'checkbox')
     
     name, ext = os.path.splitext(picture.filename)
     if ext not in ('.png', '.jpg', '.jpeg','.jfif'):
@@ -251,8 +251,8 @@ def save_to_database(session):
 
     picture.save(save_path)
 
-    sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email) VALUES (%s, %s, %s, %s, %s, %s)'
-    val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
+    sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email, Categories) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+    val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'], category)
     cursor.execute(sql, val)
     foodnestdb.commit()
 

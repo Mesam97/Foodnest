@@ -26,9 +26,10 @@
       </nav>   
   
       <main>
-        <form action="/posts_category" method="POST">
+        <form action="/posts" method="POST">
           <label for="category">Sortera enligt kategori</label><br>
           <select name="category" id="category"><br>
+            <option>Kategorier</option>
             <option>Dryck/alkoholfritt</option>
             <option>Drinkar</option>
             <option>Fisk</option>
@@ -37,7 +38,8 @@
             <option>Veganskt</option>
             <option>Dessert</option>
             <option>Soppor</option>
-          </select><br>
+          </select>
+          <button type='submit'>Sortera</button>
         </form>
         % for r in recipes:
         <div class="row">

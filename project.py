@@ -272,8 +272,7 @@ def order_by_date():
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
     else: 
-        sql = "SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC"
-        cursor.execute(sql)
+        cursor.execute("SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC")
         recipes = cursor.fetchall()
 
         recipe_list = []
@@ -318,4 +317,4 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 
-run(host='127.0.0.1', port=8090)
+run(host='127.0.0.1', port=8080)

@@ -91,6 +91,11 @@ main > img {
   height: 250px;
 }
 
+/* Bildstorlek på recipe-sida */
+article > img {
+  max-width: 70%;
+}
+
 #link-box {
   width: 340px;
   margin: 35px auto;

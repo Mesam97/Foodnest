@@ -237,7 +237,7 @@ def save_to_database(session):
 
 @route('/log_out')
 def logout(session):
-    session['usename'] = ''
+    session['username'] = ''
 
     return redirect('/')
 
@@ -249,17 +249,12 @@ def like_recipe(session, recipeid):
     En ändpunkt som tar en parameter: recept. Användaren via session
     """
     print(session)
-    sql = 'INSERT INTO Post_likes(Likeid, , Ingredients, Instructions, Picture, Email) VALUES (%s, %s, %s, %s, %s, %s)'
-    val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
-    cursor.execute(sql, val)
-    foodnestdb.commit()
     return redirect('recipe')
 
 
 @route('/static/<filename>')
 def static_files(filename):
     return static_file(filename, root = 'static')
-
 
 @route('/recipe/static/<filename>')
 def static_recipe(filename):
@@ -273,4 +268,4 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 
-run(host='127.0.0.1', port=8000)
+run(host='127.0.0.1', port=8090)

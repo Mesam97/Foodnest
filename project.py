@@ -258,6 +258,32 @@ def save_to_database(session):
 
     return redirect('posts')
 
+@route('/posts', method='POST') #annars lägg till som def och skapa en html
+def order_by_date():
+    date = getattr(request.forms, 'date')
+    if date == "Nyast":
+        cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
+        recipes = cursor.fetchall()
+
+        recipe_list = []
+
+        #Lexikon
+        for r in recipes:
+            recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
+            recipe_list.append(recipe_dict)
+    else: 
+        sql = "SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC"
+        cursor.execute(sql)
+        recipes = cursor.fetchall()
+
+        recipe_list = []
+
+        for r in recipes:
+            recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
+            recipe_list.append(recipe_dict)
+
+    return template('posts', recipes = recipe_list)
+
 
 @route('/log_out')
 def logout(session):
@@ -281,6 +307,5 @@ def static_recipe(filename):
 def static_profile(filename):
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
-
 
 run(host='127.0.0.1', port=8030)

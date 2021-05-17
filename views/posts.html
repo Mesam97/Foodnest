@@ -7,7 +7,7 @@
     <link href="static/style.css" rel="stylesheet" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet"/> 
   </head>
 
   <body>
@@ -26,6 +26,16 @@
       </nav>   
   
       <main>
+
+        <form action="/posts" method="POST">
+          <label for="date">Sortera enligt datum</label><br>
+          <select name="date" id="date"><br>
+            <option>Nyast</option>
+            <option>Äldst</option>
+          </select>
+          <button type="submit">Sortera</button>
+        </form>
+
         <form action="/posts" method="POST">
           <label for="category">Sortera enligt kategori</label><br>
           <select name="category" id="category"><br>

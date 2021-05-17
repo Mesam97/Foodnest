@@ -253,8 +253,8 @@ def like_recipe(session, recipeid):
     val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
     cursor.execute(sql, val)
     foodnestdb.commit()
-
     return redirect('recipe')
+
 
 @route('/static/<filename>')
 def static_files(filename):

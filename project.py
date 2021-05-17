@@ -248,8 +248,13 @@ def like_recipe(session, recipeid):
     När användaren gillar ett recept läggs en post i tabellen.
     En ändpunkt som tar en parameter: recept. Användaren via session
     """
-    pass
+    print(session)
+    sql = 'INSERT INTO Post_likes(Likeid, , Ingredients, Instructions, Picture, Email) VALUES (%s, %s, %s, %s, %s, %s)'
+    val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
+    cursor.execute(sql, val)
+    foodnestdb.commit()
 
+    return redirect('recipe')
 
 @route('/static/<filename>')
 def static_files(filename):
@@ -268,4 +273,4 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 
-run(host='127.0.0.1', port=8080)
+run(host='127.0.0.1', port=8000)

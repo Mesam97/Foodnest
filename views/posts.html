@@ -1,35 +1,3 @@
-<!--
-Ska tas bort
-
-FFL2.0(C) Man ska kunna gilla ett inlägg
-FFL3.0(C) Man ska kunna sortera alla inlägg i tidsordning. De nyaste inläggen visas överst på sidan automatiskt
-	FFL3.1(C) Möjlighet att välja om man vill se inläggen i stigande eller fallande tidsordning
-FFL4.0(C) Man ska kunna filtrera efter olika kategorier
-	FFL4.1(C) Man ska kunna välja om man endast vill se maträtter
-		FFL4.1.(C)1 Man ska kunna välja om man endast vill se soppor
-		FFL4.1.2(C) Man ska kunna välja om man endast vill se kötträtter
-FFL4.1.3(C) Man ska kunna välja om man endast vill se veganska/vegetariska rätter
-FFL4.1.4(C) Man ska kunna välja om man endast vill se pastarätter
-FFL4.1.5(C) Man ska kunna välja om man endast vill se specialkost (ex. allergi etc)
-	FFL4.2(C) Man ska kunna välja om man endast vill se desserter
-	FFL4.3(C) Man ska kunna välja om man endast vill se drycker
-		FFL4.3.1(C) Man ska kunna välja om man endast vill se drycker med alkohol
-		FFL4.3.2(C) Man ska kunna välja om man endast vill se drycker utan alkohol
-
-    - lägga in recept i db
-    - kolumn (bild) i db 
--->
-<!--Kommentar för kodgranskning-->
-<!--
-<img src="static/pesto-med-pasta.jpg" alt="Pasta pesto">
-<img src="static/amerikanskapannkakor.jpg" alt="Pannkakor">
-<img src="static/hostgryta.jpg" alt="Höst gryta">
-<img src="static/lyxig-korv-med-brod.jpg" alt="Korv med bröd">
-<img src="static/pasta-all-americana.jpg" alt="Pasta">
-<img src="static/pyttipanna.jpg" alt="Pyttipanna">
-<img src="static/scones.jpg" alt="Scones">
-<img src="static/svamprisotto_med_vitloksstekt_broccoli_.jpg" alt="Svamp risotto">
--->
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -59,22 +27,22 @@ FFL4.1.5(C) Man ska kunna välja om man endast vill se specialkost (ex. allergi 
   
       <main>
         <form action="/posts_category" method="POST">
-        <label for="category">Sortera enligt kategori</label><br/>
-        <select name="category" id="category" ><br/>
-          <option>Dryck/alkoholfritt</option>
-          <option>Drinkar</option>
-          <option>Fisk</option>
-          <option>Pasta</option>
-          <option>Vegetariskt</option>
-          <option>Veganskt</option>
-          <option>Dessert</option>
-          <option>Soppor</option>
+          <label for="category">Sortera enligt kategori</label><br>
+          <select name="category" id="category"><br>
+            <option>Dryck/alkoholfritt</option>
+            <option>Drinkar</option>
+            <option>Fisk</option>
+            <option>Pasta</option>
+            <option>Vegetariskt</option>
+            <option>Veganskt</option>
+            <option>Dessert</option>
+            <option>Soppor</option>
+          </select><br>
         </form>
-        </select><br/>
         % for r in recipes:
         <div class="row">
           <div class="container">
-            <img class="image" src="{{r['img']}}"/>
+            <img class="image" src="{{r['img']}}" alt="Bild på recept"/>
             <div class="overlay">
               <a href="/recipe/{{r['id']}}">
                 <div class="text">{{r['title']}}</div>

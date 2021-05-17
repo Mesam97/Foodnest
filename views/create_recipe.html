@@ -37,14 +37,14 @@ Kommentar för kodgranskning
       <main>
         <h1>Skapa inlägg</h1>
           <form action="/save_recipe" method="POST" enctype="multipart/form-data">
-            <label for="title">Titel</label><br/>
-            <input type="text" name="title" id="title" placeholder="Ange din titel.." required/><br/>
-            <label for="ingredients">Ingredienser</label><br/>
-            <textarea name="ingredients" id="ingredients" placeholder="T.ex. 5dl mjöl, 2st ägg etc..." cols="45" rows="5" required></textarea><br/>
-            <label for="instructions">Instruktioner</label><br/>
-            <textarea name="instructions" id="instructions" placeholder="T.ex. 1. Sätt ungen på 220 grader..." cols="45" rows="5" required></textarea><br/> 
-            <label for="portions">Ange antal portioner</label><br/>
-            <select name="portions" id="portions" required><br/>
+            <label for="title">Titel</label><br>
+            <input type="text" name="title" id="title" placeholder="Ange din titel.." required/><br>
+            <label for="ingredients">Ingredienser</label><br>
+            <textarea name="ingredients" id="ingredients" placeholder="T.ex. 5dl mjöl, 2st ägg etc..." cols="45" rows="5" required></textarea><br>
+            <label for="instructions">Instruktioner</label><br>
+            <textarea name="instructions" id="instructions" placeholder="T.ex. 1. Sätt ungen på 220 grader..." cols="45" rows="5" required></textarea><br> 
+            <label for="portions">Ange antal portioner</label><br>
+            <select name="portions" id="portions" size="10" required><br>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -60,40 +60,40 @@ Kommentar för kodgranskning
             <fieldset>
               <legend>Ange vad för kategori receptet har:</legend>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox1" value="Vegansk">
-                <label for="checkbox1">Veganskt</label>
+                <input type="checkbox" id="vegan" name="vegan" value="Vegansk">
+                <label for="vegan">Veganskt</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox2" value="Fisk">
-                <label for="checkbox2">Fisk</label>
+                <input type="checkbox" id="fish" name="fish" value="Fisk">
+                <label for="fish">Fisk</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox3" value="Dryck/alkoholfritt">
-                <label for="checkbox3">Dryck/alkoholfritt</label>
+                <input type="checkbox" id="drink" name="drink" value="Dryck/alkoholfritt">
+                <label for="drink">Dryck/alkoholfritt</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox4" value="Drinkar">
-                <label for="checkbox4">Drinkar</label>
+                <input type="checkbox" id="alcohol" name="alcohol" value="Drinkar">
+                <label for="alcohol">Drinkar</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox5" value="Dessert">
-                <label for="checkbox5">Dessert</label>
+                <input type="checkbox" id="dessert" name="dessert" value="Dessert">
+                <label for="dessert">Dessert</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox6" value="Pasta">
-                <label for="checkbox6">Pasta</label>
+                <input type="checkbox" id="pasta" name="pasta" value="Pasta">
+                <label for="pasta">Pasta</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox7" value="Vegetariskt">
-                <label for="checkbox7">Vegistariskt</label>
+                <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetariskt">
+                <label for="vegetarian">Vegistariskt</label>
               </div>
               <div>
-                <input type="checkbox" id="checkbox" name="checkbox8" value="Soppor">
-                <label for="checkbox8">Soppor</label>
+                <input type="checkbox" id="soup" name="soup" value="Soppor">
+                <label for="soup">Soppor</label>
               </div>
             </fieldset> 
 
-            <label for="filename"></label><br/>
+            <label for="picture"></label><br/>
             <input type="file" id="picture" name="picture" required/><br/>
             <!--<input type="submit" value="Publicera" id="submit"/>-->
             <button id="submit" onclick="myFunction()">Skapa recept</button>

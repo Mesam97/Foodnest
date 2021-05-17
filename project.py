@@ -258,7 +258,7 @@ def save_to_database(session):
 
     return redirect('posts')
 
-@route('/posts', method='POST') #annars lägg till som def och skapa en html
+@route('/posts', method='POST')
 def order_by_date():
     date = getattr(request.forms, 'date')
     if date == "Nyast":

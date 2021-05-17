@@ -91,6 +91,11 @@ main > img {
   height: 250px;
 }
 
+/* Bildstorlek på recipe-sida */
+article > img {
+  max-width: 70%;
+}
+
 #link-box {
   width: 340px;
   margin: 35px auto;
@@ -190,16 +195,15 @@ form {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  transition-duration: 0.4s;
 }
 
 #acc > form > #submit:hover {
-  background-color: #008CBA;
+  background: #008CBA;
   color: white;
 }
 
 #submit {
-  width: 50%;
+  width: 40%;
   padding: 10px 30px;
   cursor: pointer;
   display: block;
@@ -212,11 +216,11 @@ form {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  transition-duration: 0.4s;
+
 }
 
 #submit:hover {
-  background-color: #008CBA;
+  background: #008CBA;
   color: white;
 }
 
@@ -330,3 +334,28 @@ textarea {
   width: 250px;
   margin: 15px;
 }
+
+/* LIKE-button */
+.like-button {
+  position: absolute;
+  transform: translate(-50%;-50%);
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 50px;
+  background-color: #f0f0f5;
+  border: none !important;
+}
+
+.like-button i {
+  font-size: 3rem;
+  transition: 0.4s;
+}
+
+.like-button:hover i{
+  color: #DC143C;
+}
+
+.bi-suit-heart-fill {
+  color: #DC143C;
+}
+/* Slut LIKE-button */ 

@@ -241,8 +241,8 @@ def logout(session):
 
     return redirect('/')
 
-@route('/like_recipe/<recipeid>', method = 'POST') 
-def like_recipe(session):
+@route('/like_recipe/<recipeid>', method = 'POST') #TODO
+def like_recipe(session, recipeid):
     """
     Tabell som har koll på användare och recept, alltså en n-m-tabell. 
     När användaren gillar ett recept läggs en post i tabellen.
@@ -268,4 +268,4 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 
-run(host='127.0.0.1', port=8070)
+run(host='127.0.0.1', port=8080)

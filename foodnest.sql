@@ -16,7 +16,7 @@ Title NVARCHAR(50) NOT NULL,
 Portion INT NOT NULL,
 Ingredients TEXT NOT NULL,
 Instructions TEXT NOT NULL,
-Likes INT NULL,
+-- Likes INT NULL,
 Picture NVARCHAR(80) NOT NULL,
 Email NVARCHAR(60) NOT NULL,
 PRIMARY KEY (recipeid),
@@ -35,16 +35,19 @@ FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
 CREATE TABLE Post_likes(
 Likeid INT AUTO_INCREMENT,
 Recipeid INT,
-Email NVARCHAR(60), -- Email[FK]	
+Email VARCHAR(60), -- Användare	
 Liked BOOLEAN,
+Likes INT,
 PRIMARY KEY(Likeid),
 FOREIGN KEY(Email) REFERENCES Account(Email),
 FOREIGN KEY(Recipeid) REFERENCES Recipes(Recipeid)
 );
 
+/*
 CREATE TABLE Post_like_sum(
 Recipeid INT,
 Likes INT,
 PRIMARY KEY(Recipeid),
 FOREIGN KEY(Recipeid) REFERENCES Recipes(Recipeid)
 );
+*/

@@ -261,7 +261,7 @@ def save_to_database(session):
 @route('/posts', method='POST')
 def order_by_date():
     date = getattr(request.forms, 'date')
-    if date == "Nyast":
+    if date == "Äldst":
         cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
         recipes = cursor.fetchall()
 
@@ -282,7 +282,6 @@ def order_by_date():
             recipe_list.append(recipe_dict)
 
     return template('posts', recipes = recipe_list)
-
 
 @route('/log_out')
 def logout(session):

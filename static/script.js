@@ -14,5 +14,16 @@ console.log("hej")
 })
 });
 
+// LIKE-function 
+$('.bi').click(function(){
+    if ($('.bi').hasClass('bi bi-suit-heart')){
+      $('.bi').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill')
+    }                 
 
-//Kommentar för kodgranskning
+    else {
+      $('.bi').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart')
+      }
+  })
+
+});
+

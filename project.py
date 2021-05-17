@@ -287,15 +287,24 @@ def order_by_date():
 
 @route('/log_out')
 def logout(session):
-    session['usename'] = ''
+    session['username'] = ''
 
     return redirect('/')
+
+@route('/like_recipe/<recipeid>', method = 'POST') #TODO
+def like_recipe(session, recipeid):
+    """
+    Tabell som har koll på användare och recept, alltså en n-m-tabell. 
+    När användaren gillar ett recept läggs en post i tabellen.
+    En ändpunkt som tar en parameter: recept. Användaren via session
+    """
+    print(session)
+    return redirect('recipe')
 
 
 @route('/static/<filename>')
 def static_files(filename):
     return static_file(filename, root = 'static')
-
 
 @route('/recipe/static/<filename>')
 def static_recipe(filename):
@@ -308,4 +317,5 @@ def static_profile(filename):
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
 
-run(host='127.0.0.1', port=8030)
+
+run(host='127.0.0.1', port=8090)

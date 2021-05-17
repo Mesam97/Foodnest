@@ -1,14 +1,6 @@
 <!-- 
 Ska tas bort
 
-KRAV - Recept (Boorhan)
-
-FR1.0(M) Receptet innehåller all information som skaparen av receptet fyllde i
-    FR1.1(M) Receptet ska innehålla en titel
-    FR1.2(M) Receptet ska innehålla en eller flera bilder 
-    FR1.3(M) Receptet ska innehålla instruktioner för hur man ska följa receptet 
-    FR1.4(M) Receptet ska innehålla en tabell med ingredienser
-        FR1.4.1(M) Det ska stå ingrediens mått
 FR2.0(C) Det ska finnas ett kommentarsfält med kommentarer andra användare har publicerat
 FR3.0(C) Det ska finnas en pop-up ruta om tips för alternativ av specialkost
 FR4.0(M) Man ska kunna gilla ett recept
@@ -48,8 +40,15 @@ FR4.0(M) Man ska kunna gilla ett recept
 
       <main>
         <article>
-          <img src="{{recipes['picture']}}" alt="Mat" width="20%"/>
-          <i class="bi bi-hand-thumbs-up" id="{{recipes['id']}}"></i>
+          <img src="{{recipes['picture']}}" alt="Mat"/>
+          <!-- LIKE-button -->
+          <form action="/like_recipe" method="POST">
+              <button type="submit" name="like-button" class="like-button">
+                <i class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
+              </button>
+          </form>
+          <!-- Slut LIKE-button -->      
+          
           <h1>{{recipes['title']}}</h1>
           <div id="recipe">
             <h4>Ingredienser:</h4>
@@ -66,20 +65,8 @@ FR4.0(M) Man ska kunna gilla ett recept
           <p><a href="/about">Om oss</a> © Foodnest 2021</p>
       </footer>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="/static/script.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-      <!-- LIKE-funktion -->
-      <script>
-        $('.bi').click(function(){
-          if ($('.bi').hasClass('bi-hand-thumbs-up')){
-            $('.bi').removeClass('bi-hand-thumbs-up').addClass('bi-hand-thumbs-up-fill')
-          }                 
-          else {
-            $('.bi').removeClass('bi-hand-thumbs-up-fill').addClass('bi-hand-thumbs-up')
-            }
-          })
-      </script>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -228,7 +228,6 @@ def show_recipe(id):
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
-
     cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
 
@@ -237,7 +236,6 @@ def show_recipe(id):
         recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3], 'portion': r[4], 'id': id}
  
     return template('recipe', recipes = recipe_dict)
-    
 
 @route('/save_recipe', method = 'POST')
 def save_to_database(session):
@@ -273,6 +271,12 @@ def logout(session):
 
     return redirect('/')
 
+'''
+Man skall kunna gilla ett recept
+Man skall kunna ogilla ett gillat recept
+Användare skall kunna se sina gillade recept
+På inläggen skall användaren kunna se antalet gillningar
+'''
 @route('/like_recipe/<recipeid>', method = 'POST') #TODO
 def like_recipe(session, recipeid):
     """
@@ -280,9 +284,18 @@ def like_recipe(session, recipeid):
     När användaren gillar ett recept läggs en post i tabellen.
     En ändpunkt som tar en parameter: recept. Användaren via session
     """
-    print(session)
+    like_button = getattr(request.forms, 'like_button')
+
+    sql = 'INSERT INTO Post_likes(recipeid, email, liked) VALUES (%s, %s, %s)'
+    val = (recipeid, session['username'], true)
+    cursor.execute(sql, val)
+    foodnestdb.commit()
+
     return redirect('recipe')
 
+def count_likes(): #TODO
+    # likes = (select count(*) from post_likes where recipeid = ' + recipeid)
+    pass
 
 @route('/static/<filename>')
 def static_files(filename):
@@ -292,7 +305,6 @@ def static_files(filename):
 def static_recipe(filename):
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
-
 
 @route('/profile/static/<filename>')
 def static_profile(filename):

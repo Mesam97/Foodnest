@@ -35,7 +35,7 @@ Kommentar för kodgranskning
       </nav>
 
       <main>
-        <h1>Skapa inlägg</h1>
+        <h1>Skapa recept</h1>
           <form action="/save_recipe" method="POST" enctype="multipart/form-data">
             <label for="title">Titel</label><br>
             <input type="text" name="title" id="title" placeholder="Ange din titel.." required/><br>
@@ -58,7 +58,7 @@ Kommentar för kodgranskning
             </select><br/>
 
             <fieldset>
-              <legend>Ange vad för kategori receptet har:</legend>
+              <legend>Ange vilka kategori receptet ska ingå i:</legend>
               <div>
                 <input type="checkbox" id="pasta" name="checkbox" value="Pasta">
                 <label for="pasta">Pasta</label>
@@ -99,8 +99,7 @@ Kommentar för kodgranskning
 
             <label for="picture"></label><br/>
             <input type="file" id="picture" name="picture" required/><br/>
-            <!--<input type="submit" value="Publicera" id="submit"/>-->
-            <button type="button" id="submit" onclick="myFunction()">Skapa recept</button>
+            <input type="submit" value="Publicera" id="submit"/>
           </form>
       </main>
 

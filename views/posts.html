@@ -26,24 +26,21 @@
       </nav>   
   
       <main>
-
-
-        <form action="/posts" method="POST">
-          <label for="category">Sortera</label><br>
-          <select name="category" id="category"><br>
-            <option>Alla kategorier</option>
-            <option>Nyast</option>
-            <option>Äldst</option>
-            <option>Dryck/alkoholfritt</option>
-            <option>Drinkar</option>
-            <option>Fisk</option>
-            <option>Pasta</option>
-            <option>Vegetariskt</option>
-            <option>Veganskt</option>
-            <option>Dessert</option>
-            <option>Soppor</option>
-          </select>
-          <button type='submit'>Sortera</button>
+        <form action="/posts" method="POST" id="category-form">
+          <select name="category" class="category"><br>
+              <option>Alla kategorier</option>
+              <option>Nyast</option>
+              <option>Äldst</option>
+              <option>Dryck/alkoholfritt</option>
+              <option>Drinkar</option>
+              <option>Fisk</option>
+              <option>Pasta</option>
+              <option>Vegetariskt</option>
+              <option>Veganskt</option>
+              <option>Dessert</option>
+              <option>Soppor</option>
+            </select>
+          <button type="submit" id="sort">Sortera</button>
         </form>
         % for r in recipes:
         <div class="row">

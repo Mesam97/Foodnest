@@ -147,8 +147,8 @@ def change_password(session):
     password = getattr(request.forms, 'new-password')
  
     if check_pass(password):
-        sql = (f"UPDATE Account SET Password = %s WHERE Email = '{session['username']}'")
-        val = (password, old_password)
+        sql = (f"UPDATE Account SET Password = '%s WHERE Email = '{session['username']}")
+        val = (password, )
         cursor.execute(sql, val)
         foodnestdb.commit()
         return redirect('profile') 

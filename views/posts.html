@@ -27,19 +27,13 @@
   
       <main>
 
-        <form action="/posts" method="POST">
-          <label for="date">Sortera enligt datum</label><br>
-          <select name="date" id="date"><br>
-            <option>Nyast</option>
-            <option>Äldst</option>
-          </select>
-          <button type="submit">Sortera</button>
-        </form>
 
         <form action="/posts" method="POST">
-          <label for="category">Sortera enligt kategori</label><br>
+          <label for="category">Sortera</label><br>
           <select name="category" id="category"><br>
             <option>Alla kategorier</option>
+            <option>Nyast</option>
+            <option>Äldst</option>
             <option>Dryck/alkoholfritt</option>
             <option>Drinkar</option>
             <option>Fisk</option>

@@ -133,7 +133,6 @@ def profile(session):
 
     return template('profile', recipes = recipe_list)
 
-#Funkar ej
 @route('/password_error')
 def password_error(error = ''):
     # Tar query från create_account.html och visar felmeddelande på samma sida
@@ -180,10 +179,10 @@ def posts():
 
     return template('posts', recipes = recipe_list)
 
-@route('/posts', method='POST') #annars lägg till som def och skapa en html
+@route('/posts', method='POST')
 def posts_category():
     category = getattr(request.forms, 'category')
-    if category == "Alla kategorier":
+    if category == "Alla kategorier" or category == "Äldst":
         cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
         recipes = cursor.fetchall()
 
@@ -193,6 +192,16 @@ def posts_category():
         for r in recipes:
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
+    elif category == "Nyast":
+        cursor.execute("SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC")
+        recipes = cursor.fetchall()
+
+        recipe_list = []
+
+        for r in recipes:
+            recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
+            recipe_list.append(recipe_dict)
+    
     else: 
         sql = "SELECT Picture, Recipeid, Title FROM Recipes WHERE Categories = %s"
         val = (category, )
@@ -257,31 +266,6 @@ def save_to_database(session):
     foodnestdb.commit()
 
     return redirect('posts')
-
-@route('/posts', method='POST')
-def order_by_date():
-    date = getattr(request.forms, 'date')
-    if date == "Äldst":
-        cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
-        recipes = cursor.fetchall()
-
-        recipe_list = []
-
-        #Lexikon
-        for r in recipes:
-            recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
-            recipe_list.append(recipe_dict)
-    else: 
-        cursor.execute("SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC")
-        recipes = cursor.fetchall()
-
-        recipe_list = []
-
-        for r in recipes:
-            recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
-            recipe_list.append(recipe_dict)
-
-    return template('posts', recipes = recipe_list)
 
 @route('/log_out')
 def logout(session):

@@ -91,11 +91,23 @@ main > img {
   height: 250px;
 }
 
+/* Styling för sidan Om oss */
+#about-us {
+  width: 60%;
+  margin: auto;
+}
+
+#about-us > h1 {
+  padding: 20px;
+  border-bottom: 2px solid #4B5B73;
+}
+
 /* Bildstorlek på recipe-sida */
 article > img {
   max-width: 70%;
 }
 
+/* Styling för logga in/skapa konto formulär */
 #link-box {
   width: 340px;
   margin: 35px auto;
@@ -140,12 +152,11 @@ article > img {
 #acc {
   width: 50%;
   margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 50px;
   padding: 5px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 1px #B0E0E6
+  box-shadow: 0px 0px 20px 1px #D3E2E7;
 }
 
 #acc > form > input {
@@ -187,6 +198,7 @@ form {
   cursor: pointer;
   display: block;
   margin: auto;
+  margin-top: 20px;
   background: linear-gradient(to right, #B0E0E6, #008CBA);
   border: none;
   outline: none;
@@ -198,8 +210,7 @@ form {
 }
 
 #acc > form > #submit:hover {
-  background: #008CBA;
-  color: white;
+  color: #000000;
 }
 
 #submit {
@@ -216,12 +227,10 @@ form {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-
 }
 
 #submit:hover {
   background: #008CBA;
-  color: white;
 }
 
 ::placeholder {
@@ -229,6 +238,7 @@ form {
   opacity: 1;
 }
 
+/* Footer*/
 footer {
   grid-area: footer;
   clear: both;
@@ -239,9 +249,15 @@ footer {
   width: 100%;
   text-align: center;
   margin: auto;
-  background-color: #D3E2E7;
+  color: #FFF;
+  background-color: #6bb2ca;
 }
 
+footer a {
+  color: #FFF;
+}
+
+/* Styling för hur bilder visas på utforska */
 .image {
   top: 0;
   bottom: 0;
@@ -310,6 +326,7 @@ textarea {
   resize: none;
 }
 
+/*
 .reg {
   border: none;
   color: #4B5B73;
@@ -327,6 +344,7 @@ textarea {
   background-color: #008CBA;
   color: white;
 }
+*/
 
 .my-image {
   

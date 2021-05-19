@@ -34,11 +34,11 @@ FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
 );
 
 CREATE TABLE Post_likes(
-Likeid INT AUTO_INCREMENT,
+Likeid INT,
 Recipeid INT,
 Email VARCHAR(60), -- Användare	
 Liked BOOLEAN,
-PRIMARY KEY(Email, Recipeid),
+PRIMARY KEY(Recipeid, Email),
 FOREIGN KEY(Email) REFERENCES Account(Email),
 FOREIGN KEY(Recipeid) REFERENCES Recipes(Recipeid)
 );

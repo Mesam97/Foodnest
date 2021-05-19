@@ -18,13 +18,10 @@ console.log("hej")
 $('.bi').click(function(){
   console.log($('.bi').hasClass('bi bi-suit-heart'))
     if ($('.bi').hasClass('bi-suit-heart')){
-      
       window.location.href=('?liked=True')
-     
     }                 
 
     else {
-      
       window.location.href=('?liked=False')
       }
   })
@@ -34,6 +31,5 @@ $('.bi').click(function(){
     if (liked==='True') $('.bi').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill')
 
     else {
-      $('.bi').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart')
-      
+      $('.bi').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart')  
     }

@@ -245,7 +245,6 @@ def show_recipe(id, session):
         except:
             cursor.execute(f'UPDATE Post_likes SET  Liked = {liked} WHERE Recipeid = {id} and Email =  "{session["username"]}"')
             foodnestdb.commit()
-        
     
     #Lexikon
     for r in recipes:

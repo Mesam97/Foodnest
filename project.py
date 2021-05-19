@@ -118,7 +118,7 @@ def about():
 
 
 @route('/profile')
-def profile(session):
+def profile(session, error= ""):
     """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """ 
 
     print(session)
@@ -130,15 +130,13 @@ def profile(session):
     for r in recipes:
         recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
         recipe_list.append(recipe_dict)
-
-    return template('profile', recipes = recipe_list)
-
-@route('/password_error')
-def password_error(error = ''):
+    
     # Tar query från create_account.html och visar felmeddelande på samma sida
     if request.query:
         error = getattr(request.query, 'error')
-    return template('index', error = error)
+
+    return template('profile', recipes = recipe_list, error = error)
+
 
 
 @route('/change_password', method = 'POST')
@@ -147,13 +145,11 @@ def change_password(session):
     password = getattr(request.forms, 'new-password')
  
     if check_pass(password):
-        sql = (f"UPDATE Account SET Password = '%s WHERE Email = '{session['username']}")
-        val = (password, )
-        cursor.execute(sql, val)
+        cursor.execute(f"UPDATE Account SET Password = '{password}' WHERE Email = '{session['username']}'")
         foodnestdb.commit()
         return redirect('profile') 
     else:
-        return redirect('/password_error?error=Felaktigt lösenord')
+        return redirect('/profile?error=Felaktigt lösenord')
 
 
 @route('/remove/<id>')

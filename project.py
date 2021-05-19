@@ -290,6 +290,9 @@ def like_recipe(session, recipeid):
 
     return redirect('recipe')
 
+def unlike(): #TODO
+    pass
+
 def count_likes(): #TODO
     # likes = (select count(*) from post_likes where recipeid = ' + recipeid)
     pass

@@ -40,7 +40,8 @@ FR4.0(M) Man ska kunna gilla ett recept
 
       <main>
         <article>
-          <img src="{{recipes['picture']}}" alt="Mat"/>
+          <h1 class="recipe-title">{{recipes['title']}}</h1>
+          <img src="{{recipes['picture']}}" alt="Mat" class="show-recipe"/>
           <!-- LIKE-button -->
           <form action="/like_recipe" method="POST">
               <button type="submit" name="like_button" class="like-button" value="{{recipes['id']}}">
@@ -49,7 +50,6 @@ FR4.0(M) Man ska kunna gilla ett recept
           </form>
           <!-- Slut LIKE-button -->      
           
-          <h1>{{recipes['title']}}</h1>
           <div id="recipe">
             <h4>Ingredienser:</h4>
             <p>{{recipes['ingredients']}}</p><br/>

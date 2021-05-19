@@ -330,12 +330,17 @@ footer a {
 
 .text {
   color: #4B5B73;
-  font-size: 20px;
+  font-size: 25px;
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  margin-top: 90px;
+}
+
+.text-title {
+  color: #4B5B73;
+  font-size: 25px;
+  position: relative;
+  margin: auto;
+  padding-top: 30px;
 }
 
 .row::after {
@@ -356,31 +361,28 @@ textarea {
   resize: none;
 }
 
-/*
-.reg {
-  border: none;
-  color: #4B5B73;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-
-.reg:hover {
-  background-color: #008CBA;
-  color: white;
-}
-*/
-
 .my-image {
-  
   height: 250px;
   width: 250px;
-  margin: 15px;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.show-recipe {
+  width: 320px;
+  height: 320px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.recipe-title {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 20px;
+  border-bottom: 1px solid #4B5B73;
 }
 
 /* LIKE-button */

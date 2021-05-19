@@ -280,15 +280,13 @@ På inläggen skall användaren kunna se antalet gillningar
 @route('/like_recipe/<recipeid>', method = 'POST') #TODO
 def like_recipe(session, recipeid):
     """
-    Tabell som har koll på användare och recept, alltså en n-m-tabell. 
-    När användaren gillar ett recept läggs en post i tabellen.
-    En ändpunkt som tar en parameter: recept. Användaren via session
+    
     """
     like_button = getattr(request.forms, 'like_button')
-
-    sql = 'INSERT INTO Post_likes(recipeid, email, liked) VALUES (%s, %s, %s)'
+    
+    sql = 
     val = (recipeid, session['username'], true)
-    cursor.execute(sql, val)
+    cursor.execute('INSERT INTO Post_likes(recipeid, email, liked) VALUES (%s, session[username], %s)')
     foodnestdb.commit()
 
     return redirect('recipe')

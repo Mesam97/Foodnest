@@ -26,4 +26,3 @@ $('.bi').click(function(){
   })
 
 });
-

@@ -1,5 +1,5 @@
 import os
-from bottle import route, run, template, request, static_file, redirect, error, app
+from bottle import route, run, template, request, static_file, redirect, app
 import bottle_session
 import re
 import mysql.connector

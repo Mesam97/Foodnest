@@ -257,6 +257,7 @@ def save_to_database(session):
     sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email, Categories) VALUES (%s, %s, %s, %s, %s, %s, %s)'
     val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'], category)
     cursor.execute(sql, val)
+    cursor.execute(f"INSERT INTO Tags(Categories) VALUES('Category')")
     foodnestdb.commit()
 
     return redirect('posts')

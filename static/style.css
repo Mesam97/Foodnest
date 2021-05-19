@@ -296,6 +296,7 @@ footer a {
   height: 250px;
   width: 250px;
   margin: 15px;
+  border-radius: 5px;
 }
 
 .container {
@@ -361,6 +362,7 @@ textarea {
   resize: none;
 }
 
+/*Styling för Recept-sidan */
 .my-image {
   height: 250px;
   width: 250px;
@@ -407,5 +409,23 @@ textarea {
 
 .bi-suit-heart-fill {
   color: #DC143C;
+}
+
+#like-form {
+  margin: 0;
+  padding: 0;
+}
+
+.overlay-like {
+  position: absolute;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  margin: 15px;
+  transition: .5s ease;
+  background-color: rgba(255,255,255, 0.8);
 }
 /* Slut LIKE-button */ 

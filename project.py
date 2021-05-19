@@ -284,7 +284,7 @@ def like_recipe(session, recipeid):
     like_button = getattr(request.forms, 'like_button')
 
     sql = 'INSERT INTO Post_likes(recipeid, email, liked) VALUES (%s, %s, %s)'
-    val = (recipeid, session['username'], true)
+    val = (recipeid, session['username'], True)
     cursor.execute(sql, val)
     foodnestdb.commit()
 

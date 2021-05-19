@@ -16,13 +16,24 @@ console.log("hej")
 
 // LIKE-function 
 $('.bi').click(function(){
-    if ($('.bi').hasClass('bi bi-suit-heart')){
-      $('.bi').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill')
+  console.log($('.bi').hasClass('bi bi-suit-heart'))
+    if ($('.bi').hasClass('bi-suit-heart')){
+      
+      window.location.href=('?liked=True')
+     
     }                 
 
     else {
-      $('.bi').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart')
+      
+      window.location.href=('?liked=False')
       }
   })
 
-});
+  let liked = $('.bi').attr('liked')
+  
+    if (liked==='True') $('.bi').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill')
+
+    else {
+      $('.bi').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart')
+      
+    }

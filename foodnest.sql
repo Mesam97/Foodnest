@@ -38,8 +38,7 @@ Likeid INT AUTO_INCREMENT,
 Recipeid INT,
 Email VARCHAR(60), -- Användare	
 Liked BOOLEAN,
-Likes INT,
-PRIMARY KEY(Likeid),
+PRIMARY KEY(Email, Recipeid),
 FOREIGN KEY(Email) REFERENCES Account(Email),
 FOREIGN KEY(Recipeid) REFERENCES Recipes(Recipeid)
 );

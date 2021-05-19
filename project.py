@@ -223,19 +223,35 @@ def create_recipe(session):
 
 
 @route('/recipe/<id>') 
-def show_recipe(id):
+def show_recipe(id, session):
     """ 
     Webbsida för recept:
     Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
     """
     cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
+    try: 
+        cursor.execute('SELECT Liked FROM Post_likes WHERE Recipeid = ' + id + ' and Email = ' + session['username'])
 
+    except:
+        liked = False
+
+    if request.query:
+        liked = request.query['liked']
+        try:
+            cursor.execute(f'INSERT INTO Post_likes(recipeid, email, liked) VALUES ({id}, "{session["username"]}", {liked})')
+            print(liked)
+            foodnestdb.commit()
+        except:
+            cursor.execute(f'UPDATE Post_likes SET  Liked = {liked} WHERE Recipeid = {id} and Email =  "{session["username"]}"')
+            foodnestdb.commit()
+        
+    
     #Lexikon
     for r in recipes:
         recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3], 'portion': r[4], 'id': id}
  
-    return template('recipe', recipes = recipe_dict)
+    return template('recipe', recipes = recipe_dict, liked = liked)
 
 @route('/save_recipe', method = 'POST')
 def save_to_database(session):
@@ -277,6 +293,7 @@ Man skall kunna ogilla ett gillat recept
 Användare skall kunna se sina gillade recept
 På inläggen skall användaren kunna se antalet gillningar
 '''
+'''
 @route('/like_recipe/<recipeid>', method = 'POST') #TODO
 def like_recipe(session, recipeid):
     """
@@ -294,7 +311,7 @@ def like_recipe(session, recipeid):
 def count_likes(): #TODO
     # likes = (select count(*) from post_likes where recipeid = ' + recipeid)
     pass
-
+'''
 @route('/static/<filename>')
 def static_files(filename):
     return static_file(filename, root = 'static')

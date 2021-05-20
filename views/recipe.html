@@ -65,16 +65,10 @@ FR4.0(M) Man ska kunna gilla ett recept
 -->
       <main>
         <article>
-          <h1 class="recipe-title">{{recipes['title']}}</h1>
-          <div class="overlay-like">
-            <img src="{{recipes['picture']}}" alt="Mat" class="show-recipe"/>
-            <!-- LIKE-button -->
-            <form action="/like_recipe" method="POST" id="like-form">
-                <button type="submit" name="like_button" class="btn" value="{{recipes['id']}}">
-                  <i class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
-                </button>
-            </form>
-          </div>
+          <img src="{{recipes['picture']}}" alt="Mat"/>
+          <!-- LIKE-button -->
+          <i liked={{liked}} class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
+             
           <!-- Slut LIKE-button -->      
           
           <div id="recipe">

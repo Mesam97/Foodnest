@@ -60,6 +60,13 @@ FR4.0(M) Man ska kunna gilla ett recept
             <p>{{recipes['portion']}}</p><br/>
           </div>
         </article>
+        <article>
+          <form action="/save_comment/{{recipes['id']}}" method="POST">
+            <label for="comment">Lämna gärna en kommentar</label><br>
+            <textarea name="comment" id="comment" cols="45" rows="5"></textarea><br>
+            <input type="submit" value="Skicka" id="{{recipes['id']}}"/>
+          </form>
+        </article>
       </main>
 
       <footer>

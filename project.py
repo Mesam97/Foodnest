@@ -218,7 +218,7 @@ def create_recipe(session):
 def show_recipe(id):
     """ 
     Webbsida för recept:
-    Hämtar in titel, ingredienser och instruktioner om respektive recept från databasen
+    Hämtar in titel, ingredienser, instruktioner, bild och portioner om respektive recept från databasen
     """
 
     cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
@@ -229,7 +229,17 @@ def show_recipe(id):
         recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3], 'portion': r[4], 'id': id}
  
     return template('recipe', recipes = recipe_dict)
-    
+
+@route('/save_comment/<id>', method = 'POST')
+def save_comment(id):
+    comment = getattr(request.forms, 'comment')
+
+    sql = 'INSERT INTO Comments(Recipeid, Sentence) VALUES (%s, %s)'
+    val = (id, comment)
+    cursor.execute(sql, val)
+    foodnestdb.commit()
+
+    return redirect('recipe', recipes = recipe_dict)
 
 @route('/save_recipe', method = 'POST')
 def save_to_database(session):

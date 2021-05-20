@@ -21,6 +21,8 @@ body {
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -37,17 +39,95 @@ header > a > img {
   margin: auto;
 }
 
-nav {
-  grid-area: nav;
-  padding: 10px;
-  left: 0;
-  right: 0;
-  margin: 2px 50px;
-  text-align: left; 
-  margin: 0;
-  overflow: hidden;
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
 }
 
+.logo {
+  font-size: 1.5rem;
+  margin: .5rem;
+}
+
+.navbar-links ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-links li {
+  list-style: none;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+  display: block;
+}
+
+.navbar-links li:hover {
+  background-color: #555;
+}
+
+.hamburger {
+  position: absolute;
+  top: .75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.hamburger .line {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+/* SLUT Navbar */
+
+/* Mobil-läge */
+@media (max-width: 700px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-links li {
+    text-align: center;
+  }
+
+  .navbar-links li a {
+    padding: .5rem 1rem;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+}
+
+/* GAMLA nav
 nav a {
   color: #4B5B73;
   text-align: center;
@@ -69,6 +149,7 @@ nav > .log-out {
   margin: 0 15px 0 0;
   padding: 10px 16px;
 }
+*/
 
 a {
   text-decoration: none;

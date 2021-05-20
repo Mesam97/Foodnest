@@ -26,4 +26,13 @@ $('.bi').click(function(){
   })
 
 ;
+
+// Navbar
+const hamburger = document.getElementsByClassName('hamburger')[0]
+const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+hamburger.addEventListener('click', () => {
+    navbarLinks.classList.toggle('active')
+})
+
 //KD3

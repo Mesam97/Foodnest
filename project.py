@@ -17,7 +17,10 @@ db_name = config['DATABASE']['Database']
 db_passwrd = config['DATABASE']['Password']
 db_server = config['DATABASE']['Server']
 
-foodnestdb = mysql.connector.connect(host=db_server,user=db_user,password=db_passwrd,database=db_name)
+foodnestdb = mysql.connector.connect(host=db_server,
+                                    user=db_user,
+                                    password=db_passwrd,
+                                    database=db_name)
 
 cursor = foodnestdb.cursor()
 
@@ -106,6 +109,7 @@ def new_member():
         val = (email, first_name, last_name, birthday, password)
         cursor.execute(sql, val)
         foodnestdb.commit()
+        print(foodnestdb)
         return template('posts', recipes = recipe_list)
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')

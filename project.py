@@ -12,6 +12,7 @@ app.install(plugin)
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+
 db_user = config['DATABASE']['User']
 db_name = config['DATABASE']['Database']
 db_passwrd = config['DATABASE']['Password']
@@ -109,7 +110,7 @@ def new_member():
         val = (email, first_name, last_name, birthday, password)
         cursor.execute(sql, val)
         foodnestdb.commit()
-        print(foodnestdb)
+        
         return template('posts', recipes = recipe_list)
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
@@ -261,7 +262,7 @@ def save_comment(id):
     cursor.execute(sql, val)
     foodnestdb.commit()
 
-    return redirect('recipe', recipes = recipe_dict)
+    return redirect('/recipe/' + id)
 
 @route('/save_recipe', method = 'POST')
 def save_to_database(session):

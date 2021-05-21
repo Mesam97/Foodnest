@@ -285,10 +285,12 @@ def save_to_database(session):
 
     picture.save(save_path)
 
-    sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email, Categories) VALUES (%s, %s, %s, %s, %s, %s, %s)'
-    val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'], category)
+    sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email) VALUES (%s, %s, %s, %s, %s, %s)'
+    val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
     cursor.execute(sql, val)
-    cursor.execute(f"INSERT INTO Tags(Categories) VALUES('Category')")
+    cursor.execute(f"select Recipeid from Recipes where Title= '{title}'")
+    id= cursor.fetchall()
+    cursor.execute('INSERT INTO Tags(Categories, Recipeid) VALUES (%s,%s)' % category, id)
     foodnestdb.commit()
 
     return redirect('posts')

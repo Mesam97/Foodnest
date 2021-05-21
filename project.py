@@ -239,7 +239,7 @@ def save_comment(id):
     cursor.execute(sql, val)
     foodnestdb.commit()
 
-    return redirect('recipe', recipes = recipe_dict)
+    return redirect('/recipe/' + id)
 
 @route('/save_recipe', method = 'POST')
 def save_to_database(session):

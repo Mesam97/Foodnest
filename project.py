@@ -231,21 +231,26 @@ def show_recipe(id, session):
     """
     cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
-    try: 
-        cursor.execute('SELECT Liked FROM Post_likes WHERE Recipeid = ' + id + ' and Email = ' + session['username'])
-
-    except:
-        liked = False
+    
 
     if request.query:
         liked = request.query['liked']
+        print(liked)
         try:
-            cursor.execute(f'INSERT INTO Post_likes(recipeid, email, liked) VALUES ({id}, "{session["username"]}", {liked})')
-            print(liked)
-            foodnestdb.commit()
+            if liked == '1':
+                cursor.execute(f'INSERT INTO Post_likes(recipeid, email) VALUES ({id}, "{session["username"]}")')
+                foodnestdb.commit()
+            else:
+                cursor.execute(f'DELETE FROM Post_likes WHERE Recipeid = {id} and Email =  "{session["username"]}"')              
+                foodnestdb.commit()
         except:
-            cursor.execute(f'UPDATE Post_likes SET  Liked = {liked} WHERE Recipeid = {id} and Email =  "{session["username"]}"')
-            foodnestdb.commit()
+            pass
+    else:
+        try: 
+            cursor.execute('SELECT COUNT(*) FROM Post_likes WHERE Recipeid = ' + id + ' and Email = ' + session['username'])
+
+        except:
+            pass
     
     #Lexikon
     for r in recipes:

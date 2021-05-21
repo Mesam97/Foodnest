@@ -288,4 +288,7 @@ $RECYCLE.BIN/
 
 config.ini
 
+.vscode
+.json
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,visualstudiocode,windows,flask

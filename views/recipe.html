@@ -63,11 +63,12 @@ FR4.0(M) Man ska kunna gilla ett recept
 -->
       <main>
         <article>
-          <img src="{{recipes['picture']}}" alt="Mat"/>
+          <h1 class="recipe-title">{{recipes['title']}}</h1>
+          <div id="recipe-float">
+          <img src="{{recipes['picture']}}" alt="Mat" class="recipe-img"/>
           <!-- LIKE-button -->
           <i liked={{liked}} class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
-             
-          <!-- Slut LIKE-button -->      
+          <!-- Slut LIKE-button -->
           
           <div id="recipe">
             <h4>Ingredienser:</h4>
@@ -77,7 +78,10 @@ FR4.0(M) Man ska kunna gilla ett recept
             <h4>Antal Portioner:</h4>
             <p>{{recipes['portion']}}</p><br/>
           </div>
+        </div>
+      </article>
 
+        <div id="comment-float">
           <div id="comment">
             <h4>Kommentarer:</h4>
             % for c in comments:
@@ -85,15 +89,14 @@ FR4.0(M) Man ska kunna gilla ett recept
               <p>{{c['sentence']}}</p>
             % end
           </div>
-
-        </article>
         <article>
-          <form action="/save_comment/{{recipes['id']}}" method="POST">
+          <form action="/save_comment/{{recipes['id']}}" method="POST" id="comment-form">
             <label for="comment">Lämna gärna en kommentar</label><br>
             <textarea name="comment" id="comment" cols="45" rows="5"></textarea><br>
             <input type="submit" value="Skicka" id="{{recipes['id']}}"/>
           </form>
         </article>
+      </div>
       </main>
 
       <footer>

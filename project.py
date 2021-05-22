@@ -223,7 +223,7 @@ def create_recipe(session):
     return template('create_recipe')
 
 
-@route('/recipe/<id>') 
+@route('/recipe/<id>')
 def show_recipe(id, session):
     """ 
     Webbsida för recept:
@@ -232,6 +232,11 @@ def show_recipe(id, session):
     cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
     
+    #Lexikon
+    for r in recipes:
+        recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3], 'portion': r[4], 'id': id}
+
+    liked = 0
 
     if request.query:
         liked = request.query['liked']
@@ -245,18 +250,9 @@ def show_recipe(id, session):
                 foodnestdb.commit()
         except:
             pass
-    else:
-        try: 
-            cursor.execute('SELECT COUNT(*) FROM Post_likes WHERE Recipeid = ' + id + ' and Email = ' + session['username'])
-
-        except:
-            pass
-    
-    #Lexikon
-    for r in recipes:
-        recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3], 'portion': r[4], 'id': id}
- 
+        
     return template('recipe', recipes = recipe_dict, liked = liked)
+
 
 @route('/save_comment/<id>', method = 'POST')
 def save_comment(id):

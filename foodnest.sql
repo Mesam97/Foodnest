@@ -27,8 +27,10 @@ CREATE TABLE Comments(
 Commentid INT NOT NULL AUTO_INCREMENT,
 Recipeid INT NOT NULL,
 Sentence VARCHAR(100) NOT NULL,
+Email Varchar(60) NOT NULL,
 PRIMARY KEY (Commentid),
 FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
+FOREIGN KEY (Email) REFERENCES Account (Email)
 );
 
 CREATE TABLE Post_likes(

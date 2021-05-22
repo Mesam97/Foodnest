@@ -227,14 +227,23 @@ def create_recipe(session):
 def show_recipe(id, session):
     """ 
     Webbsida för recept:
-    Hämtar in titel, ingredienser, instruktioner, bild och portioner om respektive recept från databasen
+    Hämtar in titel, ingredienser, instruktioner, bild, portioner och kommentarer om respektive recept från databasen
     """
     cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
+
+    cursor.execute('SELECT Email, Sentence FROM Comments WHERE Recipeid = ' + id)
+    comments = cursor.fetchall()
+
+    comments_list = []
     
     #Lexikon
     for r in recipes:
         recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3], 'portion': r[4], 'id': id}
+    
+    for c in comments:
+        comments_dict = {'email': c[0], 'sentence': c[1], 'id': id}
+        comments_list.append(comments_dict)
 
     liked = 0
 
@@ -251,15 +260,15 @@ def show_recipe(id, session):
         except:
             pass
         
-    return template('recipe', recipes = recipe_dict, liked = liked)
+    return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked)
 
 
 @route('/save_comment/<id>', method = 'POST')
-def save_comment(id):
+def save_comment(session, id):
     comment = getattr(request.forms, 'comment')
 
-    sql = 'INSERT INTO Comments(Recipeid, Sentence) VALUES (%s, %s)'
-    val = (id, comment)
+    sql = 'INSERT INTO Comments(Recipeid, Sentence, Email) VALUES (%s, %s, %s)'
+    val = (id, comment, session['username'])
     cursor.execute(sql, val)
     foodnestdb.commit()
 

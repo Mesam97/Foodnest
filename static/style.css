@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: #FFF;
+  background-color: rgb(248, 248, 248);
   color: #4B5B73;
   text-align: center;
   font-family: "Raleway", sans-serif;
@@ -30,7 +30,8 @@ header {
   float: left;
   width: 80%;
   height: 100%;
-  margin: 5px auto 5px auto;
+  margin: 0px auto 5px auto;
+  margin-top: -5px;
 }
 
 header > a > img {
@@ -44,8 +45,7 @@ header > a > img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: white;
+  background-color: rgb(248, 248, 248);
 }
 
 #foodnest-logo {
@@ -68,15 +68,16 @@ header > a > img {
   list-style: none;
 }
 
-.navbar-links li a {
-  text-decoration: none;
-  color: white;
-  padding: 1rem;
-  display: block;
+.navbar-links a:hover {
+  background-color: rgb(230, 230, 230);
+  border-radius: 15px;
 }
 
-.navbar-links li:hover {
-  background-color: #555;
+.navbar-links li a {
+  text-decoration: none;
+  color: #4B5B73;
+  padding: 10px;
+  display: block;
 }
 
 .hamburger {
@@ -93,9 +94,20 @@ header > a > img {
 .hamburger .line {
   height: 3px;
   width: 100%;
-  background-color: white;
+  background-color: #4B5B73;
   border-radius: 10px;
 }
+
+li a.active {
+  color: #FFF;
+  background-color: #008CBA;
+  border-radius: 15px;
+}
+
+li .active:hover {
+  color: #FFF;
+}
+
 /* SLUT Navbar */
 
 /* Mobil-läge */
@@ -339,6 +351,7 @@ select {
   width: 100%;
   padding: 0px;
   margin: 0px;
+  margin-top: 20px;
 }
 
 #sort {
@@ -366,12 +379,13 @@ footer {
   text-align: center;
   margin: auto;
   padding: 5px 0px 0px 0px;
-  color: #FFF;
-  background-color: #6bb2ca;
+  color: #4B5B73;
+  background-color: rgb(248, 248, 248);
+  border-top: 0.5px solid #4B5B73;
 }
 
 footer a {
-  color: #FFF;
+  color: #4B5B73;
 }
 
 /* Styling för hur bilder visas på utforska */

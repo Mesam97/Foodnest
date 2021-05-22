@@ -19,13 +19,13 @@
   <body>
     <div id="wrapper">
       <header>
-        <a href="/posts">
-          <img src="static/Logotyp_v1_ny.png" alt="Foodnest logo"/>
-        </a>
+        
       </header>
       
       <nav class="navbar">
-        <div class="logo">Foodnest</div>
+        <div class="logo"><a href="/posts">
+          <img src="static/Logotyp_v1_ny.png" id="foodnest-logo" alt="Foodnest logo"/>
+        </a></div>
         <a href="#" class="hamburger">
           <span class="line"></span>
           <span class="line"></span>
@@ -68,12 +68,12 @@
         % for r in recipes:
         <div class="row">
           <div class="container">
+            <a href="/recipe/{{r['id']}}">
             <img class="image" src="{{r['img']}}" alt="Bild på recept"/>
-            <div class="overlay">
-              <a href="/recipe/{{r['id']}}">
-                <div class="text">{{r['title']}}</div>
-              </a>
-            </div>
+              <div class="overlay">
+                  <div class="text">{{r['title']}}</div>
+              </div>
+            </a>
           </div>
         </div>
         % end

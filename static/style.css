@@ -48,6 +48,11 @@ header > a > img {
   color: white;
 }
 
+#foodnest-logo {
+  width: 100px;
+  height: 80px;
+}
+
 .logo {
   font-size: 1.5rem;
   margin: .5rem;
@@ -378,8 +383,9 @@ footer a {
   height: 250px;
   width: 250px;
   margin: 15px;
-  border-radius: 5px;
+  border-radius: 20px;
   float: left;
+  position: relative;
 }
 
 .container {
@@ -391,17 +397,18 @@ footer a {
   right: 0;
   height: 250px;
   margin: 15px;
+  margin-left: 0;
   float: left;
 }
 
 .overlay {
   position: absolute;
-  width: 250px;
+  width: 275px;
+  height: 275px;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 250px;
   margin: 15px;
   opacity: 0;
   transition: .5s ease;
@@ -416,7 +423,7 @@ footer a {
   color: #4B5B73;
   font-size: 25px;
   position: relative;
-  margin-top: 90px;
+  margin-top: 130px;
 }
 
 .text-title {
@@ -430,6 +437,18 @@ footer a {
 .row::after {
   clear: both;
   display: table;
+}
+
+.row {
+  position: relative;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  margin: 15px;
+  float: left;
 }
 
 .bi {

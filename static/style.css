@@ -379,6 +379,7 @@ footer a {
   width: 250px;
   margin: 15px;
   border-radius: 5px;
+  float: left;
 }
 
 .container {

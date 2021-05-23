@@ -245,11 +245,10 @@ def show_recipe(id, session):
         comments_dict = {'email': c[0], 'sentence': c[1], 'id': id}
         comments_list.append(comments_dict)
 
+    # För att man ska kunna gilla/ogilla ett recept. Kopplat till JS
     liked = 0
-
     if request.query:
         liked = request.query['liked']
-        print(liked)
         try:
             if liked == '1':
                 cursor.execute(f'INSERT INTO Post_likes(recipeid, email) VALUES ({id}, "{session["username"]}")')
@@ -273,6 +272,7 @@ def save_comment(session, id):
     foodnestdb.commit()
 
     return redirect('/recipe/' + id)
+
 
 @route('/save_recipe', method = 'POST')
 def save_to_database(session):
@@ -305,40 +305,14 @@ def save_to_database(session):
 
     return redirect('posts')
 
+
 @route('/log_out')
 def logout(session):
     session['username'] = ''
 
     return redirect('/')
 
-'''
-Man skall kunna gilla ett recept
-Man skall kunna ogilla ett gillat recept
-Användare skall kunna se sina gillade recept
-På inläggen skall användaren kunna se antalet gillningar
-'''
-'''
-@route('/like_recipe/<recipeid>', method = 'POST') #TODO
-def like_recipe(session, recipeid):
-    """
-    
-    """
-    like_button = getattr(request.forms, 'like_button')
-    
-    sql = 
-    val = (recipeid, session['username'], true)
-    cursor.execute('INSERT INTO Post_likes(recipeid, email, liked) VALUES (%s, session[username], %s)')
-    foodnestdb.commit()
 
-    return redirect('recipe')
-
-def unlike(): #TODO
-    pass
-
-def count_likes(): #TODO
-    # likes = (select count(*) from post_likes where recipeid = ' + recipeid)
-    pass
-'''
 @route('/static/<filename>')
 def static_files(filename):
     return static_file(filename, root = 'static')
@@ -354,5 +328,5 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 
-run(host='127.0.0.1', port=8030)
+run(host='127.0.0.1', port=8070, debug=True, reloader=True)
 #KD3

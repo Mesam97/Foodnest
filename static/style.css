@@ -49,12 +49,11 @@ header > a > img {
 }
 
 #foodnest-logo {
-  width: 100px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
 }
 
 .logo {
-  font-size: 1.5rem;
   margin: .5rem;
 }
 

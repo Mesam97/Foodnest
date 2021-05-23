@@ -232,7 +232,7 @@ def show_recipe(id, session):
     cursor.execute('SELECT Picture, Title, Ingredients, Instructions, Portion FROM Recipes WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
 
-    cursor.execute('SELECT Email, Sentence FROM Comments WHERE Recipeid = ' + id)
+    cursor.execute('SELECT Account.First_name, Comments.Sentence FROM Account INNER JOIN Comments ON Account.Email = Comments.Email WHERE Recipeid = ' + id)
     comments = cursor.fetchall()
 
     comments_list = []
@@ -242,7 +242,7 @@ def show_recipe(id, session):
         recipe_dict = {'picture': r[0], 'title': r[1], 'ingredients': r[2], 'instructions': r[3], 'portion': r[4], 'id': id}
     
     for c in comments:
-        comments_dict = {'email': c[0], 'sentence': c[1], 'id': id}
+        comments_dict = {'first_name': c[0], 'sentence': c[1], 'id': id}
         comments_list.append(comments_dict)
 
     # För att man ska kunna gilla/ogilla ett recept. Kopplat till JS
@@ -328,5 +328,5 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 
-run(host='127.0.0.1', port=8070, debug=True, reloader=True)
+run(host='127.0.0.1', port=8030, debug = True, reloader = True)
 #KD3

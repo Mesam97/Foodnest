@@ -124,9 +124,9 @@ def about():
 
 @route('/profile')
 def profile(session, error= ""):
-    """ Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor """ 
-
-    print(session)
+    """
+    Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor 
+    """ 
     cursor.execute(f"SELECT Picture, Recipeid, Title FROM Recipes WHERE Email = '{session['username']}'")
     recipes = cursor.fetchall()
     recipe_list = []
@@ -141,7 +141,6 @@ def profile(session, error= ""):
         error = getattr(request.query, 'error')
 
     return template('profile', recipes = recipe_list, error = error)
-
 
 
 @route('/change_password', method = 'POST')
@@ -235,21 +234,29 @@ def show_recipe(id, session):
                    'on Account.Email = Recipes.Email WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
 
+    # För att hämta info från databasen om ett viss recept
+    for r in recipes:
+        recipe_dict = {'first_name': r[0], 'picture': r[1], 'title': r[2], 'ingredients': r[3], 'instructions': r[4], 'portion': r[5], 'id': id}
+
     cursor.execute('SELECT Account.First_name, Comments.Sentence '
                    'FROM Account INNER JOIN Comments '
                    'ON Account.Email = Comments.Email WHERE Recipeid = ' + id)
     comments = cursor.fetchall()
 
     comments_list = []
-    
-    #Lexikon
-    for r in recipes:
-        recipe_dict = {'first_name': r[0], 'picture': r[1], 'title': r[2], 'ingredients': r[3], 'instructions': r[4], 'portion': r[5], 'id': id}
-    
+
+    # För att hämta kommentarer från databasen om ett viss recept
     for c in comments:
         comments_dict = {'first_name': c[0], 'sentence': c[1], 'id': id}
         comments_list.append(comments_dict)
+    
+    # Så att man kan se antal gillningar på ett specifikt recept
+    cursor.execute('select count(*) from post_likes where recipeid = ' + id)
+    total_likes = cursor.fetchall()
 
+    for t in total_likes:
+        total_dict = {'likes': t[0]}
+    
     # För att man ska kunna gilla/ogilla ett recept. Kopplat till JS
     liked = 0
     if request.query:
@@ -263,8 +270,24 @@ def show_recipe(id, session):
                 foodnestdb.commit()
         except:
             pass
-        
-    return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked)
+    
+    return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked, total_likes = total_dict)
+
+@route('/likes')
+def liked_recipes(session):
+    # bild, titel, email 
+    # tabell: likes + recipes
+
+    cursor.execute(f"SELECT L.Recipeid, R.Picture, R.Title FROM Recipes AS R INNER JOIN Post_likes AS L ON R.Recipeid = L.Recipeid WHERE L.Email = '{session['username']}'")
+    liked_recipes = cursor.fetchall()
+
+    liked_list = []
+
+    for l in liked_recipes:
+        liked_dict = {'id': l[0], 'image': l[1], 'title': l[2]}
+        liked_list.append(liked_dict)
+
+    return template('likes', liked = liked_list)
 
 
 @route('/save_comment/<id>', method = 'POST')

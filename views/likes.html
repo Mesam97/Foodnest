@@ -26,6 +26,12 @@
 
       <main>
         <h3>Mina gillade inlägg</h3>
+        % for l in liked:
+          <a href="/recipe/{{l['id']}}">
+            <div class="text-title">{{l['title']}}</div>
+            <img class="my-image" src="{{l['image']}}"/>
+          </a>
+        % end
       </main>
 
       <footer>

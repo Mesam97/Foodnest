@@ -69,19 +69,14 @@ def check_email(email):
 
     if(len(email)<8):
         return False
-
     elif not re.search('[a-z]', email):
         return False
-
     elif not re.search('[@]', email):
         return False
-
     elif not re.search('[.]', email):
         return False
-
     elif re.search('\s', email):
         return False
-
     else:
         return True
 
@@ -90,19 +85,14 @@ def check_pass(password):
  
     if (len(password)<6):
         return False
-
     elif not re.search('[a-z]', password):
         return False
-
     elif not re.search('[A-Z]', password):
         return False
-
     elif not re.search('[0-9]', password):
         return False
-
     elif re.search('\s', password):
         return False
-
     else:
         return True
 
@@ -117,7 +107,7 @@ def new_member():
     recipe_list = []
     
     # Skapar felmeddelande om lösenordet eller epost är inte följer kraven
-    if check_pass(password) and check_email(email):
+    if check_pass(password) and check_email(email) == True:
         sql = 'INSERT INTO Account(email, first_name, last_name, birthday, password) VALUES (%s, %s, %s, %s, %s)'
         values = (email, first_name, last_name, birthday, password)
         cursor.execute(sql, values)

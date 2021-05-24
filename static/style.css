@@ -25,6 +25,12 @@ body {
   padding: 0;
 }
 
+#index-header {
+  grid-area: header;
+  width: 100%;
+  margin-top: -5px;
+}
+
 header {
   grid-area: header;
   float: left;

@@ -569,11 +569,13 @@ textarea {
   padding-top: 30px;
   margin-bottom: 30px;
   background-color: rgb(247, 247, 247);
+  font-weight: bold;
 }
 
 #comment-pic {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 #comment-form > textarea {

@@ -49,8 +49,7 @@ header > a > img {
 }
 
 #foodnest-logo {
-  width: 200px;
-  height: 200px;
+  height: 100%;
 }
 
 .logo {

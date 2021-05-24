@@ -387,5 +387,5 @@ def static_profile(filename):
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
 
-
-run(host='127.0.0.1', port=8060, debug=True, reloader=True)
+run(host='127.0.0.1', port=8030, debug=True, reloader=True)
+#KD3

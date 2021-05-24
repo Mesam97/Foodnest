@@ -250,7 +250,7 @@ def show_recipe(id, session):
         comments_dict = {'first_name': c[0], 'sentence': c[1], 'id': id}
         comments_list.append(comments_dict)
     
-    # Så att man kan se antal gillningar på ett specifikt recept
+    # Så att man kan se antalet gillningar på ett specifikt recept
     cursor.execute('select count(*) from Post_likes where recipeid = ' + id)
     total_likes = cursor.fetchall()
 
@@ -275,9 +275,10 @@ def show_recipe(id, session):
 
 @route('/likes')
 def liked_recipes(session):
-    # bild, titel, email 
-    # tabell: likes + recipes
-
+    """
+    Selectar och JOINAR data från tabellerna Recipes och Post_likes. 
+    Väljer ut data som matchar den inloggade användarens email och det han/hon gillat.
+    """
     cursor.execute(f"SELECT L.Recipeid, R.Picture, R.Title FROM Recipes AS R INNER JOIN Post_likes AS L ON R.Recipeid = L.Recipeid WHERE L.Email = '{session['username']}'")
     liked_recipes = cursor.fetchall()
 
@@ -336,6 +337,7 @@ def save_to_database(session):
 
 @route('/log_out')
 def logout(session):
+    """ Tömmer den inloggade användaren m.h.a. session """
     session['username'] = ''
 
     return redirect('/')

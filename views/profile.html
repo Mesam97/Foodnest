@@ -59,9 +59,9 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
       <main>
         <h1>Min profil</h1>
         <div id="section_nav">
+          <a class="active" href="/profile">Mina inlägg</a>
           <a href="/likes">Mina gillade recept</a>
-            <!--<h3 id="delete"> Ta bort inlägg </h3>-->
-            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Byt lösenord</button>
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Byt lösenord</button>
         
         <!--Denna delen är hämtad ifrån ett ramverk och visar en pop-up ruta
         där användaren kan skriva in sitt gamla och nya lösenord -->
@@ -95,8 +95,6 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
                 </form>
               </div>
 
-
-
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stäng</button>
               </div>
@@ -104,12 +102,7 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
           </div>
         </div>
 
-        <div id="section_nav">
-          <a href="/likes">Se gillade recept</a>
-            <!--<h3 id="delete"> Ta bort inlägg </h3>-->
-        </div>
         <div id="posts"> 
-          <h3 id="my-recipes">Mina inlägg</h3>
           % for r in recipes:
           <a href="/recipe/{{r['id']}}">
             <div class="text-title">{{r['title']}}</div>

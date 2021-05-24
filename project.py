@@ -123,7 +123,7 @@ def about():
 
 
 @route('/profile')
-def profile(session, error= ""):
+def profile(session, error = ""):
     """
     Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor 
     """ 
@@ -363,5 +363,5 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 
-run(host='127.0.0.1', port=8060, debug=True, reloader=True)
+run(host='127.0.0.1', port=8030, debug=True, reloader=True)
 #KD3

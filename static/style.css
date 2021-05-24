@@ -317,7 +317,7 @@ form {
   color: #000000;
 }
 
-#submit {
+.submit {
   width: 40%;
   padding: 10px 30px;
   cursor: pointer;
@@ -327,14 +327,14 @@ form {
   border: none;
   outline: none;
   border-radius: 30px;
-  color: #4B5B73;
+  color: #FFF;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
 }
 
-#submit:hover {
-  color: #FFF;
+.submit:hover {
+  background: linear-gradient(to left, #B0E0E6, #008CBA);
 }
 
 ::placeholder {
@@ -517,18 +517,43 @@ textarea {
   border-bottom: 1px solid #4B5B73;
 }
 
-#recipe-float {
+#recipe-box {
   width: 50%;
   float: left;
+  margin-left: 70px;
 }
 
 #comment-form {
   width: 100%;
+  margin: 5px;
 }
 
-#comment-float {
-  width: 50%;
+#comment-box {
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0px 0px 20px 1px rgb(235, 235, 235);
+  border-radius: 20px;
+  width: 40%;
   float: right;
+  margin-right: 70px;
+  margin-top: 20px;
+}
+
+#comment-title {
+  height: 80px;
+  padding-top: 30px;
+  margin-bottom: 30px;
+  background-color: rgb(247, 247, 247);
+}
+
+#comment-pic {
+  width: 10px;
+  height: 10px;
+}
+
+#comment-form > textarea {
+  border: 1px solid #008CBA;
+  background-color: rgb(247, 247, 247);
+  border-radius: 10px;
 }
 
 /* LIKE-button */

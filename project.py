@@ -156,12 +156,14 @@ def change_password(session):
         return redirect('/profile?error=Felaktigt lösenord')
 
 
-@route('/remove/<id>')
+@route('/remove/<id>') #TODO
 def remove(session, id):
-    cursor.execute('DELETE FROM Recipes WHERE Recipeid = ' + id)
+    """ Tar bort ett specifikt recept från databasen """
+    cursor.execute('DELETE FROM Recipes AND Post_likes WHERE Recipeid = ' + id)
     foodnestdb.commit()
 
-    return redirect('/profile')
+    #DELETE från flera tabeller
+    #cursor.execute("DELETE R, L FROM Recipes AS R INNER JOIN Post_likes AS L ON R.Recipeid = L.Recipeid WHERE L.Recipeid AND R.Recipeid = " + id)
 
 
 @route('/posts')
@@ -333,6 +335,9 @@ def save_to_database(session):
     foodnestdb.commit()
 
     return redirect('posts')
+
+# if filename in static == select filename FROM recipes
+# select picture from recipes WHERE recipeid = id 
 
 
 @route('/log_out')

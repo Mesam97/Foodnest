@@ -1,12 +1,3 @@
-<!--
-	FSR1.3.1(C) Varje steg ska en checkbox så man kan bocka av när det steget är färdigt 
-FSR1.5(M) Ett inlägg ska innehålla en tabell med ingredienser
-FSR1.6(C) Ett inlägg ska kunna läggas in i kategorier
-	FSR1.6.1(C) Man kan lägga in ett recept i flera kategorier
-	FSR2.1(M) Inlägget läggs in i flödet
-Kommentar för kodgranskning
--->
-
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -75,7 +66,6 @@ Kommentar för kodgranskning
               <option>9</option>
               <option>10</option>
             </select><br/>
-
             <fieldset>
               <legend>Ange vilka kategorier receptet ska ingå i:</legend>
               <div>
@@ -115,7 +105,6 @@ Kommentar för kodgranskning
                 <label for="vegan">Veganskt</label>
               </div>
             </fieldset> 
-
             <label for="picture"></label><br/>
             <input type="file" id="picture" name="picture" required/><br/>
             <input type="submit" value="Publicera" class="submit"/>
@@ -127,13 +116,5 @@ Kommentar för kodgranskning
       </footer>
     <!--WRAPPER SLUTAR-->
     </div>
-    <script>
-      function myFunction() {
-        var x = document.getElementById("checkbox").value;
-        document.getElementById("demo").innerHTML = x;
-        this.$.db.query( 'INSERT INTO Recipes ( Categories ) VALUES ( ? )', { values: [ demo ] } );
-      }
-      </script>
   </body>
 </html> 
-<!--KD3-->

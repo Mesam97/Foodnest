@@ -18,10 +18,10 @@ db_name = config['DATABASE']['Database']
 db_passwrd = config['DATABASE']['Password']
 db_server = config['DATABASE']['Server']
 
-foodnestdb = mysql.connector.connect(host=db_server,
-                                    user=db_user,
-                                    password=db_passwrd,
-                                    database=db_name)
+foodnestdb = mysql.connector.connect(host = db_server,
+                                    user = db_user,
+                                    password = db_passwrd,
+                                    database = db_name)
 
 cursor = foodnestdb.cursor()
 
@@ -42,7 +42,8 @@ def log_in(session):
     cursor.execute('SELECT * FROM Account WHERE Email = %s AND password = %s', (email, password))
     result = cursor.fetchall()
     if result:
-        session['username'] = email  
+        session['username'] = email 
+
     else:
         return redirect('/?error=Felaktigt lösenord eller e-postadress')
     
@@ -59,6 +60,7 @@ def create_account(error = ''):
     # Tar query från skapakonto.html och visar felmeddelande på samma sida
     if request.query:
         error = getattr(request.query, 'error')
+
     return template('create_account', error = error)
 
 
@@ -67,14 +69,19 @@ def check_email(email):
 
     if(len(email)<8):
         return False
+
     elif not re.search('[a-z]', email):
         return False
+
     elif not re.search('[@]', email):
         return False
+
     elif not re.search('[.]', email):
         return False
+
     elif re.search('\s', email):
         return False
+
     else:
         return True
 
@@ -83,14 +90,19 @@ def check_pass(password):
  
     if (len(password)<6):
         return False
+
     elif not re.search('[a-z]', password):
         return False
+
     elif not re.search('[A-Z]', password):
         return False
+
     elif not re.search('[0-9]', password):
         return False
+
     elif re.search('\s', password):
         return False
+
     else:
         return True
 
@@ -107,11 +119,11 @@ def new_member():
     # Skapar felmeddelande om lösenordet eller epost är inte följer kraven
     if check_pass(password) and check_email(email):
         sql = 'INSERT INTO Account(email, first_name, last_name, birthday, password) VALUES (%s, %s, %s, %s, %s)'
-        val = (email, first_name, last_name, birthday, password)
-        cursor.execute(sql, val)
+        values = (email, first_name, last_name, birthday, password)
+        cursor.execute(sql, values)
         foodnestdb.commit()
-        
         return template('posts', recipes = recipe_list)
+
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
 
@@ -119,11 +131,12 @@ def new_member():
 @route('/about')
 def about():
     """ Visar en sida om oss """
+
     return template('about')
 
 
 @route('/profile')
-def profile(session, error= ""):
+def profile(session, error = ''):
     """
     Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor 
     """ 
@@ -152,6 +165,7 @@ def change_password(session):
         cursor.execute(f"UPDATE Account SET Password = '{password}' WHERE Email = '{session['username']}'")
         foodnestdb.commit()
         return redirect('profile') 
+
     else:
         return redirect('/profile?error=Felaktigt lösenord')
 
@@ -159,11 +173,11 @@ def change_password(session):
 @route('/remove/<id>') #TODO
 def remove(session, id):
     """ Tar bort ett specifikt recept från databasen """
-    cursor.execute('DELETE FROM Recipes AND Post_likes WHERE Recipeid = ' + id)
+    cursor.execute('DELETE FROM Recipes AND Likes WHERE Recipeid = ' + id)
     foodnestdb.commit()
 
     #DELETE från flera tabeller
-    #cursor.execute("DELETE R, L FROM Recipes AS R INNER JOIN Post_likes AS L ON R.Recipeid = L.Recipeid WHERE L.Recipeid AND R.Recipeid = " + id)
+    #cursor.execute("DELETE R, L FROM Recipes AS R INNER JOIN Likes AS L ON R.Recipeid = L.Recipeid WHERE L.Recipeid AND R.Recipeid = " + id)
 
 
 @route('/posts')
@@ -181,10 +195,11 @@ def posts():
 
     return template('posts', recipes = recipe_list)
 
+
 @route('/posts', method='POST')
-def posts_category():
+def category():
     category = getattr(request.forms, 'category')
-    if category == "Alla kategorier" or category == "Äldst":
+    if category == 'Alla kategorier' or category == 'Äldst':
         cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
         recipes = cursor.fetchall()
 
@@ -194,8 +209,9 @@ def posts_category():
         for r in recipes:
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
-    elif category == "Nyast":
-        cursor.execute("SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC")
+
+    elif category == 'Nyast':
+        cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC')
         recipes = cursor.fetchall()
 
         recipe_list = []
@@ -203,11 +219,11 @@ def posts_category():
         for r in recipes:
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
-    
+
     else: 
-        sql = "SELECT Picture, Recipeid, Title FROM Recipes WHERE Categories = %s"
-        val = (category, )
-        cursor.execute(sql,val)
+        sql = 'SELECT Picture, Recipeid, Title FROM Recipes WHERE Categories = %s'
+        values = (category, )
+        cursor.execute(sql, values)
         recipes = cursor.fetchall()
 
         recipe_list = []
@@ -221,6 +237,7 @@ def posts_category():
 @route('/create_recipe')
 def create_recipe(session):
     """ Visar en sida där användare kan skapa ett recept """
+
     return template('create_recipe')
 
 
@@ -228,7 +245,8 @@ def create_recipe(session):
 def show_recipe(id, session):
     """ 
     Webbsida för recept:
-    Hämtar in titel, ingredienser, instruktioner, bild, portioner och kommentarer om respektive recept från databasen
+    Hämtar in titel, ingredienser, instruktioner, bild, portioner
+    och kommentarer om respektive recept från databasen
     """
 
     # För att hämta info från databasen om ett viss recept
@@ -253,7 +271,7 @@ def show_recipe(id, session):
         comments_list.append(comments_dict)
     
     # Så att man kan se antalet gillningar på ett specifikt recept
-    cursor.execute('select count(*) from Post_likes where recipeid = ' + id)
+    cursor.execute('select count(*) from Likes where recipeid = ' + id)
     total_likes = cursor.fetchall()
 
     for t in total_likes:
@@ -263,25 +281,29 @@ def show_recipe(id, session):
     liked = 0
     if request.query:
         liked = request.query['liked']
+
         try:
             if liked == '1':
-                cursor.execute(f'INSERT INTO Post_likes(recipeid, email) VALUES ({id}, "{session["username"]}")')
+                cursor.execute(f"INSERT INTO Likes(recipeid, email) VALUES ({id}, '{session['username']}')")
                 foodnestdb.commit()
+
             else:
-                cursor.execute(f'DELETE FROM Post_likes WHERE Recipeid = {id} and Email =  "{session["username"]}"')              
+                cursor.execute(f"DELETE FROM Likes WHERE Recipeid = {id} and Email =  '{session['username']}'")              
                 foodnestdb.commit()
+
         except:
             pass
     
     return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked, total_likes = total_dict)
 
+
 @route('/likes')
 def liked_recipes(session):
     """
-    Selectar och JOINAR data från tabellerna Recipes och Post_likes. 
+    Selectar och JOINAR data från tabellerna Recipes och Likes. 
     Väljer ut data som matchar den inloggade användarens email och det han/hon gillat.
     """
-    cursor.execute(f"SELECT L.Recipeid, R.Picture, R.Title FROM Recipes AS R INNER JOIN Post_likes AS L ON R.Recipeid = L.Recipeid WHERE L.Email = '{session['username']}'")
+    cursor.execute(f"SELECT L.Recipeid, R.Picture, R.Title FROM Recipes AS R INNER JOIN Likes AS L ON R.Recipeid = L.Recipeid WHERE L.Email = '{session['username']}'")
     liked_recipes = cursor.fetchall()
 
     liked_list = []
@@ -298,8 +320,8 @@ def save_comment(session, id):
     comment = getattr(request.forms, 'comment')
 
     sql = 'INSERT INTO Comments(Recipeid, Sentence, Email) VALUES (%s, %s, %s)'
-    val = (id, comment, session['username'])
-    cursor.execute(sql, val)
+    values = (id, comment, session['username'])
+    cursor.execute(sql, values)
     foodnestdb.commit()
 
     return redirect('/recipe/' + id)
@@ -350,18 +372,20 @@ def logout(session):
 
 @route('/static/<filename>')
 def static_files(filename):
+
     return static_file(filename, root = 'static')
 
 @route('/recipe/static/<filename>')
 def static_recipe(filename):
+
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
 
 @route('/profile/static/<filename>')
 def static_profile(filename):
+
     """ För att varje recept ska visas på egen sida dvs. ta med HTML, CSS """
     return static_file(filename, root = 'static')
 
 
 run(host='127.0.0.1', port=8060, debug=True, reloader=True)
-#KD3

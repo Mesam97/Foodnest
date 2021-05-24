@@ -1,11 +1,3 @@
-<!-- 
-Ska tas bort
-
-FR2.0(C) Det ska finnas ett kommentarsfält med kommentarer andra användare har publicerat
-FR3.0(C) Det ska finnas en pop-up ruta om tips för alternativ av specialkost
-FR4.0(M) Man ska kunna gilla ett recept
---> 
-
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -94,12 +86,13 @@ FR4.0(M) Man ska kunna gilla ett recept
               <p>{{c['sentence']}}</p>
             % end
           </div>
+          
           <form action="/save_comment/{{recipes['id']}}" method="POST" id="comment-form">
             <label for="comment">Vill du dela med dig om vad du tyckte om receptet? Lämna då gärna en kommentar</label><br>
             <textarea name="comment" id="comment" cols="45" rows="5"></textarea><br>
             <input type="submit" value="Skicka" id="{{recipes['id']}}" class="submit"/>
           </form>
-      </div>
+        </div>
       </main>
 
       <footer>
@@ -111,4 +104,3 @@ FR4.0(M) Man ska kunna gilla ett recept
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   </body>
 </html>
-<!--KD3-->

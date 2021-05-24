@@ -251,7 +251,7 @@ def show_recipe(id, session):
         comments_list.append(comments_dict)
     
     # Så att man kan se antal gillningar på ett specifikt recept
-    cursor.execute('select count(*) from post_likes where recipeid = ' + id)
+    cursor.execute('select count(*) from Post_likes where recipeid = ' + id)
     total_likes = cursor.fetchall()
 
     for t in total_likes:

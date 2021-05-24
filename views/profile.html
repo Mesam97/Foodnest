@@ -25,19 +25,41 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
   <body>
     <div id="wrapper">
       <header>
-        <a href="/posts">
-          <img src="static/Logotyp_v1_ny.png" alt="Foodnest logo"/>
-        </a>
+        <nav class="navbar">
+          <div class="logo">
+            <a href="/posts">
+              <img src="static/foodnest-logo-v2.png" id="foodnest-logo" alt="Foodnest logo"/>
+            </a>
+        </div>
+          <a href="#" class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </a>
+
+          <div class="navbar-links">
+            <ul>
+              
+              <li>
+                <a href="/create_recipe">Skapa recept</a>
+              </li>
+              <li>
+                <a href="/profile" class="active">Min profil</a>
+              </li>
+              <li>
+                <a href="/">Logga ut</a>
+              </li>
+            </ul>
+          </div>
+        </nav>  
       </header>
 
-      <nav>
-        <a href="/posts">Utforska</a>
-        <a href="/create_recipe">Skapa recept</a>
-        <a class="active" href="/profile">Min profil</a>
-                   
-        <!-- knapp som gör att funktionen nedan inträffar, 
-        en knapp som gör att man kan ändra sitt lösenord -->
-        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Byt lösenord</button>
+      <main>
+        <h1>Min profil</h1>
+        <div id="section_nav">
+          <a href="/likes">Mina gillade recept</a>
+            <!--<h3 id="delete"> Ta bort inlägg </h3>-->
+            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Byt lösenord</button>
         
         <!--Denna delen är hämtad ifrån ett ramverk och visar en pop-up ruta
         där användaren kan skriva in sitt gamla och nya lösenord -->
@@ -80,16 +102,9 @@ FP4.0(M) Användare ska kunna ta bort sina inlägg
           </div>
         </div>
 
-        <a class="log-out" href="/log_out">Logga ut</a>
-      </nav>
-
-      <main>
-        <h1>Mina inlägg</h1>
-        <div id="section_nav">
-          <a href="/likes">Se gillade recept</a>
-            <!--<h3 id="delete"> Ta bort inlägg </h3>-->
         </div>
         <div id="posts"> 
+          <h3 id="my-recipes">Mina inlägg</h3>
           % for r in recipes:
           <a href="/recipe/{{r['id']}}">
             <div class="text-title">{{r['title']}}</div>

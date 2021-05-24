@@ -211,14 +211,6 @@ main > img {
   border-bottom: 2px solid #4B5B73;
 }
 
-/* Bildstorlek på recipe-sida */
-.recipe-img {
-  width: 300px;
-  height: 300px;
-  border-radius: 20px;
-  margin: 20px;
-}
-
 /* Styling för logga in/skapa konto formulär */
 #link-box {
   width: 340px;
@@ -455,14 +447,6 @@ footer a {
   margin-top: 130px;
 }
 
-.text-title {
-  color: #4B5B73;
-  font-size: 25px;
-  position: relative;
-  margin: auto;
-  padding-top: 30px;
-}
-
 .row::after {
   clear: both;
   display: table;
@@ -491,6 +475,28 @@ footer a {
 
 textarea {
   resize: none;
+}
+
+/*Styling för Profil-sidan */
+#my-recipes {
+  margin: 20px;
+}
+
+.my-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  margin-left: 100px;
+}
+
+.text-title {
+  color: #4B5B73;
+  font-size: 25px;
+  position: relative;
+  width: 250px;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 /*Styling för Recept-sidan */

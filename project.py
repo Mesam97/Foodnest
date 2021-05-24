@@ -229,15 +229,16 @@ def show_recipe(id, session):
     Hämtar in titel, ingredienser, instruktioner, bild, portioner och kommentarer om respektive recept från databasen
     """
 
+    # För att hämta info från databasen om ett viss recept
     cursor.execute('SELECT Account.First_name, Recipes.Picture, Recipes.Title, Recipes.Ingredients, Recipes.Instructions, Recipes.Portion '
                    'FROM Account INNER JOIN Recipes '
-                   'on Account.Email = Recipes.Email WHERE Recipeid = ' + id)
+                   'ON Account.Email = Recipes.Email WHERE Recipeid = ' + id)
     recipes = cursor.fetchall()
 
-    # För att hämta info från databasen om ett viss recept
     for r in recipes:
         recipe_dict = {'first_name': r[0], 'picture': r[1], 'title': r[2], 'ingredients': r[3], 'instructions': r[4], 'portion': r[5], 'id': id}
 
+    # För att hämta kommentarer från databasen om ett viss recept
     cursor.execute('SELECT Account.First_name, Comments.Sentence '
                    'FROM Account INNER JOIN Comments '
                    'ON Account.Email = Comments.Email WHERE Recipeid = ' + id)
@@ -245,13 +246,12 @@ def show_recipe(id, session):
 
     comments_list = []
 
-    # För att hämta kommentarer från databasen om ett viss recept
     for c in comments:
         comments_dict = {'first_name': c[0], 'sentence': c[1], 'id': id}
         comments_list.append(comments_dict)
     
     # Så att man kan se antal gillningar på ett specifikt recept
-    cursor.execute('select count(*) from post_likes where recipeid = ' + id)
+    cursor.execute('select count(*) from Post_likes where recipeid = ' + id)
     total_likes = cursor.fetchall()
 
     for t in total_likes:

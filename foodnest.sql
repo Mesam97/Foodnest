@@ -38,5 +38,5 @@ Recipeid INT,
 Email VARCHAR (60), -- Användare
 PRIMARY KEY (Recipeid, Email),
 FOREIGN KEY (Email) REFERENCES Account (Email),
-FOREIGN KEY( Recipeid) REFERENCES Recipes (Recipeid)
+FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
 );

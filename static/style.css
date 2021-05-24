@@ -4,7 +4,7 @@ html {
 }
 
 #wrapper {
-  width: 100%;
+  max-width: 100%;
   margin: auto;
   display: grid;
   grid-template-rows: auto auto auto auto;
@@ -67,9 +67,17 @@ header > a > img {
   list-style: none;
 }
 
-.navbar-links a:hover {
-  background-color: rgb(230, 230, 230);
-  border-radius: 15px;
+.navbar-links a:hover:not(.active)::after {
+  width: 100%
+}
+
+.navbar-links a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #008CBA;
+  transition: width .2s ease-in;
 }
 
 .navbar-links li a {
@@ -78,6 +86,7 @@ header > a > img {
   padding: 10px;
   display: block;
 }
+
 
 .hamburger {
   position: absolute;
@@ -97,16 +106,19 @@ header > a > img {
   border-radius: 10px;
 }
 
+li a.active::after {
+  color: #008CBA;
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #008CBA;
+  width: 100%
+}
+
 li a.active {
-  color: #FFF;
-  background-color: #008CBA;
-  border-radius: 15px;
+  color: #008CBA;
 }
-
-li .active:hover {
-  color: #FFF;
-}
-
 /* SLUT Navbar */
 
 /* Mobil-läge */

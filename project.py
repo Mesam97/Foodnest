@@ -327,7 +327,7 @@ def save_to_database(session):
     portions = getattr(request.forms, 'portions')
     picture = getattr(request.files,'picture')
     #category = getattr(request.forms, 'category')
-    category= request.forms.getall('category')
+    category= request.forms.getall('category[]')
     
     name, ext = os.path.splitext(picture.filename)
     if ext not in ('.png', '.jpg', '.jpeg','.jfif'):
@@ -345,6 +345,7 @@ def save_to_database(session):
     id= cursor.lastrowid
     print(category)
     print(id)
+    #gör en foorloop, som går igenom lista med kategorier
     cursor.execute('INSERT INTO Tags(Categories, Recipeid) VALUES (%s,%s)', (str(category), str(id)))
     foodnestdb.commit()
 

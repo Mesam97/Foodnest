@@ -326,7 +326,8 @@ def save_to_database(session):
     instructions = getattr(request.forms, 'instructions')
     portions = getattr(request.forms, 'portions')
     picture = getattr(request.files,'picture')
-    category = getattr(request.forms, 'checkbox')
+    #category = getattr(request.forms, 'category')
+    category= request.forms.getall('category')
     
     name, ext = os.path.splitext(picture.filename)
     if ext not in ('.png', '.jpg', '.jpeg','.jfif'):
@@ -341,9 +342,10 @@ def save_to_database(session):
     sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email) VALUES (%s, %s, %s, %s, %s, %s)'
     val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
     cursor.execute(sql, val)
-    #cursor.execute(f"select Recipeid from Recipes where Title= '{title}'")
-    #id= cursor.fetchall()
-    #cursor.execute('INSERT INTO Tags(Categories, Recipeid) VALUES (%s,%s)' % category, id)
+    id= cursor.lastrowid
+    print(category)
+    print(id)
+    cursor.execute('INSERT INTO Tags(Categories, Recipeid) VALUES (%s,%s)', (str(category), str(id)))
     foodnestdb.commit()
 
     return redirect('posts')

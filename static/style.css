@@ -402,8 +402,6 @@ select {
 }
 
 #category-form {
-  position: relative;
-  left: 35%;
   margin-bottom: 0;
   padding-bottom: 0;
 }

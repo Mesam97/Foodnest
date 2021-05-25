@@ -96,24 +96,24 @@ def check_pass(password):
     else:
         return True
 
-@route('/posts', method = 'POST')
-def new_member():
+@route('/new_member', method = 'POST')
+def new_member(session):
     first_name = getattr(request.forms, 'first-name')
     last_name = getattr(request.forms, 'last-name')
     email = getattr(request.forms, 'email')
     birthday = getattr(request.forms, 'birthday')
     password = getattr(request.forms, 'password')
+    print('hejhej')
 
-    recipe_list = []
-    
     # Skapar felmeddelande om lösenordet eller epost är inte följer kraven
-    if check_pass(password) and check_email(email) == True:
-        sql = 'INSERT INTO Account(email, first_name, last_name, birthday, password) VALUES (%s, %s, %s, %s, %s)'
+    if check_pass(password) and check_email(email):
+        sql = 'INSERT INTO Account(Email, First_name, Last_name, Birthday, Password) VALUES (%s, %s, %s, %s, %s)'
         values = (email, first_name, last_name, birthday, password)
         cursor.execute(sql, values)
         foodnestdb.commit()
-        return template('posts', recipes = recipe_list)
-
+        session['username'] = email 
+        print('hej')
+        return redirect('/profile')
     else:
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
 
@@ -163,16 +163,22 @@ def change_password(session):
 @route('/remove/<id>') #TODO
 def remove(session, id):
     """ Tar bort ett specifikt recept från databasen """
-    cursor.execute('DELETE FROM Recipes AND Likes WHERE Recipeid = ' + id)
+    cursor.execute('DELETE FROM Tags WHERE Recipeid = ' + id)
+    foodnestdb.commit()
+    cursor.execute('DELETE FROM Likes WHERE Recipeid = ' + id)
+    foodnestdb.commit()
+    cursor.execute('DELETE FROM Comments WHERE Recipeid = ' + id)
+    foodnestdb.commit()
+    cursor.execute('DELETE FROM Recipes WHERE Recipeid = ' + id)
     foodnestdb.commit()
 
-    #DELETE från flera tabeller
-    #cursor.execute("DELETE R, L FROM Recipes AS R INNER JOIN Likes AS L ON R.Recipeid = L.Recipeid WHERE L.Recipeid AND R.Recipeid = " + id)
+    return redirect('/profile')
 
 
 @route('/posts')
 def posts():
     """ Visar flöde-sidan som består av bilder på recepten """
+
     cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
     recipes = cursor.fetchall()
 
@@ -210,10 +216,12 @@ def category():
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
 
+
     else: 
-        sql = 'SELECT Picture, Recipeid, Title FROM Recipes WHERE Categories = %s'
-        values = (category, )
-        cursor.execute(sql, values)
+        cursor.execute(f"SELECT R.Picture, R.Recipeid, R.Title "
+                        "FROM Recipes R INNER JOIN Tags T "
+                        "ON R.Recipeid = T.Recipeid WHERE T.Categories = '{category}'")
+
         recipes = cursor.fetchall()
 
         recipe_list = []
@@ -221,6 +229,9 @@ def category():
         for r in recipes:
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
+
+        print(category)
+
 
     return template('posts', recipes = recipe_list)
 
@@ -327,7 +338,7 @@ def save_to_database(session):
     portions = getattr(request.forms, 'portions')
     picture = getattr(request.files,'picture')
     #category = getattr(request.forms, 'category')
-    category= request.forms.getall('category[]')
+    category = request.forms.getall('category[]')
     
     name, ext = os.path.splitext(picture.filename)
     if ext not in ('.png', '.jpg', '.jpeg','.jfif'):
@@ -340,14 +351,17 @@ def save_to_database(session):
     picture.save(save_path)
 
     sql = 'INSERT INTO Recipes(Title, Portion, Ingredients, Instructions, Picture, Email) VALUES (%s, %s, %s, %s, %s, %s)'
-    val = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
-    cursor.execute(sql, val)
-    id= cursor.lastrowid
+    values = (title, portions, ingredients, instructions, '/static/' + picture.filename, session['username'])
+    cursor.execute(sql, values)
+    id = cursor.lastrowid
     print(category)
-    print(id)
-    #gör en foorloop, som går igenom lista med kategorier
-    cursor.execute('INSERT INTO Tags(Categories, Recipeid) VALUES (%s,%s)', (str(category), str(id)))
-    foodnestdb.commit()
+    print(id)   
+
+    for c in category:
+    
+        #gör en foorloop, som går igenom lista med kategorier
+        cursor.execute('INSERT INTO Tags(Categories, Recipeid) VALUES (%s,%s)', (str(c), str(id)))
+        foodnestdb.commit()
 
     return redirect('posts')
 
@@ -381,4 +395,3 @@ def static_profile(filename):
     return static_file(filename, root = 'static')
 
 run(host='127.0.0.1', port=8030, debug=True, reloader=True)
-#KD3

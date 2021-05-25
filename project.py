@@ -218,7 +218,7 @@ def category():
             recipe_list.append(recipe_dict)
 
     elif category:
-        print(category) #BOO-TEST
+        print(category) #BOO-PTEST
         cursor.execute("SELECT R.Picture, R.Recipeid, R.Title "
                         "FROM Recipes AS R INNER JOIN Tags AS T "
                         "ON R.Recipeid = T.Recipeid WHERE T.Categories = " + category)

@@ -402,12 +402,8 @@ select {
 }
 
 #category-form {
-  margin: 0;
+  margin-bottom: 0;
   padding-bottom: 0;
-  float: right;
-  right: 50px;
-  position: relative;
-  padding-right: 18vh;
 }
 
 #sort {

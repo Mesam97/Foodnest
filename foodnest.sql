@@ -40,3 +40,11 @@ PRIMARY KEY (Recipeid, Email),
 FOREIGN KEY (Email) REFERENCES Account (Email),
 FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)
 );
+
+CREATE TABLE Tags(
+Tagid int NOT NULL AUTO_INCREMENT,
+Categories TEXT NULL,
+Recipeid INT NOT NULL,
+PRIMARY KEY (Tagid),
+FOREIGN KEY (Recipeid) REFERENCES Recipes(Recipeid)
+);

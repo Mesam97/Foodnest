@@ -44,6 +44,10 @@ header > img {
   height: 200px;
 }
 
+.no-border {
+  box-shadow: none;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -127,6 +131,10 @@ li a.active {
 }
 
 a.active {
+  color: #008CBA;
+}
+
+a.active:hover {
   color: #008CBA;
 }
 

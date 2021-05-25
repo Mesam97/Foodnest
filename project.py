@@ -195,6 +195,7 @@ def posts():
 @route('/posts', method='POST')
 def category():
     category = getattr(request.forms, 'category')
+
     if category == 'Alla kategorier' or category == 'Äldst':
         cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
         recipes = cursor.fetchall()
@@ -216,13 +217,14 @@ def category():
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
 
-
-    else: 
-        cursor.execute(f"SELECT R.Picture, R.Recipeid, R.Title "
-                        "FROM Recipes R INNER JOIN Tags T "
-                        "ON R.Recipeid = T.Recipeid WHERE T.Categories = '{category}'")
+    elif category:
+        print(category) #BOO-TEST
+        cursor.execute("SELECT R.Picture, R.Recipeid, R.Title "
+                        "FROM Recipes AS R INNER JOIN Tags AS T "
+                        "ON R.Recipeid = T.Recipeid WHERE T.Categories = " + category)
 
         recipes = cursor.fetchall()
+        print(recipes) #BOO-TEST
 
         recipe_list = []
 
@@ -230,10 +232,8 @@ def category():
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
 
-        print(category)
-
-
     return template('posts', recipes = recipe_list)
+
 
 @route('/create_recipe')
 def create_recipe(session):

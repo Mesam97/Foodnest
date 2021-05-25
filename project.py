@@ -103,18 +103,18 @@ def new_member(session):
     email = getattr(request.forms, 'email')
     birthday = getattr(request.forms, 'birthday')
     password = getattr(request.forms, 'password')
-    print('hejhej')
 
-    # Skapar felmeddelande om lösenordet eller epost är inte följer kraven
     if check_pass(password) and check_email(email):
         sql = 'INSERT INTO Account(Email, First_name, Last_name, Birthday, Password) VALUES (%s, %s, %s, %s, %s)'
         values = (email, first_name, last_name, birthday, password)
         cursor.execute(sql, values)
         foodnestdb.commit()
         session['username'] = email 
-        print('hej')
-        return redirect('/profile')
+        print('Hej?')
+
+        return redirect('/posts')
     else:
+        # Skapar felmeddelande om lösenord eller epost inte följer kraven
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
 
 

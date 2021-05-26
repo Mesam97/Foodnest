@@ -587,7 +587,7 @@ textarea {
   background-color: rgb(235, 235, 235);
   box-shadow: 0px 0px 20px 1px rgb(235, 235, 235);
   border-radius: 20px;
-  width: 40%;
+  width: 35%;
   float: right;
   margin-right: 70px;
   margin-top: 20px;
@@ -617,49 +617,19 @@ textarea {
   font-size: 30px;
 }
 
-/* LIKE-button */
-.btn i {
-  font-size: 2rem;
-  transition: 0.4s;
+.my-image {
+  width: 40%;
+  height: 20%;
 }
 
-.btn:hover i{
+/* LIKE-button */
+
+.bi-suit-heart:hover {
   color: #DC143C;
 }
 
 .bi-suit-heart-fill {
   color: #DC143C;
-}
-
-#like-form {
-  margin: 0;
-  padding: 0;
-}
-
-.overlay-like {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
-}
-  
-.overlay-like .btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%;-50%);
-  padding: 10px 20px;
-  margin: 60px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border-radius: 50px;
-  background-color: #f0f0f5;
-  border: none !important;
-}
-
-.my-image {
-  width: 40%;
-  height: 20%;
 }
 
 /* Slut LIKE-button */ 

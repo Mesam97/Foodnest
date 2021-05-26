@@ -64,7 +64,7 @@
           <div id="recipe-box">
           <img src="{{recipes['picture']}}" alt="Mat" class="recipe-img"/>
           <!-- LIKE-button -->
-          <i liked={{liked}} class="bi bi-suit-heart" id="{{recipes['id']}}"></i>
+          <i liked={{liked}} class="bi bi-suit-heart fa-2x" id="{{recipes['id']}}"></i>
           <!-- Slut LIKE-button -->
           <p>{{total_likes['likes']}} matälskare gillar detta recept</p>
           <div id="recipe">
@@ -81,7 +81,7 @@
         <div id="comment-box">
           <h4 id="comment-title"><img src="static/kopia-comment-img.png" id="comment-pic" alt="Kommentarer">Kommentarer</h4>
           <form action="/save_comment/{{recipes['id']}}" method="POST" id="comment-form">
-            <label for="comment">Vill du dela med dig om vad du tyckte om receptet? Lämna då gärna en kommentar</label><br>
+            <label for="comment">Vill du dela med dig om vad du tyckte om receptet? <br> Lämna då gärna en kommentar</label><br>
             <textarea name="comment" id="comment" cols="45" rows="5"></textarea><br>
             <input type="submit" value="Skicka" id="{{recipes['id']}}" class="submit"/>
           </form>

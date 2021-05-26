@@ -264,9 +264,11 @@ def show_recipe(id, session):
     for r in recipes:
         recipe_dict = {'first_name': r[0], 'picture': r[1], 'title': r[2], 'ingredients': r[3], 'instructions': r[4], 'portion': r[5], 'id': id}
 
-
+    # Funktionen så att man ska kunna gilla/ogilla ett recept körs
     liked = like(id, session)
+    # Funktionen så att man ska kunna se antal gillningar körs
     total_dict = count_likes(id)
+    # Funktionen så att man ska kunna se kommentarer för ett viss recept körs
     comments_list = comment(id)
     
     return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked, total_likes = total_dict)

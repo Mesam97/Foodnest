@@ -44,6 +44,10 @@ header > img {
   height: 200px;
 }
 
+.no-border {
+  box-shadow: none;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -130,10 +134,14 @@ a.active {
   color: #008CBA;
 }
 
+a.active:hover {
+  color: #008CBA;
+}
+
 /* SLUT Navbar */
 
 /* Mobil-läge */
-@media (max-width: 700px) {
+@media (max-width: 925px) {
   .hamburger {
     display: flex;
   }
@@ -402,8 +410,6 @@ select {
 }
 
 #category-form {
-  position: relative;
-  left: 35%;
   margin-bottom: 0;
   padding-bottom: 0;
 }

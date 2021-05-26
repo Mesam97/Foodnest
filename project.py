@@ -103,18 +103,18 @@ def new_member(session):
     email = getattr(request.forms, 'email')
     birthday = getattr(request.forms, 'birthday')
     password = getattr(request.forms, 'password')
-    print('hejhej')
 
-    # Skapar felmeddelande om lösenordet eller epost är inte följer kraven
     if check_pass(password) and check_email(email):
         sql = 'INSERT INTO Account(Email, First_name, Last_name, Birthday, Password) VALUES (%s, %s, %s, %s, %s)'
         values = (email, first_name, last_name, birthday, password)
         cursor.execute(sql, values)
         foodnestdb.commit()
         session['username'] = email 
-        print('hej')
-        return redirect('/profile')
+        print('Hej?')
+
+        return redirect('/posts')
     else:
+        # Skapar felmeddelande om lösenord eller epost inte följer kraven
         return redirect('/create_account?error=Felaktigt lösenord eller e-postadress')
 
 
@@ -195,6 +195,7 @@ def posts():
 @route('/posts', method='POST')
 def category():
     category = getattr(request.forms, 'category')
+
     if category == 'Alla kategorier' or category == 'Äldst':
         cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
         recipes = cursor.fetchall()
@@ -216,13 +217,14 @@ def category():
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
 
-
-    else: 
-        cursor.execute(f"SELECT R.Picture, R.Recipeid, R.Title "
-                        "FROM Recipes R INNER JOIN Tags T "
-                        "ON R.Recipeid = T.Recipeid WHERE T.Categories = '{category}'")
+    elif category:
+        print(category) #BOO-PTEST
+        cursor.execute("SELECT R.Picture, R.Recipeid, R.Title "
+                        "FROM Recipes AS R INNER JOIN Tags AS T "
+                        "ON R.Recipeid = T.Recipeid WHERE T.Categories = " + category)
 
         recipes = cursor.fetchall()
+        print(recipes) #BOO-TEST
 
         recipe_list = []
 
@@ -230,10 +232,8 @@ def category():
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
 
-        print(category)
-
-
     return template('posts', recipes = recipe_list)
+
 
 @route('/create_recipe')
 def create_recipe(session):

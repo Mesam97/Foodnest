@@ -11,7 +11,7 @@ $('.bi').click(function(){
   })
 
 let liked = $('.bi').attr('liked')
-  
+  console.log(liked)
     if (liked==1) $('.bi').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill')
 
     else {
@@ -27,6 +27,7 @@ hamburger.addEventListener('click', () => {
     navbarLinks.classList.toggle('active')
 })
 
+/*
 window.onscroll = function() {myFunction()};
 
 var navbar = document.getElementById("navbar");
@@ -39,5 +40,5 @@ function myFunction() {
     navbar.classList.remove("sticky");
   }
 }
-
+*/
 //KD3

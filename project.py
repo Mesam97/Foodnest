@@ -23,7 +23,7 @@ foodnestdb = mysql.connector.connect(host = db_server,
                                     password = db_passwrd,
                                     database = db_name)
 
-cursor = foodnestdb.cursor()
+cursor = foodnestdb.cursor(buffered = True)
 
 @route('/')
 def index(error = ''):
@@ -168,12 +168,14 @@ def change_password(session):
 @route('/remove/<id>') #TODO
 def remove(id):
     """ Tar bort ett specifikt recept från databasen """
+    '''
+    cursor.callproc('remove_recipe', [id])
+    foodnestdb.commit()
+    '''
+
     cursor.execute('DELETE FROM Tags WHERE Recipeid = ' + id)
-    foodnestdb.commit()
     cursor.execute('DELETE FROM Likes WHERE Recipeid = ' + id)
-    foodnestdb.commit()
     cursor.execute('DELETE FROM Comments WHERE Recipeid = ' + id)
-    foodnestdb.commit()
     cursor.execute('DELETE FROM Recipes WHERE Recipeid = ' + id)
     foodnestdb.commit()
 
@@ -223,13 +225,11 @@ def category():
             recipe_list.append(recipe_dict)
 
     elif category:
-        print(category) #BOO-PTEST
-        cursor.execute("SELECT R.Picture, R.Recipeid, R.Title "
-                        "FROM Recipes AS R INNER JOIN Tags AS T "
-                        "ON R.Recipeid = T.Recipeid WHERE T.Categories = " + category)
+        cursor.execute('SELECT Recipes.Picture, Recipes.Recipeid, Recipes.Title '
+                       'FROM Recipes INNER JOIN Tags ON Recipes.Recipeid = Tags.Recipeid '
+                       'WHERE Tags.Categories = ' + '"' + category + '"')
 
         recipes = cursor.fetchall()
-        print(recipes) #BOO-TEST
 
         recipe_list = []
 
@@ -265,30 +265,41 @@ def show_recipe(id, session):
         recipe_dict = {'first_name': r[0], 'picture': r[1], 'title': r[2], 'ingredients': r[3], 'instructions': r[4], 'portion': r[5], 'id': id}
 
     # Funktionen så att man ska kunna gilla/ogilla ett recept körs
-    liked = like(id, session)
+    # För att man ska kunna gilla/ogilla ett recept. Kopplat till JS
+    liked = 0
+    if request.query:
+        liked = request.query['liked']
+
+        try:
+            if liked == '1':
+                cursor.execute(f"INSERT INTO Likes(recipeid, email) VALUES ({id}, '{session['username']}')")
+                foodnestdb.commit()
+
+            else:
+                cursor.execute(f"DELETE FROM Likes WHERE Recipeid = {id} and Email =  '{session['username']}'")              
+                foodnestdb.commit()
+
+        except:
+            pass
+
+    cursor.execute(f"SELECT * FROM Likes WHERE Recipeid = {id} AND Email = '{session['username']}'")
+    likes = cursor.fetchall()
+
+    if likes == []:
+        liked = 0
+    else:
+        liked = 1
+
+    
+    
     # Funktionen så att man ska kunna se antal gillningar körs
     total_dict = count_likes(id)
+    
     # Funktionen så att man ska kunna se kommentarer för ett viss recept körs
     comments_list = comment(id)
     
     return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked, total_likes = total_dict)
 
-
-def like(id, session):
-    """ För att man ska kunna gilla/ogilla ett recept. Kopplat till JS """
-    liked = 0
-    if request.query:
-        liked = request.query['liked']
-
-        if liked == '1':
-            cursor.execute(f"INSERT INTO Likes(recipeid, email) VALUES ({id}, '{session['username']}')")
-            foodnestdb.commit()
-
-        else:
-            cursor.execute(f"DELETE FROM Likes WHERE Recipeid = {id} and Email =  '{session['username']}'")              
-            foodnestdb.commit()
-
-    return liked 
 
 def count_likes(id):
     """ Så att man kan se antalet gillningar på ett specifikt recept """
@@ -320,6 +331,7 @@ def liked_recipes(session, error = ''):
         error = getattr(request.query, 'error')
 
     return template('likes', liked = liked_list, error = error)
+
 
 def comment(id):
     """ För att hämta kommentarer från databasen om ett viss recept """

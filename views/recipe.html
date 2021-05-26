@@ -79,19 +79,24 @@
       </article>
 
         <div id="comment-box">
-          <div id="comment">
-            <h4 id="comment-title"><img src="static/kopia-comment-img.png" id="comment-pic" alt="Kommentarer">Kommentarer</h4>
-            % for c in comments:
-              <h5>{{c['first_name']}}</h6>
-              <p>{{c['sentence']}}</p>
-            % end
-          </div>
-          
+          <h4 id="comment-title"><img src="static/kopia-comment-img.png" id="comment-pic" alt="Kommentarer">Kommentarer</h4>
           <form action="/save_comment/{{recipes['id']}}" method="POST" id="comment-form">
             <label for="comment">Vill du dela med dig om vad du tyckte om receptet? Lämna då gärna en kommentar</label><br>
             <textarea name="comment" id="comment" cols="45" rows="5"></textarea><br>
             <input type="submit" value="Skicka" id="{{recipes['id']}}" class="submit"/>
           </form>
+
+          <div id="comment">
+            
+            % for c in comments:
+            
+            <h5 class="comment-name">{{c['first_name']}}</h6>
+            <p>{{c['sentence']}}</p>
+           
+            % end
+          </div>
+          
+          
         </div>
       </main>
 

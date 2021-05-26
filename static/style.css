@@ -35,7 +35,7 @@ header {
   grid-area: header;
   float: left;
   width: 100%;
-  margin: 0px auto 5px auto;
+  margin: 0px auto 25px auto;
   margin-top: -5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -46,6 +46,7 @@ header > img {
 
 .no-border {
   box-shadow: none;
+  margin-top: 20px;
 }
 
 /* Navbar */
@@ -555,8 +556,8 @@ textarea {
 
 /*Styling för Recept-sidan */
 .recipe-img {
-  width: 350px;
-  height: 350px;
+  width: 375px;
+  height: 375px;
   padding: 10px;
   margin: 10px;
   border-radius: 20px;
@@ -610,6 +611,10 @@ textarea {
   border: 1px solid #008CBA;
   background-color: rgb(247, 247, 247);
   border-radius: 10px;
+}
+
+.comment-name {
+  font-size: 30px;
 }
 
 /* LIKE-button */

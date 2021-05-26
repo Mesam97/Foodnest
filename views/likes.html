@@ -53,7 +53,46 @@
         <h1>Min profil</h1>
         <div id="section_nav">
           <a href="/profile">Mina inlägg</a>
-          <a class="active" href="/likes">Mina gillade recept</a>
+          <a href="/likes" class="active">Mina gillade recept</a>
+          <button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#exampleModal">Byt lösenord</button>
+        
+        <!--Denna delen är hämtad ifrån ett ramverk och visar en pop-up ruta
+        där användaren kan skriva in sitt gamla och nya lösenord -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Byt lösenord</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                <form class="input" name="form" action="/change_password" method="POST">
+                  <div class="mb-3">
+                    <label for="old" class="form-label">Ditt gamla lösenord</label>
+                    <input type="password" name="old-password" class="form-control" id="old-password" aria-describedby="emailHelp"/>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="new" class="form-label">Ditt nya lösenord</label>
+                    <input type="password" name="new-password" class="form-control" id="new-password" placeholder="Minst 6 karaktärer varav 1 siffra och en stor bokstav"/>
+                  </div>
+
+                  <div id="error-box">
+                    % if error != '':
+                      <p>{{error}}</p>
+                    % end
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Spara</button>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stäng</button>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div id="posts">
@@ -70,6 +109,13 @@
         <p><a href="/about">Om oss</a> © Foodnest 2021</p>
       </footer>
     </div> <!--SLUT PÅ WRAPPER-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous">
+    </script>
   </body>
 </html>
 <!--KD3-->

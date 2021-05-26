@@ -124,6 +124,11 @@ def about():
 
     return template('about')
 
+@route('/about-index')
+def about_index():
+
+    return template('about-index')
+
 
 @route('/profile')
 def profile(session, error = ''):
@@ -161,7 +166,7 @@ def change_password(session):
 
 
 @route('/remove/<id>') #TODO
-def remove(session, id):
+def remove(id):
     """ Tar bort ett specifikt recept från databasen """
     cursor.execute('DELETE FROM Tags WHERE Recipeid = ' + id)
     foodnestdb.commit()
@@ -259,47 +264,43 @@ def show_recipe(id, session):
     for r in recipes:
         recipe_dict = {'first_name': r[0], 'picture': r[1], 'title': r[2], 'ingredients': r[3], 'instructions': r[4], 'portion': r[5], 'id': id}
 
-    # För att hämta kommentarer från databasen om ett viss recept
-    cursor.execute('SELECT Account.First_name, Comments.Sentence '
-                   'FROM Account INNER JOIN Comments '
-                   'ON Account.Email = Comments.Email WHERE Recipeid = ' + id)
-    comments = cursor.fetchall()
 
-    comments_list = []
-
-    for c in comments:
-        comments_dict = {'first_name': c[0], 'sentence': c[1], 'id': id}
-        comments_list.append(comments_dict)
+    liked = like(id, session)
+    total_dict = count_likes(id)
+    comments_list = comment(id)
     
-    # Så att man kan se antalet gillningar på ett specifikt recept
+    return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked, total_likes = total_dict)
+
+
+def like(id, session):
+    """ För att man ska kunna gilla/ogilla ett recept. Kopplat till JS """
+    liked = 0
+    if request.query:
+        liked = request.query['liked']
+
+        if liked == '1':
+            cursor.execute(f"INSERT INTO Likes(recipeid, email) VALUES ({id}, '{session['username']}')")
+            foodnestdb.commit()
+
+        else:
+            cursor.execute(f"DELETE FROM Likes WHERE Recipeid = {id} and Email =  '{session['username']}'")              
+            foodnestdb.commit()
+
+    return liked 
+
+def count_likes(id):
+    """ Så att man kan se antalet gillningar på ett specifikt recept """
     cursor.execute('select count(*) from Likes where recipeid = ' + id)
     total_likes = cursor.fetchall()
 
     for t in total_likes:
         total_dict = {'likes': t[0]}
-    
-    # För att man ska kunna gilla/ogilla ett recept. Kopplat till JS
-    liked = 0
-    if request.query:
-        liked = request.query['liked']
 
-        try:
-            if liked == '1':
-                cursor.execute(f"INSERT INTO Likes(recipeid, email) VALUES ({id}, '{session['username']}')")
-                foodnestdb.commit()
-
-            else:
-                cursor.execute(f"DELETE FROM Likes WHERE Recipeid = {id} and Email =  '{session['username']}'")              
-                foodnestdb.commit()
-
-        except:
-            pass
-    
-    return template('recipe', recipes = recipe_dict, comments = comments_list, liked = liked, total_likes = total_dict)
+    return total_dict
 
 
 @route('/likes')
-def liked_recipes(session):
+def liked_recipes(session, error = ''):
     """
     Selectar och JOINAR data från tabellerna Recipes och Likes. 
     Väljer ut data som matchar den inloggade användarens email och det han/hon gillat.
@@ -313,7 +314,25 @@ def liked_recipes(session):
         liked_dict = {'id': l[0], 'image': l[1], 'title': l[2]}
         liked_list.append(liked_dict)
 
-    return template('likes', liked = liked_list)
+    if request.query:
+        error = getattr(request.query, 'error')
+
+    return template('likes', liked = liked_list, error = error)
+
+def comment(id):
+    """ För att hämta kommentarer från databasen om ett viss recept """
+    cursor.execute('SELECT Account.First_name, Comments.Sentence '
+                   'FROM Account INNER JOIN Comments '
+                   'ON Account.Email = Comments.Email WHERE Recipeid = ' + id)
+    comments = cursor.fetchall()
+
+    comments_list = []
+
+    for c in comments:
+        comments_dict = {'first_name': c[0], 'sentence': c[1], 'id': id}
+        comments_list.append(comments_dict)
+
+    return comments_list
 
 
 @route('/save_comment/<id>', method = 'POST')

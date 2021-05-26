@@ -292,7 +292,7 @@ def like(id, session):
 
 def count_likes(id):
     """ Så att man kan se antalet gillningar på ett specifikt recept """
-    cursor.execute('select count(*) from Likes where recipeid = ' + id)
+    cursor.execute('SELECT COUNT(*) FROM Likes WHERE recipeid = ' + id)
     total_likes = cursor.fetchall()
 
     for t in total_likes:

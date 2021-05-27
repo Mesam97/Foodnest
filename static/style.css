@@ -714,3 +714,8 @@ textarea {
   color: #DC143C;
 }
 /* Slut LIKE-button */ 
+
+i.fab {
+  margin: 0 12px 10px;
+  cursor: pointer;
+}

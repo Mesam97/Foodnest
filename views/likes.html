@@ -98,8 +98,8 @@
         <div id="posts">
           % for l in liked:
             <a href="/recipe/{{l['id']}}">
-              <div class="text-title">{{l['title']}}</div>
-              <img class="my-image" src="{{l['image']}}"/>
+              <div class="liked-title">{{l['title']}}</div>
+              <img class="liked-image" src="{{l['image']}}"/>
             </a>
           % end
         </div>

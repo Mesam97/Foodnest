@@ -49,6 +49,10 @@ header > img {
   margin-top: 20px;
 }
 
+.no-border > a > img {
+  height: 200px;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -300,49 +304,6 @@ main > img {
   background: transparent;
 }
 
-#title {
-  border: 1px solid #008CBA;
-  border-radius: 10px;
-  width: 50%;
-  padding: 10px 25px;
-  margin: 10px;
-  box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
-}
-
-#picture {
-  width: 50%;
-  padding: 10px 25px;
-  margin: 10px;
-  box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  border: 1px solid #4B5B73;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  background: rgb(248, 248, 248);
-  border-radius: 30px;
-  color: #4B5B73;
-  margin-top: 10px;
-}
-
-form > textarea {
-  border: 1px solid #008CBA;
-  border-radius: 10px;
-  width: 50%;
-  padding: 10px 25px;
-  margin: 10px;
-  box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
-}
-
 form {
   margin: 20px;
   padding: 20px;
@@ -394,11 +355,60 @@ form {
   opacity: 1;
 }
 
+/* Styling för skapa recept-formulär */
+
+#title {
+  border: 1px solid #008CBA;
+  border-radius: 10px;
+  width: 50%;
+  padding: 10px 25px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+#picture {
+  width: 50%;
+  padding: 10px 25px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #4B5B73;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: rgb(248, 248, 248);
+  border-radius: 30px;
+  color: #4B5B73;
+  margin-top: 10px;
+}
+
+form > textarea {
+  border: 1px solid #008CBA;
+  border-radius: 10px;
+  width: 50%;
+  padding: 10px 25px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
 fieldset {
-  margin: auto;
+  margin: 20px auto;
   padding: 10px;
   width: 25%;
-  border: 1px solid #000000;
+  border: 1px solid #008CBA;
+}
+
+legend {
+  font-size: 17px;
 }
 
 select {
@@ -407,7 +417,7 @@ select {
 
 #checkboxes {
   text-align: initial;
-  margin-left: 130px;
+  margin-left: 20px;
 }
 
 #category-form {
@@ -538,10 +548,10 @@ textarea {
 }
 
 .my-image {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   border-radius: 20px;
-  margin-left: 100px;
+  margin-left: 110px;
   margin-bottom: 20px;
 }
 
@@ -617,9 +627,22 @@ textarea {
   font-size: 30px;
 }
 
-.my-image {
-  width: 40%;
-  height: 20%;
+/* Liked-sidan */
+.liked-title {
+  color: #4B5B73;
+  font-size: 25px;
+  position: relative;
+  width: 250px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.liked-image {
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
 
 /* LIKE-button */

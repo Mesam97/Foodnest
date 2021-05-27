@@ -124,7 +124,7 @@ def about():
 
     return template('about')
 
-@route('/about-index')
+@route('/about_index')
 def about_index():
 
     return template('about_index')

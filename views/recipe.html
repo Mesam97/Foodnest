@@ -49,14 +49,7 @@
           </div>
         </nav>  
       </header>
-<!-- GAMLA
-      <nav>
-        <a href="/posts">Utforska</a>
-        <a href="/create_recipe">Skapa recept</a>
-        <a href="/profile">Min profil</a>
-        <a class="log-out" href="/">Logga ut</a>                 
-      </nav>
--->
+
       <main>
         <article>
           <h1 class="recipe-title">{{recipes['title']}}</h1>
@@ -64,7 +57,9 @@
           <div id="recipe-box">
           <img src="{{recipes['picture']}}" alt="Mat" class="recipe-img"/>
           <!-- LIKE-button -->
-          <i liked={{liked}} class="bi bi-suit-heart fa-2x" id="{{recipes['id']}}"></i>
+          <div class="like-button">
+            <i liked={{liked}} class="bi bi-suit-heart fa-2x" id="{{recipes['id']}}"></i>
+          </div>
           <!-- Slut LIKE-button -->
           <p>{{total_likes['likes']}} matälskare gillar detta recept</p>
           <div id="recipe">
@@ -95,7 +90,6 @@
            
             % end
           </div>
-          
           
         </div>
       </main>

@@ -40,6 +40,7 @@ header {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+
 header > img {
   height: 200px;
 }
@@ -207,6 +208,7 @@ a.active:hover {
   }
 
 }
+/* SLUT Mobil-läge */
 
 a {
   text-decoration: none;
@@ -302,6 +304,53 @@ main > img {
   font-family: "Raleway", sans-serif;
   outline: none;
   background: transparent;
+}
+
+#title {
+  border: 1px solid #008CBA;
+  border-radius: 10px;
+  width: 50%;
+  padding: 10px 25px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+#picture {
+  width: 50%;
+  padding: 10px 25px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #4B5B73;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: rgb(248, 248, 248);
+  border-radius: 30px;
+  color: #4B5B73;
+  margin-top: 15px;
+}
+
+.custom-file-upload:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+form > textarea {
+  border: 1px solid #008CBA;
+  border-radius: 10px;
+  width: 50%;
+  padding: 10px 25px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
 }
 
 form {
@@ -508,7 +557,6 @@ footer a {
 .text {
   color: #4B5B73;
   font-size: 25px;
-  position: relative;
   margin-top: 130px;
 }
 
@@ -646,6 +694,17 @@ textarea {
 }
 
 /* LIKE-button */
+.like-button {
+  display: inline-block;
+  padding: 9px 17px;
+  box-shadow: 0px 1px 4px rgba(0,0,0,1);
+  border-radius: 80px;
+  background: #ffffff;
+}
+
+.bi-suit-heart {
+  transition: 0.4s;
+}
 
 .bi-suit-heart:hover {
   color: #DC143C;
@@ -654,6 +713,4 @@ textarea {
 .bi-suit-heart-fill {
   color: #DC143C;
 }
-
 /* Slut LIKE-button */ 
-/*KD3*/

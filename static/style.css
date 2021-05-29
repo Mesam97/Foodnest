@@ -668,7 +668,7 @@ i.fab {
 }
 
 /* Mobil-läge */
-@media (max-width: 925px) {
+@media screen and (max-width: 925px) {
   #comment {
     width: 80%;
   }
@@ -684,6 +684,7 @@ i.fab {
   .navbar-links {
     display: none;
     width: 100%;
+    transition: all 5s ease-in-out;
   }
 
   .navbar {
@@ -694,6 +695,7 @@ i.fab {
   .navbar-links ul {
     flex-direction: column;
     width: 100%;
+    border-top: 0.5px solid #4B5B73;;
   }
 
   .navbar-links li {
@@ -729,7 +731,7 @@ i.fab {
     width: 0;
     height: 1px;
     background: #008CBA;
-    width: 100%
+    width: 22%
   }
   
   li a.active {

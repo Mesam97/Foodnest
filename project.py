@@ -168,11 +168,7 @@ def change_password(session):
 @route('/remove/<id>') #TODO
 def remove(id):
     """ Tar bort ett specifikt recept från databasen """
-    '''
-    cursor.callproc('remove_recipe', [id])
-    foodnestdb.commit()
-    '''
-
+    
     cursor.execute('DELETE FROM Tags WHERE Recipeid = ' + id)
     cursor.execute('DELETE FROM Likes WHERE Recipeid = ' + id)
     cursor.execute('DELETE FROM Comments WHERE Recipeid = ' + id)
@@ -264,7 +260,6 @@ def show_recipe(id, session):
     for r in recipes:
         recipe_dict = {'first_name': r[0], 'picture': r[1], 'title': r[2], 'ingredients': r[3], 'instructions': r[4], 'portion': r[5], 'id': id}
 
-    # Funktionen så att man ska kunna gilla/ogilla ett recept körs
     # För att man ska kunna gilla/ogilla ett recept. Kopplat till JS
     liked = 0
     if request.query:
@@ -289,12 +284,9 @@ def show_recipe(id, session):
         liked = 0
     else:
         liked = 1
-
-    
     
     # Funktionen så att man ska kunna se antal gillningar körs
     total_dict = count_likes(id)
-    
     # Funktionen så att man ska kunna se kommentarer för ett viss recept körs
     comments_list = comment(id)
     
@@ -397,10 +389,7 @@ def save_to_database(session):
         foodnestdb.commit()
 
     return redirect('posts')
-
-# if filename in static == select filename FROM recipes
-# select picture from recipes WHERE recipeid = id 
-
+ 
 
 @route('/log_out')
 def logout(session):

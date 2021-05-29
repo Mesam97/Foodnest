@@ -161,7 +161,7 @@ a:hover {
 
 main {
   grid-area: main;
-  padding-bottom: 125px;
+  padding-bottom: 75px;
 }
 
 main > img {
@@ -169,6 +169,11 @@ main > img {
   padding: 10px;
   height: 250px;
 }
+
+#comment {
+  width: 65%;
+}
+
 
 /* Styling för sidan Om oss */
 #about-us {
@@ -389,6 +394,7 @@ form > textarea {
 }
 
 fieldset {
+  border-radius: 10px;
   margin: 20px auto;
   padding: 10px;
   width: 25%;
@@ -412,8 +418,8 @@ select {
 }
 
 #category-form {
-  margin-bottom: 0;
-  padding-bottom: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #sort {
@@ -433,7 +439,6 @@ select {
 footer {
   grid-area: footer;
   clear: both;
-  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -664,6 +669,14 @@ i.fab {
 
 /* Mobil-läge */
 @media (max-width: 925px) {
+  #comment {
+    width: 80%;
+  }
+
+  fieldset {
+    width: 50%;
+  }
+
   .hamburger {
     display: flex;
   }
@@ -723,5 +736,16 @@ i.fab {
     color: #008CBA;
   }
 
+  #recipe-box {
+    width: auto;
+    float: none;
+    margin-left: 0;
+  }
+
+  #comment-box {
+    margin: 20px auto 0px auto;
+    width: 50%;
+    float: none;
+  }
 }
 /* SLUT Mobil-läge */

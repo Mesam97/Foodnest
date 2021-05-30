@@ -57,22 +57,24 @@
           <h1 class="recipe-title">{{recipes['title']}}</h1>
           <p>Skapad av {{recipes['first_name']}}</p><br/>
           <div id="recipe-box">
-          <img src="{{recipes['picture']}}" alt="Mat" class="recipe-img"/>
-          <!-- LIKE-button -->
-          <div class="like-button">
-            <i liked={{liked}} class="bi bi-suit-heart fa-2x" id="{{recipes['id']}}"></i>
+            <div class="recipe-div">
+              <img src="{{recipes['picture']}}" alt="Mat" class="recipe-img"/>
+              <!-- LIKE-button -->
+              <div class="like-button">
+                <i liked={{liked}} class="bi bi-suit-heart fa-2x" id="{{recipes['id']}}"></i>
+              </div>
           </div>
-          <!-- Slut LIKE-button -->
-          <p>{{total_likes['likes']}} matälskare gillar detta recept</p>
-          <div id="recipe">
-            <h4>Ingredienser:</h4>
-            <p>{{recipes['ingredients']}}</p><br/>
-            <h4>Instruktioner:</h4>
-            <p>{{recipes['instructions']}}</p><br/>
-            <h4>Antal Portioner:</h4>
-            <p>{{recipes['portion']}}</p><br/>
+            <!-- Slut LIKE-button -->
+            <p>{{total_likes['likes']}} matälskare gillar detta recept</p>
+            <div id="recipe">
+              <h4>Ingredienser:</h4>
+              <p>{{recipes['ingredients']}}</p><br/>
+              <h4>Instruktioner:</h4>
+              <p>{{recipes['instructions']}}</p><br/>
+              <h4>Antal Portioner:</h4>
+              <p>{{recipes['portion']}}</p><br/>
+            </div>
           </div>
-        </div>
       </article>
 
         <div id="comment-box">

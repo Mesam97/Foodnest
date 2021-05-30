@@ -560,6 +560,10 @@ textarea {
 }
 
 /*Styling för Recept-sidan */
+.recipe-div {
+  position: relative; /* För att like-knappen ska sätta sig på bilden */
+}
+
 .recipe-img {
   width: 375px;
   height: 375px;
@@ -643,14 +647,18 @@ textarea {
 /* LIKE-button */
 .like-button {
   display: inline-block;
-  padding: 9px 17px;
+  padding: 4px 4px;
   box-shadow: 0px 1px 4px rgba(0,0,0,1);
   border-radius: 80px;
   background: #ffffff;
+  position: absolute;
+  bottom: 2rem;
+  right: 13.5rem;
 }
 
 .bi-suit-heart {
   transition: 0.4s;
+  padding: 10px;
 }
 
 .bi-suit-heart:hover {
@@ -659,6 +667,12 @@ textarea {
 
 .bi-suit-heart-fill {
   color: #DC143C;
+  transition: .4s;
+  padding: 10px;
+}
+
+.bi-suit-heart-fill:hover {
+  color: #4B5B73;
 }
 /* Slut LIKE-button */ 
 

@@ -560,6 +560,10 @@ textarea {
 }
 
 /*Styling för Recept-sidan */
+#recipe h4 {
+  font-weight: bold;
+}
+
 .recipe-div {
   position: relative; /* För att like-knappen ska sätta sig på bilden */
 }

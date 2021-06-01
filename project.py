@@ -6,12 +6,11 @@ import mysql.connector
 import configparser
 
 app = app()
-plugin = bottle_session.SessionPlugin(cookie_lifetime=600)
+plugin = bottle_session.SessionPlugin(cookie_lifetime=None)
 app.install(plugin)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-
 
 db_user = config['DATABASE']['User']
 db_name = config['DATABASE']['Database']
@@ -36,6 +35,10 @@ def index(error = ''):
 
 @route('/log_in', method = 'POST')
 def log_in(session):
+    """ 
+    Hämtar email och lösenord från databasen.
+    """
+
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
 
@@ -49,11 +52,6 @@ def log_in(session):
     
     return redirect('posts')
     
-
-def check_log_in(email, password):
-    cursor.execute('SELECT * FROM Account WHERE Email = %s AND password = %s', (email, password))
-    account = cursor.fetchall()
-
 
 @route('/create_account')
 def create_account(error = ''):
@@ -80,6 +78,7 @@ def check_email(email):
     else:
         return True
 
+
 def check_pass(password):
     """ Funktion som berättar hur lösenord får anges """
  
@@ -95,6 +94,7 @@ def check_pass(password):
         return False
     else:
         return True
+        
 
 @route('/new_member', method = 'POST')
 def new_member(session):
@@ -126,6 +126,7 @@ def about():
 
 @route('/about_index')
 def about_index():
+    """ Visar en annan sida om oss, när användaren ej är inloggad """
 
     return template('about_index')
 
@@ -165,10 +166,21 @@ def change_password(session):
         return redirect('/profile?error=Felaktigt lösenord')
 
 
-@route('/remove/<id>') #TODO
+@route('/remove/<id>')
 def remove(id):
-    """ Tar bort ett specifikt recept från databasen """
+    """ 
+    Tar bort allt som har med ett viss ID att göra
+     
+    """
+    cursor.execute('SELECT Picture FROM Recipes WHERE Recipeid = ' + id)
+    picture = cursor.fetchall()
+    # [4:-4] tar bort de fyra första och 4 sista tecknen i strängen (filnamnet)
+    removed_picture = str(picture)[4:-4]
+
+    # Tar bort filnamnet från mappen Static
+    os.remove(removed_picture)
     
+    # Deletar receptet från varje tabell, en i taget med parent-tabellen sist
     cursor.execute('DELETE FROM Tags WHERE Recipeid = ' + id)
     cursor.execute('DELETE FROM Likes WHERE Recipeid = ' + id)
     cursor.execute('DELETE FROM Comments WHERE Recipeid = ' + id)
@@ -210,7 +222,7 @@ def category():
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
 
-    elif category == 'Nyast':
+    elif category == 'Senaste':
         cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes ORDER BY Recipeid DESC')
         recipes = cursor.fetchall()
 
@@ -343,6 +355,10 @@ def comment(id):
 
 @route('/save_comment/<id>', method = 'POST')
 def save_comment(session, id):
+    """ 
+    Tar kommentar från formulär och insertar det i tabellen Comments,
+    som sen redirectar användaren till recipe + id 
+    """
     comment = getattr(request.forms, 'comment')
 
     sql = 'INSERT INTO Comments(Recipeid, Sentence, Email) VALUES (%s, %s, %s)'

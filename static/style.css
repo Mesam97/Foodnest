@@ -162,6 +162,7 @@ a:hover {
 main {
   grid-area: main;
   padding-bottom: 75px;
+  margin-bottom: 5%;
 }
 
 main > img {
@@ -567,6 +568,10 @@ textarea {
 
 .recipe-div {
   position: relative; /* För att like-knappen ska sätta sig på bilden */
+  width: 375px;
+  height: 375px;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .recipe-img {
@@ -656,8 +661,8 @@ textarea {
   border-radius: 80px;
   background: #ffffff;
   position: absolute;
-  bottom: 2rem;
-  right: 16vw;
+  bottom: 3%;
+  right: 3%;
 }
 
 .bi-suit-heart {
@@ -713,7 +718,6 @@ i.fab {
   .navbar-links ul {
     flex-direction: column;
     width: 100%;
-    border-top: 0.5px solid #4B5B73;;
   }
 
   .navbar-links li {

@@ -123,7 +123,8 @@
     <script>$(".delete").on("click", function() {
     // Frågar användaren efter vilket inlägg som ska bort
     console.log(this.id)
-    window.location.replace("http://127.0.0.1:8030/remove/" + this.id)
+    let confirmed = confirm("Säker på att du vill ta bort detta inlägg?");
+    if(confirmed) window.location.replace("http://127.0.0.1:8030/remove/" + this.id)
     // tar bort det valda inlägget
     })
     if (window.location.search === "?error=Felaktigt%20lösenord"){

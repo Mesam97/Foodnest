@@ -378,7 +378,6 @@ def save_to_database(session):
     instructions = getattr(request.forms, 'instructions')
     portions = getattr(request.forms, 'portions')
     picture = getattr(request.files,'picture')
-    #category = getattr(request.forms, 'category')
     category = request.forms.getall('category[]')
     
     name, ext = os.path.splitext(picture.filename)

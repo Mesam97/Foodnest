@@ -529,6 +529,7 @@ footer a {
 #recipe > p {
   margin: auto;
   width: 50%;
+  white-space: pre-wrap;
 }
 
 textarea {

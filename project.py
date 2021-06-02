@@ -211,7 +211,7 @@ def posts():
 def category():
     category = getattr(request.forms, 'category')
 
-    if category == 'Alla kategorier' or category == 'Äldst':
+    if category == 'Alla kategorier' or category == 'Äldsta':
         cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
         recipes = cursor.fetchall()
 

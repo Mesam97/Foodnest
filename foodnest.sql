@@ -5,7 +5,7 @@ Email VARCHAR (60) NOT NULL,
 First_name VARCHAR (20) NOT NULL,
 Last_name VARCHAR (40) NOT NULL,
 Birthday CHAR (6),
-Password VARCHAR (30) NOT NULL,
+Password BLOB NOT NULL,
 PRIMARY KEY (Email)
 );
 

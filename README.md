@@ -19,7 +19,7 @@ pip install mysql-connector-python
 pip install bottle-session
 pip install bottle-redis
 ```
-Öppna sedan ```projekt.py``` och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8070/ (kontrollera att porten stämmer annars skriv porten som står längst ner i projekt.py)
+Öppna sedan ```projekt.py``` och kör koden, öppna din webbläsare och skriv http://127.0.0.1:8030/ 
 
 ## Länk till Github:
 [Github](https://github.com/Mesam97/Foodnest.git)

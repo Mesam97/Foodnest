@@ -35,7 +35,7 @@ FOREIGN KEY (Email) REFERENCES Account (Email)
 
 CREATE TABLE Likes(
 Recipeid INT,
-Email VARCHAR (60), -- Användare
+Email VARCHAR (60),
 PRIMARY KEY (Recipeid, Email),
 FOREIGN KEY (Email) REFERENCES Account (Email),
 FOREIGN KEY (Recipeid) REFERENCES Recipes (Recipeid)

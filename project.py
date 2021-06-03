@@ -26,7 +26,7 @@ cursor = foodnestdb.cursor(buffered = True)
 
 @route('/')
 def index(error = ''):
-    """ Visar förstasidan som består av ett logga in-formulär """
+    # Visar förstasidan som består av ett logga in-formulär 
 
     if request.query:
         error = getattr(request.query, 'error')
@@ -35,9 +35,7 @@ def index(error = ''):
 
 @route('/log_in', method = 'POST')
 def log_in(session):
-    """ 
-    Hämtar email och lösenord från databasen.
-    """
+    # Hämtar email och lösenord från databasen. 
 
     email = getattr(request.forms, 'email')
     password = getattr(request.forms, 'password')
@@ -63,7 +61,7 @@ def create_account(error = ''):
 
 
 def check_email(email):
-    """ Funktion som berättar hur epostadress anges """
+    # Funktion som berättar hur epostadress anges 
 
     if(len(email)<8):
         return False
@@ -80,7 +78,7 @@ def check_email(email):
 
 
 def check_pass(password):
-    """ Funktion som berättar hur lösenord får anges """
+    # Funktion som berättar hur lösenord får anges 
  
     if (len(password)<6):
         return False
@@ -98,6 +96,7 @@ def check_pass(password):
 
 @route('/new_member', method = 'POST')
 def new_member(session):
+    # Hämtar svar från ett forumlär i create_account.html och lägger in dem i databasen
     first_name = getattr(request.forms, 'first-name')
     last_name = getattr(request.forms, 'last-name')
     email = getattr(request.forms, 'email')
@@ -120,22 +119,21 @@ def new_member(session):
 
 @route('/about')
 def about():
-    """ Visar en sida om oss """
+    # Visar en sida om oss 
 
     return template('about')
 
 @route('/about_index')
 def about_index():
-    """ Visar en annan sida om oss, när användaren ej är inloggad """
+    # Visar en annan sida om oss, när användaren ej är inloggad 
 
     return template('about_index')
 
 
 @route('/profile')
 def profile(session, error = ''):
-    """
-    Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor 
-    """ 
+    # Visar en profilsida med alla inlägg och möjlighet att navigera mellan sidor 
+
     cursor.execute(f"SELECT Picture, Recipeid, Title FROM Recipes WHERE Email = '{session['username']}'")
     recipes = cursor.fetchall()
     recipe_list = []
@@ -154,6 +152,7 @@ def profile(session, error = ''):
 
 @route('/change_password', method = 'POST')
 def change_password(session):
+    # Hämtar svaren ifrån formulär på profile.html och ändrar lösenordet ifall det följer kraven
     old_password = getattr(request.forms, 'old-password')
     password = getattr(request.forms, 'new-password')
  
@@ -168,10 +167,8 @@ def change_password(session):
 
 @route('/remove/<id>')
 def remove(id):
-    """ 
-    Tar bort allt som har med ett viss ID att göra
+    # Tar bort allt som har med ett viss ID att göra
      
-    """
     cursor.execute('SELECT Picture FROM Recipes WHERE Recipeid = ' + id)
     picture = cursor.fetchall()
     # [4:-4] tar bort de fyra första och 4 sista tecknen i strängen (filnamnet)
@@ -192,14 +189,14 @@ def remove(id):
 
 @route('/posts')
 def posts():
-    """ Visar flöde-sidan som består av bilder på recepten """
+    # Visar flöde-sidan som består av bilder på recepten 
 
     cursor.execute('SELECT Picture, Recipeid, Title FROM Recipes')
     recipes = cursor.fetchall()
 
     recipe_list = []
 
-    #Lexikon
+    # Lexikon
     for r in recipes:
         recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
         recipe_list.append(recipe_dict)
@@ -209,6 +206,7 @@ def posts():
 
 @route('/posts', method='POST')
 def category():
+    # Hämtar svaren ifrån formulär och kategoriserar innehållet efter svaret
     category = getattr(request.forms, 'category')
 
     if category == 'Alla kategorier' or category == 'Äldsta':
@@ -217,7 +215,7 @@ def category():
 
         recipe_list = []
 
-        #Lexikon
+        # Lexikon
         for r in recipes:
             recipe_dict = {'id': r[1], 'img': r[0], 'title': r[2]}
             recipe_list.append(recipe_dict)
@@ -250,7 +248,7 @@ def category():
 
 @route('/create_recipe')
 def create_recipe(session):
-    """ Visar en sida där användare kan skapa ett recept """
+    # Visar en sida där användare kan skapa ett recept 
 
     return template('create_recipe')
 
@@ -306,7 +304,7 @@ def show_recipe(id, session):
 
 
 def count_likes(id):
-    """ Så att man kan se antalet gillningar på ett specifikt recept """
+    # Funtion så att man kan se antalet gillningar på ett specifikt recept 
     cursor.execute('SELECT COUNT(*) FROM Likes WHERE recipeid = ' + id)
     total_likes = cursor.fetchall()
 
@@ -338,7 +336,7 @@ def liked_recipes(session, error = ''):
 
 
 def comment(id):
-    """ För att hämta kommentarer från databasen om ett viss recept """
+    # Funktion som hämtar kommentarer från databasen om ett viss recept 
     cursor.execute('SELECT Account.First_name, Comments.Sentence '
                    'FROM Account INNER JOIN Comments '
                    'ON Account.Email = Comments.Email WHERE Recipeid = ' + id)
@@ -371,7 +369,7 @@ def save_comment(session, id):
 
 @route('/save_recipe', method = 'POST')
 def save_to_database(session):
-    """ På denna länken kan användarna skapa recept """
+    # Funktion som hämtar svaren ifrån formuläret i create_recipe.html och sparar det till databas
 
     title = getattr(request.forms, 'title')
     ingredients = getattr(request.forms, 'ingredients')
@@ -399,7 +397,7 @@ def save_to_database(session):
 
     for c in category:
     
-        #gör en foorloop, som går igenom lista med kategorier
+        # Gör en foorloop, som går igenom lista med kategorier
         cursor.execute('INSERT INTO Tags(Categories, Recipeid) VALUES (%s,%s)', (str(c), str(id)))
         foodnestdb.commit()
 
@@ -408,7 +406,7 @@ def save_to_database(session):
 
 @route('/log_out')
 def logout(session):
-    """ Tömmer den inloggade användaren m.h.a. session """
+    # Tömmer den inloggade användaren m.h.a. session 
     session['username'] = ''
 
     return redirect('/')

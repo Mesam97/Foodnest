@@ -1,4 +1,4 @@
-// LIKE-function 
+// LIKE-funktionen
 $('.bi').click(function(){
   console.log($('.bi').hasClass('bi bi-suit-heart'))
     if ($('.bi').hasClass('bi-suit-heart')){
